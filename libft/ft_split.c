@@ -6,24 +6,26 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 18:13:39 by yongjule          #+#    #+#             */
-/*   Updated: 2021/06/13 05:39:15 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 14:07:15 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		check_chr(char c, char ch)
+static int	check_chr(char c, char ch)
 {
 	if (c == ch)
 		return (1);
 	return (0);
 }
 
-static int		get_size(char *str, char c)
+static int	get_size(char *str, char c)
 {
-	int size;
+	int	size;
 
 	size = 0;
+	if (!str)
+		return (size);
 	while (*str)
 	{
 		if (!check_chr(*str, c))
@@ -41,7 +43,8 @@ static int		get_size(char *str, char c)
 
 static	char	**alloc_mem(char **tmp, int start, int i, int idx)
 {
-	if (!(tmp[idx] = (char*)malloc(i - start + 1)))
+	tmp[idx] = (char *)malloc(i - start + 1);
+	if (!tmp[idx])
 	{
 		while (0 <= idx)
 		{
@@ -54,18 +57,14 @@ static	char	**alloc_mem(char **tmp, int start, int i, int idx)
 	return (tmp);
 }
 
-char			**ft_split(char const *s, char c)
+static	char	**get_strs(char *s, char c, char **tmp)
 {
-	char	**tmp;
-	int		i;
-	int		start;
-	int		idx;
+	int	i;
+	int	idx;
+	int	start;
 
 	i = 0;
 	idx = 0;
-	if (s == NULL || !(tmp =
-				(char**)ft_calloc(get_size((char*)s, c), sizeof(char*))))
-		return (NULL);
 	while (*(s + i))
 	{
 		if (!check_chr(*(s + i), c))
@@ -73,12 +72,25 @@ char			**ft_split(char const *s, char c)
 			start = i;
 			while (*(s + i) && !check_chr(*(s + i), c))
 				i++;
-			if (!(tmp = alloc_mem(tmp, start, i, idx)))
+			tmp = alloc_mem(tmp, start, i, idx);
+			if (!tmp)
 				return (NULL);
-			ft_strlcpy(tmp[idx++], (char*)(s + start), i - start + 1);
+			ft_strlcpy(tmp[idx++], (char *)(s + start), i - start + 1);
 		}
 		if (*(s + i) != '\0')
 			i++;
 	}
 	return (tmp);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**tmp;
+
+	if (!s)
+		return (NULL);
+	tmp = (char **)ft_calloc(get_size((char *)s, c), sizeof(char *));
+	if (!tmp)
+		return (NULL);
+	return (get_strs((char *)s, c, tmp));
 }

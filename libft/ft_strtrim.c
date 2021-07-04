@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 16:00:38 by yongjule          #+#    #+#             */
-/*   Updated: 2021/05/05 12:39:29 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 12:13:40 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	cmpchr(char s, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
 	int		idx;
@@ -46,7 +46,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 		str = ft_strdup("");
 		return (str);
 	}
-	if (!(str = (char*)malloc(len - idx + 2)))
+	str = (char *)malloc(len - idx + 2);
+	if (!str)
 		return (NULL);
 	ft_memcpy(str, s1 + idx, len - idx + 1);
 	*(str + len - idx + 1) = '\0';

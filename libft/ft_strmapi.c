@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 19:50:57 by yongjule          #+#    #+#             */
-/*   Updated: 2021/05/09 15:02:27 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 12:12:12 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (s == 0)
 		return (NULL);
 	len = ft_strlen(s);
-	if (!(str = (char*)malloc(len + 1)))
+	str = (char *)malloc(len + 1);
+	if (!str)
 		return (NULL);
 	idx = 0;
 	while (*(s + idx))

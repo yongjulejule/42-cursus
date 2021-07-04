@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:14:37 by yongjule          #+#    #+#             */
-/*   Updated: 2021/06/13 15:10:27 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 10:52:58 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t			idx;
 
 	idx = 0;
-	string = (unsigned char*)s;
+	string = (unsigned char *)s;
 	tmp = (unsigned char)c;
 	while (idx < n && *string != tmp)
 	{

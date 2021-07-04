@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by yongjule          #+#    #+#             */
-/*   Updated: 2021/06/14 13:53:38 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 12:18:18 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -71,12 +71,5 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void*));
-
-/*
-**	My Libft (with _bonus suffix)
-*/
-
-int				ft_dgtlen(int nbr, unsigned int base);
-char			**ft_weak_split(char const *s, char c);
 
 #endif

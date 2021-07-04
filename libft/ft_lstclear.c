@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:41:38 by yongjule          #+#    #+#             */
-/*   Updated: 2021/05/09 14:00:58 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/04 10:50:35 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (lst == NULL || *lst == NULL)
 		return ;
