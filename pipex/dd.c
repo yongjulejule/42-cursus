@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 	errno = 0;
 	ret = access(argv[1], R_OK | X_OK);
 	printf("R_OK | X_OK return is :%d\n", ret);
+	printf("R_OK | X_OK return is :%d\n", ret);
 	printf("errno is :%d\n", errno);
 	unlink(argv[1]);
 }
