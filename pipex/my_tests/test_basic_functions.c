@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <sys/errno.h>
 #include <string.h>
+#include <limits.h>
 
 extern int errno;
 
@@ -38,5 +39,7 @@ int main(int argc, char **argv)
 	printf("R_OK | X_OK return is :%d\n", ret);
 	printf("R_OK | X_OK return is :%d\n", ret);
 	printf("errno is :%d\n", errno);
-	unlink(argv[1]);
+//	unlink(argv[1]);
+	
+	printf("%d\n", execve(argv[1], (char **const)"/usr/bin/python3", (char **const)"ls"));
 }

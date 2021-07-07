@@ -1,6 +1,6 @@
 #include "ft_printf.h"
-
+#include <stdio.h>
 int main()
 {
-	ft_printf("%-----d\n", 14);
+	printf("%2147483647s", "");
 }
