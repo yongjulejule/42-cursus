@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 16:15:51 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/09 17:33:41 by yongjule         ###   ########.fr       */
+/*   Created: 2021/07/09 19:50:07 by jun               #+#    #+#             */
+/*   Updated: 2021/07/10 03:01:44 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	pid_t	pid;
 	int pipe_fd[2];
+	int status;
 
 	check_arg_validity(argc, argv, envp);
 	pipe(pipe_fd);
@@ -39,7 +40,12 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (pid > 0)
 	{
-		wait(NULL);
+		wait(&status);
+		if (WIFSIGNALED(status))
+		{
+			perror("dd");
+			exit(EXIT_FAILURE);
+		}
 		rdr_stdout_to_file(argv[4]);
 		connect_pipe_fd(pipe_fd, STDIN_FILENO);
 		execve("/bin/cat", NULL, NULL);
