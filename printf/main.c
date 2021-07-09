@@ -2,5 +2,6 @@
 #include <stdio.h>
 int main()
 {
-	printf("%2147483647s", "");
+	printf("%d", printf("%kaaaaaa\n"));
+	printf("%d", ft_printf("%kaaaaaa\n"));
 }

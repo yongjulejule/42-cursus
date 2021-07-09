@@ -6,13 +6,13 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:34:14 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/08 04:41:34 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/09 11:40:18 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-void	parse_commend(char **argv, char **envp)
+void	get_path(char **argv, char **envp)
 {
 	int i;
 

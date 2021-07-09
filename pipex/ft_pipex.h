@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/08 16:25:33 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:03:36 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@
 void	check_arg_validity(int argc, char **argv, char **envp);
 void	rdr_file_to_stdin(char *file);
 void	rdr_stdout_to_file(char *file);
+extern int errno;
 #endif
