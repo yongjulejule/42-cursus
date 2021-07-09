@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/24 10:57:47 by yongjule          #+#    #+#              #
-#    Updated: 2021/06/24 11:15:05 by yongjule         ###   ########.fr        #
+#    Updated: 2021/07/08 15:00:03 by yongjule         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: debug
-debug: all 
+debug: all a.out
 	$(CC) -g3 -fsanitize=address $(MAIN) $(NAME) $(LIB)
 	./a.out
 

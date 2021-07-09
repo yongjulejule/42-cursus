@@ -18,6 +18,13 @@ BONUS_SRCS	Makefile	/^BONUS_SRCS = ${SRCS}\\$/;"	m
 BONUS_SRCS	libft/Makefile	/^BONUS_SRCS = ${SRCS}\\$/;"	m
 CC	Makefile	/^CC = gcc$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
+CFBundleDevelopmentRegion	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleDevelopmentRegion<\/key>$/;"	k
+CFBundleIdentifier	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleIdentifier<\/key>$/;"	k
+CFBundleInfoDictionaryVersion	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleInfoDictionaryVersion<\/key>$/;"	k
+CFBundlePackageType	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundlePackageType<\/key>$/;"	k
+CFBundleShortVersionString	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleShortVersionString<\/key>$/;"	k
+CFBundleSignature	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleSignature<\/key>$/;"	k
+CFBundleVersion	pipex.dSYM/Contents/Info.plist	/^		<key>CFBundleVersion<\/key>$/;"	k
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
 DFLAGS	Makefile	/^DFLAGS = -g3 -fsanitize=address$/;"	m
@@ -102,6 +109,8 @@ make_nbr	libft/ft_putnbr_fd.c	/^static void	make_nbr(int n, int fd)$/;"	f	typere
 min_len	libft/ft_substr.c	/^static	size_t	min_len(size_t len1, size_t len2)$/;"	f	typeref:typename:size_t	file:
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 parse_commend	parse_commend.c	/^void	parse_commend(char **argv, char **envp)$/;"	f	typeref:typename:void
+rdr_file_to_stdin	file_redirection.c	/^void	rdr_file_to_stdin(char *file)$/;"	f	typeref:typename:void
+rdr_stdout_to_file	file_redirection.c	/^void	rdr_stdout_to_file(char *file)$/;"	f	typeref:typename:void
 re	Makefile	/^re: fclean all$/;"	t
 re	libft/Makefile	/^re: fclean all$/;"	t
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s

@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/07 16:31:02 by yongjule         ###   ########.fr        #
+#    Updated: 2021/07/08 16:55:12 by yongjule         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ NAME = pipex
 LIB = libft/libft.a
 LIBDIR = libft
 SRCS = \
-	   pipex_main.c
+	   pipex_main.c\
+	   check_validity.c\
+	   file_redirection.c\
+#		parse_commend.c\
 
 OBJS = ${SRCS:.c=.o}
 
@@ -58,9 +61,8 @@ ffclean: clean
 re: fclean all
 
 .PHONY: debug
-debug: all 
+debug: 
 	$(CC) $(DFLAGS) $(SRCS) $(LIB) -o pipex
-	./a.out
 
 .PHONY: leakschk
 leakschk: clean

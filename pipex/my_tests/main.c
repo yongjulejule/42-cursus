@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:15:51 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/08 04:24:59 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/08 08:33:33 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **envp)
 	close(fd);
 	pid = fork();
 	if (pid == 0)
-			execve("/bin/ls", &argv[1], NULL);
+			execve("/usr/bin/sed", &argv[1], NULL);
 	wait(NULL);
 	write(3, "abc", 3);
 	printf("%d", fd);
