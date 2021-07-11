@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/09 17:34:01 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/07/10 14:28:36 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	rdr_file_to_stdin(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("open error in rdr_file_to_stdin");
+		perror("zsh");
+		write(2, ":", 1);
+		ft_putstr_fd(file, 2);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
@@ -35,7 +37,7 @@ void	rdr_stdout_to_file(char *file)
 {
 	int	fd;
 
-	fd = open(file, O_RDWR | O_CREAT, 0644);
+	fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd < 0)
 	{
 		perror("open error in rdr_file_to_stdout");
