@@ -2,3 +2,4 @@ a.out*
 *.out
 *.dSYM
 *.o
+tags
