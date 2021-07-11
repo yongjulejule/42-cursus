@@ -6,13 +6,13 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/11 16:12:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/11 16:57:40 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-static	void	init_structure(int argc, t_args *args)
+static	void	allocate_structure(int argc, char **argv, t_args *args)
 {
 	args = (t_args *)malloc(sizeof(t_args));
 	if (!args)
@@ -20,14 +20,22 @@ static	void	init_structure(int argc, t_args *args)
 		perror("Malloc Error while initiate structure");
 		exit(EXIT_FAILURE);
 	}
-	args->argc = argc;
-	args->cmd_w_params = (char ***)malloc(sizeof(char **) * (argc - 2));
+	args->cmd_w_params = (char ***)malloc(sizeof(char **) * (argc - 3));
 	if (!args->cmd_w_params)
 	{
 		free(args);
 		perror("Malloc Error while initiate structure Params");
 		exit(EXIT_FAILURE);
 	}
+	args->cmd_w_params[argc - 3 - 1] = NULL;
+}
+
+static	void	init_structure(int argc, char **argv, t_args *args)
+{
+	allocate_structure(argc, argv, args);
+	args->argc = argc;
+	args->file[0] = argv[1];
+	args->file[1] = argv[argc - 1];
 }
 
 static	void	get_path(char **envp, t_args *args)
@@ -73,7 +81,7 @@ void	build_structure(int argc, char **argv, char **envp, t_args *args)
 	int	cmd_idx;
 
 	cmd_idx = 2;
-	init_structure(argc, args);
+	init_structure(argc, argv, args);
 	get_path(envp, args);
 	get_params(argv, args);
 	while (cmd_idx < argc - 1)

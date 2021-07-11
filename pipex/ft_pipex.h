@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/11 15:39:13 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/11 16:59:54 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	check_arg_validity(int argc, char **argv, char **envp);
 void	rdr_file_to_stdin(char *file);
 void	rdr_stdout_to_file(char *file);
 void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
+void	get_params(char **argv, t_args *args);
 #endif
