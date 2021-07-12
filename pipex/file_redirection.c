@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/10 14:28:36 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/12 20:27:10 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	rdr_file_to_stdin(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("zsh");
-		write(2, ":", 1);
-		ft_putstr_fd(file, 2);
+		ft_putstr_fd("zsh:", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(file, 2);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)

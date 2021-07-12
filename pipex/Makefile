@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/08 16:55:12 by yongjule         ###   ########.fr        #
+#    Updated: 2021/07/12 15:35:21 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,13 @@ NAME = pipex
 LIB = libft/libft.a
 LIBDIR = libft
 SRCS = \
-	   pipex_main.c\
+	   breed_process.c\
 	   check_validity.c\
 	   file_redirection.c\
-#		parse_commend.c\
+	   get_params.c\
+	   parse_commend.c\
+	   pipex_main.c\
+	   libft_fuc_w_error.c\
 
 OBJS = ${SRCS:.c=.o}
 
@@ -65,5 +68,5 @@ debug:
 	$(CC) $(DFLAGS) $(SRCS) $(LIB) -o pipex
 
 .PHONY: leakschk
-leakschk: clean
-	$(CC) $(LFLAGS) $(OBJS) $(LIB) -o pipex
+leakschk:
+	$(CC) $(LFLAGS) $(SRCS) $(LIB) -o pipex

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/11 13:34:50 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/12 20:31:56 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,23 @@ void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 	close(pipe_fd[PIPE_RD]);
 	close(pipe_fd[PIPE_WR]);
 }
-
-void	breed_process(char **file, t_args *cmd)
+void	breed_process(t_args *args)
 {
 	pid_t pid;
 	int	pipe_fd[2];
+	int	status;
 
-	pipe(pipe_fd);
+	if (pipe(pipe_fd) == -1)
+	{
+		perror("Fail to Open PIPE");
+		exit(EXIT_FAILURE);
+	}
 	pid = fork();
 	if (pid == 0)
 	{
-		rdr_file_to_stdin(file[0]);
+		rdr_file_to_stdin(args->file[0]);
 		connect_pipe_fd(pipe_fd, STDOUT_FILENO);
-		execve("/bin/cat", NULL, NULL);
+		execve(args->cmd_w_params[0][0], args->cmd_w_params[0], NULL);
 	}
 	else if (pid > 0)
 	{
@@ -44,9 +48,9 @@ void	breed_process(char **file, t_args *cmd)
 			perror("dd");
 			exit(EXIT_FAILURE);
 		}
-		rdr_stdout_to_file(file[1]);
+		rdr_stdout_to_file(args->file[1]);
 		connect_pipe_fd(pipe_fd, STDIN_FILENO);
-		execve("/usr/bin/wc", NULL, NULL);
+		execve(args->cmd_w_params[1][0], args->cmd_w_params[1], NULL);
 	}
 	else
 	{
@@ -54,3 +58,4 @@ void	breed_process(char **file, t_args *cmd)
 		exit(EXIT_FAILURE);
 	}
 }
+
