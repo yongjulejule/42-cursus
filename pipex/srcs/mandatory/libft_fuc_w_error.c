@@ -6,11 +6,11 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 14:25:30 by jun               #+#    #+#             */
-/*   Updated: 2021/07/12 17:35:10 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/13 15:17:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pipex.h"
+#include "../../includes/mandatory/ft_pipex.h"
 
 void	*ft_calloc_w_error(size_t count, size_t size)
 {

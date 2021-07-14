@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_params.c                                       :+:      :+:    :+:   */
+/*   get_params_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:14:23 by jun               #+#    #+#             */
-/*   Updated: 2021/07/12 21:20:23 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/13 15:18:57 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pipex.h"
-
-static	int	is_charset(char c, char *charset)
-{
-	if (!charset)
-		return (0);
-	while (*charset)
-	{
-		if (c == *charset)
-			return (1);
-		charset++;
-	}
-	return (0);
-}
+#include "../../includes/bonus/ft_pipex_bonus.h"
 
 static	int	split_once(char *str, char *charset)
 {
@@ -45,7 +32,7 @@ static	int	count_params(char *cmdset)
 {
 	int	size;
 	int	start;
-	int len;
+	int	len;
 
 	start = 0;
 	len = 0;
@@ -66,39 +53,45 @@ static	int	count_params(char *cmdset)
 	return (size);
 }
 
-static	void	get_each_params(char *cmdset, int cmd_idx, t_args *args)
+static	void	parse_param(t_args *args, char *cmdset, int c_idx, int p_idx)
 {
 	int	start;
 	int	len;
-	int param_idx;
-	int size;
+	int	size;
 
-	param_idx = 0;
-	len = 0;
-	start = len;
 	size = count_params(cmdset);
-	args->cmd_w_params[cmd_idx] =
-		(char **)ft_calloc_w_error(sizeof(char *), size + 1);
-	while (param_idx < size)
+	start = 0;
+	len = 0;
+	while (p_idx < size)
 	{
 		while (is_charset(cmdset[start], "\t\n\v\f\r "))
 			start++;
-		len = start;
 		if (is_charset(cmdset[start], "'"))
 		{
 			len = split_once(&cmdset[start], "'");
-			args->cmd_w_params[cmd_idx][param_idx] = ft_substr_w_error(cmdset, start + 1, len - 1);
-			param_idx++;
-			start = len + start + 1;
-			continue ;
+			args->params[c_idx][p_idx]
+				= ft_substr_w_error(cmdset, start + 1, len - 1);
 		}
 		else
-			while (!(is_charset(cmdset[len], "\t\n\v\f\r '")) && cmdset[len] != '\0')
-				len++;
-		args->cmd_w_params[cmd_idx][param_idx] = ft_substr_w_error(cmdset, start, len);
-		param_idx++;
-		start = len;
+		{
+			len = split_once(&cmdset[start], "\t\n\v\f\r ");
+			args->params[c_idx][p_idx] = ft_substr_w_error(cmdset, start, len);
+		}
+		start = len + start + 1;
+		p_idx++;
 	}
+}
+
+static	void	get_each_params(char *cmdset, int cmd_idx, t_args *args)
+{
+	int	param_idx;
+	int	size;
+
+	param_idx = 0;
+	size = count_params(cmdset);
+	args->params[cmd_idx]
+		= (char **)ft_calloc_w_error(sizeof(char *), size + 1);
+	parse_param(args, cmdset, cmd_idx, param_idx);
 }
 
 void	get_params(char **argv, t_args *args)

@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/12 18:16:19 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/13 15:08:45 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,27 @@
 
 /*include libraries*/
 
-#include <sys/types.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h> //perror
-#include <string.h> //strerror
-#include "ft_pipex.h"
-#include "libft/libft.h"
+# include <sys/types.h>
+# include <unistd.h>
+# include <sys/wait.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h> //perror
+# include <string.h> //strerror
+# include "../libft.h"
 
 /*user defines*/
 
-#define PIPE_RD 0
-#define PIPE_WR 1
+# define PIPE_RD 0
+# define PIPE_WR 1
 
-typedef	struct	s_args
+typedef struct s_args
 {
 	int		argc;
 	char	*file[2];
 	char	**env_path;
-	char	***cmd_w_params;
+	char	***params;
 }	t_args;
-
-/*errno*/
-
-extern	int	errno;
 
 /*FUNCTIONS*/
 

@@ -1,17 +1,145 @@
-[32m           .,,,,,,,,,.                            [39m
-[32m         .ckKxodooxOOdcc.                         [39m
-[32m      .cclooc'....';;cool.                        [39m
-[32m     .loc;;;;clllllc;;;;;:;,.                     [39m
-[32m   .c:'.,okd;;cdo:::::cl,..oc                     [39m
-[32m  .:o;';okkx;';;,';::;'....,:,.                   [39m
-[32m  co..ckkkkkddkc,cclll;.,c:,:o:.                  [39m
-[32m  co..ckkkkkkkk:,cllll;.:kkd,.':c.                [39m
-[32m.,:;.,okkkkkkkk:,cclll;.ckkkdl;;o:.               [39m
-[32mcNo..ckkkkkkkkko,.;loc,.ckkkkkc..oc               [39m
-[32m,dd;.:kkkkkkkkkx;..;:,.'lkkkkko,.:,               [39m
-[32m  ;:.ckkkkkkkkkkc.....;ldkkkkkk:.,'               [39m
-[32m,dc..'okkkkkkkkkxoc;;cxkkkkkkkkc..,;,.            [39m
-[32mkNo..':lllllldkkkkkkkkkkkkkkkkkdcc,.;l.           [39m
-[32mKOc,c;''''''';lldkkkkkkkkkkkkkkkkkc..;lc.         [39m
-[32mxx:':;;;;,.,,...,;;cllllllllllllllc;'.;od,        [39m
-[32mcNo.....................................oc        [39m
+[2J[3J[H[35m                         .cccc;;cc;';c.           [39m
+[35m                      .,:dkdc:;;:c:,:d:.          [39m
+[35m                     .loc'.,cc::c:::,..;:.        [39m
+[35m                   .cl;....;dkdccc::,...c;        [39m
+[35m                  .c:,';:'..ckc',;::;....;c.      [39m
+[35m                .c:'.,dkkoc:ok:;llllc,,c,';:.     [39m
+[35m               .;c,';okkkkkkkk:;lllll,:kd;.;:,.   [39m
+[35m               co..:kkkkkkkkkk:;llllc':kkc..oNc   [39m
+[35m             .cl;.,oxkkkkkkkkkc,:cll;,okkc'.cO;   [39m
+[35m             ;k:..ckkkkkkkkkkkl..,;,.;xkko:',l'   [39m
+[35m            .,...';dkkkkkkkkkkd;.....ckkkl'.cO;   [39m
+[35m         .,,:,.;oo:ckkkkkkkkkkkdoc;;cdkkkc..cd,   [39m
+[35m      .cclo;,ccdkkl;llccdkkkkkkkkkkkkkkkd,.c;     [39m
+[35m     .lol:;;okkkkkxooc::coodkkkkkkkkkkkko'.oc     [39m
+[35m   .c:'..lkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkd,.oc     [39m
+[35m  .lo;,:cdkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkd,.c;     [39m
+[35m,dx:..;lllllllllllllllllllllllllllllllllc'...     [39m
+[35mcNO;........................................      [39m
+[35m[39m[2J[3J[H[37m                .ckx;'........':c.                [39m
+[37m             .,:c:::::oxxocoo::::,',.             [39m
+[37m            .odc'..:lkkoolllllo;..;d,             [39m
+[37m            ;c..:o:..;:..',;'.......;.            [39m
+[37m           ,c..:0Xx::o:.,cllc:,'::,.,c.           [39m
+[37m           ;c;lkXKXXXXl.;lllll;lKXOo;':c.         [39m
+[37m         ,dc.oXXXXXXXXl.,lllll;lXXXXx,c0:         [39m
+[37m         ;Oc.oXXXXXXXXo.':ll:;'oXXXXO;,l'         [39m
+[37m         'l;;kXXXXXXXXd'.'::'..dXXXXO;,l'         [39m
+[37m         'l;:0XXXXXXXX0x:...,:o0XXXXx,:x,         [39m
+[37m         'l;;kXXXXXXXXXKkol;oXXXXXXXO;oNc         [39m
+[37m        ,c'..ckk0XXXXXXXXXX00XXXXXXX0:;o:.        [39m
+[37m      .':;..:do::ooookXXXXXXXXXXXXXXXo..c;        [39m
+[37m    .',',:co0XX0kkkxxOXXXXXXXXXXXXXXXOc..;l.      [39m
+[37m  .:;'..oXXXXXXXXXXXXXXXXXXXXXXXXXXXXXko;';:.     [39m
+[37m.ldc..:oOXKXXXXXXKXXKXXXXXXXXXXXXXXXXXXXo..oc     [39m
+[37m:0o...:dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxo,.:,     [39m
+[37mcNo........................................;'     [39m
+[37m[39m[2J[3J[H[33m            .cc;.  ...  .;c.                      [39m
+[33m         .,,cc:cc:lxxxl:ccc:;,.                   [39m
+[33m        .lo;...lKKklllookl..cO;                   [39m
+[33m      .cl;.,:'.okl;..''.;,..';:.                  [39m
+[33m     .:o;;dkd,.ll..,cc::,..,'.;:,.                [39m
+[33m     co..lKKKkokl.':lloo;''ol..;dl.               [39m
+[33m   .,c;.,xKKKKKKo.':llll;.'oOxl,.cl,.             [39m
+[33m   cNo..lKKKKKKKo'';llll;;okKKKl..oNc             [39m
+[33m   cNo..lKKKKKKKko;':c:,'lKKKKKo'.oNc             [39m
+[33m   cNo..lKKKKKKKKKl.....'dKKKKKxc,l0:             [39m
+[33m   .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc             [39m
+[33m     ,:.'oxOKKKKKKKOxxxxOKKKKKKxc,;ol:.           [39m
+[33m     ;c..'':oookKKKKKKKKKKKKKKKKKk:.'clc.         [39m
+[33m   ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKKOxxl:::;,.      [39m
+[33m  .dOc..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl,;ol.     [39m
+[33m  cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl..;lc.   [39m
+[33m  co..:dddddddddddddddddddddddddddddddddl::',::.  [39m
+[33m  co...........................................   [39m
+[33m[39m[2J[3J[H[34m           .ccccccc.                              [39m
+[34m      .,,,;cooolccoo;;,,.                         [39m
+[34m     .dOx;..;lllll;..;xOd.                        [39m
+[34m   .cdo;',loOXXXXXkll;';odc.                      [39m
+[34m  ,ol:;c,':oko:cccccc,...ckl.                     [39m
+[34m  ;c.;kXo..::..;c::'.......oc                     [39m
+[34m,dc..oXX0kk0o.':lll;..cxxc.,ld,                   [39m
+[34mkNo.'oXXXXXXo',:lll;..oXXOo;cOd.                  [39m
+[34mKOc;oOXXXXXXo.':lol;..dXXXXl';xc                  [39m
+[34mOl,:k0XXXXXX0c.,clc'.:0XXXXx,.oc                  [39m
+[34mKOc;dOXXXXXXXl..';'..lXXXXXo..oc                  [39m
+[34mdNo..oXXXXXXXOx:..'lxOXXXXXk,.:; ..               [39m
+[34mcNo..lXXXXXXXXXOolkXXXXXXXXXkl,..;:';.            [39m
+[34m.,;'.,dkkkkk0XXXXXXXXXXXXXXXXXOxxl;,;,;l:.        [39m
+[34m  ;c.;:''''':doOXXXXXXXXXXXXXXXXXXOdo;';clc.      [39m
+[34m  ;c.lOdood:'''oXXXXXXXXXXXXXXXXXXXXXk,..;ol.     [39m
+[34m  ';.:xxxxxocccoxxxxxxxxxxxxxxxxxxxxxxl::'.';;.   [39m
+[34m  ';........................................;l'   [39m
+[34m[39m[2J[3J[H[32m                                                  [39m
+[32m        .;:;;,.,;;::,.                            [39m
+[32m     .;':;........'co:.                           [39m
+[32m   .clc;'':cllllc::,.':c.                         [39m
+[32m  .lo;;o:coxdllllllc;''::,,.                      [39m
+[32m.c:'.,cl,.'l:',,;;'......cO;                      [39m
+[32mdo;';oxoc;:l;;llllc'.';;'.,;.                     [39m
+[32mc..ckkkkkkkd,;llllc'.:kkd;.':c.                   [39m
+[32m'.,okkkkkkkkc;lllll,.:kkkdl,cO;                   [39m
+[32m..;xkkkkkkkkc,ccll:,;okkkkk:,co,                  [39m
+[32m..,dkkkkkkkkc..,;,'ckkkkkkkc;ll.                  [39m
+[32m..'okkkkkkkko,....'okkkkkkkc,:c.                  [39m
+[32mc..ckkkkkkkkkdl;,:okkkkkkkkd,.',';.               [39m
+[32md..':lxkkkkkkkkxxkkkkkkkkkkkdoc;,;'..'.,.         [39m
+[32mo...'';llllldkkkkkkkkkkkkkkkkkkdll;..'cdo.        [39m
+[32mo..,l;'''''';dkkkkkkkkkkkkkkkkkkkkdlc,..;lc.      [39m
+[32mo..;lc;;;;;;,,;clllllllllllllllllllllc'..,:c.     [39m
+[32mo..........................................;'     [39m
+[32m[39m[2J[3J[H[33m                                                  [39m
+[33m           .,,,,,,,,,.                            [39m
+[33m         .ckKxodooxOOdcc.                         [39m
+[33m      .cclooc'....';;cool.                        [39m
+[33m     .loc;;;;clllllc;;;;;:;,.                     [39m
+[33m   .c:'.,okd;;cdo:::::cl,..oc                     [39m
+[33m  .:o;';okkx;';;,';::;'....,:,.                   [39m
+[33m  co..ckkkkkddkc,cclll;.,c:,:o:.                  [39m
+[33m  co..ckkkkkkkk:,cllll;.:kkd,.':c.                [39m
+[33m.,:;.,okkkkkkkk:,cclll;.ckkkdl;;o:.               [39m
+[33mcNo..ckkkkkkkkko,.;loc,.ckkkkkc..oc               [39m
+[33m,dd;.:kkkkkkkkkx;..;:,.'lkkkkko,.:,               [39m
+[33m  ;:.ckkkkkkkkkkc.....;ldkkkkkk:.,'               [39m
+[33m,dc..'okkkkkkkkkxoc;;cxkkkkkkkkc..,;,.            [39m
+[33mkNo..':lllllldkkkkkkkkkkkkkkkkkdcc,.;l.           [39m
+[33mKOc,c;''''''';lldkkkkkkkkkkkkkkkkkc..;lc.         [39m
+[33mxx:':;;;;,.,,...,;;cllllllllllllllc;'.;od,        [39m
+[33mcNo.....................................oc        [39m
+[33m[39m[2J[3J[H[36m                                                  [39m
+[36m                                                  [39m
+[36m                   .ccccccc.                      [39m
+[36m               .ccckNKOOOOkdcc.                   [39m
+[36m            .;;cc:ccccccc:,:c::,,.                [39m
+[36m         .c;:;.,cccllxOOOxlllc,;ol.               [39m
+[36m        .lkc,coxo:;oOOxooooooo;..:,               [39m
+[36m      .cdc.,dOOOc..cOd,.',,;'....':l.             [39m
+[36m      cNx'.lOOOOxlldOc..;lll;.....cO;             [39m
+[36m     ,do;,:dOOOOOOOOOl'':lll;..:d:''c,            [39m
+[36m     co..lOOOOOOOOOOOl'':lll;.'lOd,.cd.           [39m
+[36m     co.'dOOOOOOOOOOOo,.;llc,.,dOOc..dc           [39m
+[36m     co..lOOOOOOOOOOOOc.';:,..cOOOl..oc           [39m
+[36m   .,:;.'::lxOOOOOOOOOo:'...,:oOOOc.'dc           [39m
+[36m   ;Oc..cl'':lldOOOOOOOOdcclxOOOOx,.cd.           [39m
+[36m  .:;';lxl''''':lldOOOOOOOOOOOOOOc..oc            [39m
+[36m,dl,.'cooc:::,....,::coooooooooooc'.c:            [39m
+[36mcNo.................................oc            [39m
+[36m[39m[2J[3J[H[33m                                                  [39m
+[33m                                                  [39m
+[33m                                                  [39m
+[33m                        .cccccccc.                [39m
+[33m                  .,,,;;cc:cccccc:;;,.            [39m
+[33m                .cdxo;..,::cccc::,..;l.           [39m
+[33m               ,do:,,:c:coxxdllll:;,';:,.         [39m
+[33m             .cl;.,oxxc'.,cc,.';;;'...oNc         [39m
+[33m             ;Oc..cxxxc'.,c;..;lll;...cO;         [39m
+[33m           .;;',:ldxxxdoldxc..;lll:'...'c,        [39m
+[33m           ;c..cxxxxkxxkxxxc'.;lll:'','.cdc.      [39m
+[33m         .c;.;odxxxxxxxxxxxd;.,cll;.,l:.'dNc      [39m
+[33m        .:,''ccoxkxxkxxxxxxx:..,:;'.:xc..oNc      [39m
+[33m      .lc,.'lc':dxxxkxxxxxxxol,...',lx:..dNc      [39m
+[33m     .:,',coxoc;;ccccoxxxxxxxxo:::oxxo,.cdc.      [39m
+[33m  .;':;.'oxxxxxc''''';cccoxxxxxxxxxxxc..oc        [39m
+[33m,do:'..,:llllll:;;;;;;,..,;:lllllllll;..oc        [39m
+[33mcNo.....................................oc        [39m
+[33m[39m[2J[3J[H[35m                                                  [39m

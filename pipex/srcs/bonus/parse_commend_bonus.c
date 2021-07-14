@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_commend.c                                    :+:      :+:    :+:   */
+/*   parse_commend_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/12 20:40:10 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/13 15:18:58 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pipex.h"
+#include "../../includes/bonus/ft_pipex_bonus.h"
 
 static	void	init_structure(int argc, char **argv, t_args *args)
 {
-	args->cmd_w_params = (char ***)ft_calloc_w_error(argc - 2, sizeof(char **));
-	args->cmd_w_params[argc - 2 - 1] = NULL;
+	args->params = (char ***)ft_calloc_w_error(argc - 2, sizeof(char **));
+	args->params[argc - 2 - 1] = NULL;
 	args->argc = argc;
 	args->file[0] = argv[1];
 	args->file[1] = argv[argc - 1];
@@ -23,7 +23,7 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 
 static	void	get_path(char **envp, t_args *args)
 {
-	int env_str_idx;
+	int	env_str_idx;
 
 	env_str_idx = 0;
 	while (envp[env_str_idx])
@@ -50,9 +50,9 @@ void	make_cmds(t_args *args)
 	int	cmd_idx;
 
 	cmd_idx = 0;
-	while (args->cmd_w_params[cmd_idx] != NULL)
+	while (args->params[cmd_idx] != NULL)
 	{
-		check_cmd_validity(args, cmd_idx, args->cmd_w_params[cmd_idx][0]);
+		check_cmd_validity(args, cmd_idx, args->params[cmd_idx][0]);
 		cmd_idx++;
 	}
 }

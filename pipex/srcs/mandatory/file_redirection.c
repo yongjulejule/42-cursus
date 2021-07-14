@@ -6,15 +6,16 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/12 20:27:10 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/13 15:17:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pipex.h"
+#include "../../includes/mandatory/ft_pipex.h"
 
 void	rdr_file_to_stdin(char *file)
 {
-	int	fd;
+	int			fd;
+	extern int	errno;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

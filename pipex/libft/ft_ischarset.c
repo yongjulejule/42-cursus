@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_ischarset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 14:10:49 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 13:46:18 by jun              ###   ########.fr       */
+/*   Created: 2021/07/13 13:45:36 by jun               #+#    #+#             */
+/*   Updated: 2021/07/13 13:46:00 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+int	is_charset(char c, char *charset)
 {
-	if (32 <= c && 126 >= c)
-		return (1);
+	if (!charset)
+		return (0);
+	while (*charset)
+	{
+		if (c == *charset)
+			return (1);
+		charset++;
+	}
 	return (0);
 }
