@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 16:56:10 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/15 14:01:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_args
 /*FUNCTIONS*/
 
 /*Check Validity*/
+
+void	parent_process(t_args *args, int *pipe_fds, int *pipe_fd, int nth_cmd);
+void	child_process(t_args *args, int *pipe_fds, int nth_cmd);
 
 void	check_arg_validity(int argc, char **argv, char **envp);
 void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
