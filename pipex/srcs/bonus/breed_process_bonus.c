@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/15 15:56:20 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/19 13:02:59 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	parent_process(t_args *args, int *pipe_fd_1, int *pipe_fd, int nth_cmd)
 	}
 	ft_putendl_fd("connecting pipe_fd_1 in parent", 2);
 	connect_pipe_fd(pipe_fd_1, STDIN_FILENO);
+	child_process(args, pipe_fd_2, ++nth_cmd);
 	ft_putendl_fd("PARENT EXECVED!!", 2);
 	execve(args->params[nth_cmd + 1][0], args->params[nth_cmd], NULL);
 }
@@ -73,7 +74,6 @@ void	child_process(t_args *args, int *pipe_fd, int nth_cmd)
 		exit(EXIT_FAILURE);
 	}
 	pid = fork();
-	child_process(args, pipe_fd_1, ++nth_cmd);
 	if (pid == 0)
 	{
 		if (nth_cmd == 0)
@@ -101,7 +101,11 @@ void	breed_process_recursively(t_args *args, int cmd_idx)
 	int		pipe_fd[2];
 	pid_t	pid;
 
-	child_process(args, NULL, 0);
+	pid = fork();
+	if (pid == 0)
+	{
+		child_process(args, NULL, 0);
+	}
 //	ft_putnbr_fd(nth_cmd, 2);
 //	if (pipe(pipe_fd) == -1)
 //	{
