@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:37:17 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 16:58:16 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 15:11:26 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	check_arg_validity(int argc, char **argv, char **envp)
 	while (idx < argc - 2)
 	{
 		argv[idx] = ft_strtrim(argv[idx], "\t\f\v\n\r ");
+		if (argv[idx] == NULL)
+			is_error("Error while malloc");
 		idx++;
 	}
 }

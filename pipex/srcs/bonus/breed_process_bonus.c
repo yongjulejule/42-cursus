@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/21 14:30:47 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 15:15:33 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 {
 	if (dup2(pipe_fd[pipe_status], pipe_status) == -1)
-	{
-		perror("Error while connecting pipe");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while connecting pipe");
 	close(pipe_fd[PIPE_RD]);
 	close(pipe_fd[PIPE_WR]);
 }
@@ -34,13 +31,10 @@ void	grand_parent(t_args *args, int *pipe_last, int cmd)
 void	parent_process(t_args *args, int *pipe_prv, int cmd)
 {
 	pid_t	pid;
-	int	pipe_new[2];
+	int		pipe_new[2];
 
 	if (pipe(pipe_new) == -1)
-	{
-		perror("Error while open pipe");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while open pipe");
 	pid = fork();
 	if (pid == 0)
 	{
@@ -55,10 +49,7 @@ void	parent_process(t_args *args, int *pipe_prv, int cmd)
 		parent_process(args, pipe_new, ++cmd);
 	}
 	else
-	{
-		perror("Error while breed process");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while breed process");
 }
 
 void	grand_child(t_args *args, int *pipe_1st)
@@ -78,22 +69,16 @@ void	grand_child(t_args *args, int *pipe_1st)
 		parent_process(args, pipe_1st, 1);
 	}
 	else
-	{
-		perror("Error while breed process");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while breed process");
 }
 
 void	breed_process_recursively(t_args *args, int cmd)
 {
-	int	pipe_prv[2];
+	int		pipe_prv[2];
 	pid_t	pid;
 
 	if (pipe(pipe_prv) == -1)
-	{
-		perror("Error while open pipe");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while open pipe");
 	pid = fork();
 	if (pid == 0)
 		grand_child(args, pipe_prv);
@@ -103,8 +88,5 @@ void	breed_process_recursively(t_args *args, int cmd)
 		exit(EXIT_SUCCESS);
 	}
 	else
-	{
-		perror("Error while breed process");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while breed process");
 }

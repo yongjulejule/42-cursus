@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/13 15:18:58 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 15:12:42 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ static	void	get_path(char **envp, t_args *args)
 	}
 	args->env_path = ft_split(&envp[env_str_idx][5], ':');
 	if (args->env_path == NULL)
-	{
-		perror("Error_while_split");
-		exit(EXIT_FAILURE);
-	}
+		is_error("Error while split");
 }
 
 void	make_cmds(t_args *args)
