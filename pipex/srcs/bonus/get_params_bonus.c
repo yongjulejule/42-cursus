@@ -6,27 +6,11 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:14:23 by jun               #+#    #+#             */
-/*   Updated: 2021/07/13 15:18:57 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 17:23:44 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
-
-static	int	split_once(char *str, char *charset)
-{
-	int	idx;
-
-	idx = 0;
-	if (!str)
-		return (0);
-	if (!*str)
-		return (0);
-	while (is_charset(*(str + idx), charset))
-		idx++;
-	while (!is_charset(*(str + idx), charset) && str[idx] != '\0')
-		idx++;
-	return (idx);
-}
 
 static	int	count_params(char *cmdset)
 {
@@ -35,19 +19,18 @@ static	int	count_params(char *cmdset)
 	int	len;
 
 	start = 0;
-	len = 0;
 	size = 0;
 	while (cmdset[start] != '\0')
 	{
 		size++;
 		while (is_charset(cmdset[start], "\t\n\v\f\r "))
 			start++;
-		len = start;
 		if (is_charset(cmdset[start], "'"))
 			len = split_once(&cmdset[start], "'") + start + 1;
+		else if (is_charset(cmdset[start], "\""))
+			len = split_once(&cmdset[start], "\"") + start + 1;
 		else
-			while (!(is_charset(cmdset[len], "\t\n\v\f\r '")) && cmdset[len] != '\0')
-				len++;
+			len = split_once(&cmdset[start], "\t\n\v\f\r ") + start;
 		start = len;
 	}
 	return (size);
@@ -61,22 +44,11 @@ static	void	parse_param(t_args *args, char *cmdset, int c_idx, int p_idx)
 
 	size = count_params(cmdset);
 	start = 0;
-	len = 0;
 	while (p_idx < size)
 	{
 		while (is_charset(cmdset[start], "\t\n\v\f\r "))
 			start++;
-		if (is_charset(cmdset[start], "'"))
-		{
-			len = split_once(&cmdset[start], "'");
-			args->params[c_idx][p_idx]
-				= ft_substr_w_error(cmdset, start + 1, len - 1);
-		}
-		else
-		{
-			len = split_once(&cmdset[start], "\t\n\v\f\r ");
-			args->params[c_idx][p_idx] = ft_substr_w_error(cmdset, start, len);
-		}
+		len = make_string(args, &cmdset[start], c_idx, p_idx);
 		start = len + start + 1;
 		p_idx++;
 	}

@@ -56,7 +56,7 @@ touch txt~~
 touch txt~~
 ../pipex/pipex user1 "find . -type f ( -name \"#*#\" -o -name \"*~\" -o -name \"#\" ) -exec rm -v {} ;" "cat -e" user4 2> user4
 comp test4 user4
-#rm -rf test4 user4
+rm -rf test4 user4
 printf "$YELLOW$S1$RESET\n"
 printf "$PURPLE""test: < infile groups \$FT_USER | tr ' ' ',' > outfile$RESET\n"
 printf "$PURPLE$S2$RESET\n"
@@ -84,6 +84,7 @@ printf "$PURPLE$S2$RESET\n"
 < test1 grep a1 | wc -w > test8 2> test8
 ../pipex/pipex user1 "grep a1" "wc -w" user8 2> user8
 comp test8 user8
+rm -rf test8 user8
 rm -rf test1 user1
 rm -rf tcase1 ucase1
 printf "\033[38;2;255;176;0m\n%80s\n%80s\n%80s\033[0m\n" "Test finished." "@2021, Pipex Medic."

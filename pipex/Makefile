@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/13 17:01:33 by jun              ###   ########.fr        #
+#    Updated: 2021/07/21 17:25:17 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   parse_commend.c\
 	   pipex_main.c\
 	   libft_fuc_w_error.c\
+	   string_utils.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
@@ -37,6 +38,8 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   parse_commend_bonus.c\
 	   pipex_main_bonus.c\
 	   libft_fuc_w_error_bonus.c\
+	   handle_error_bonus.c\
+	   string_utils_bonus.c\
 	   )
 
 OBJS = ${SRCS:.c=.o}

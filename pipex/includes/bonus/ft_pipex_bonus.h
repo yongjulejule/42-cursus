@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/21 15:10:25 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 17:32:14 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h> //perror
-# include <string.h> //strerror
+# include <stdio.h>
+# include <string.h>
 # include "../libft.h"
 
 /*User Defines*/
@@ -51,17 +51,16 @@ void	rdr_file_to_stdin(char *file);
 void	rdr_stdout_to_file(char *file);
 void	connect_pipe_fd(int *pipe_fd, int pipe_status);
 
-/*Execute Process considering pipe*/
-
-void	breed_process_recursively(t_args *args, int cmd);
-
 /*Preprocessing*/
 
 void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
 void	get_params(char **argv, t_args *args);
+void	breed_process_recursively(t_args *args, int cmd);
 
-/*Modified libft*/
+/*Utils*/
 
+int		split_once(char *str, char *charset);
+int		make_string(t_args *args, char *cmdset, int c_idx, int p_idx);
 void	*ft_calloc_w_error(size_t count, size_t size);
 char	*ft_substr_w_error(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_w_error(char const *s1, char const *s2);
