@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/19 13:02:59 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 14:30:47 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,103 +23,88 @@ void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 	close(pipe_fd[PIPE_WR]);
 }
 
-void	parent_process(t_args *args, int *pipe_fd_1, int *pipe_fd, int nth_cmd)
+void	grand_parent(t_args *args, int *pipe_last, int cmd)
 {
-	int status;
-	int	pipe_fd_2[2];
+	wait(NULL);
+	rdr_stdout_to_file(args->file[1]);
+	connect_pipe_fd(pipe_last, STDIN_FILENO);
+	execve(args->params[args->argc - 4][0], args->params[args->argc - 4], NULL);
+}
 
-	wait(&status);
-	if (!WIFEXITED(status))
-	{
-		perror("child process quited unexpectedly");
-		exit(EXIT_FAILURE);
-	}
-	ft_putendl_fd("HERE IS PARENT PROCESS", 2);
-	ft_putnbr_fd(nth_cmd + 1, 2);
-	ft_putendl_fd(args->params[nth_cmd + 1][0],2);
-	if (pipe(pipe_fd_2) == -1)
+void	parent_process(t_args *args, int *pipe_prv, int cmd)
+{
+	pid_t	pid;
+	int	pipe_new[2];
+
+	if (pipe(pipe_new) == -1)
 	{
 		perror("Error while open pipe");
 		exit(EXIT_FAILURE);
 	}
-	if (args->params[nth_cmd + 2] == NULL)
+	pid = fork();
+	if (pid == 0)
 	{
-		ft_putendl_fd("connecting file2...", 2);
-		rdr_stdout_to_file(args->file[1]);
+		connect_pipe_fd(pipe_prv, STDIN_FILENO);
+		connect_pipe_fd(pipe_new, STDOUT_FILENO);
+		execve(args->params[cmd][0], args->params[cmd], NULL);
+	}
+	else if (pid > 0)
+	{
+		if (cmd == args->argc - 5)
+			grand_parent(args, pipe_new, cmd + 1);
+		parent_process(args, pipe_new, ++cmd);
 	}
 	else
 	{
-		ft_putendl_fd("connecting pipe_fd_2 in parent", 2);
-		connect_pipe_fd(pipe_fd_2, STDOUT_FILENO);
+		perror("Error while breed process");
+		exit(EXIT_FAILURE);
 	}
-	ft_putendl_fd("connecting pipe_fd_1 in parent", 2);
-	connect_pipe_fd(pipe_fd_1, STDIN_FILENO);
-	child_process(args, pipe_fd_2, ++nth_cmd);
-	ft_putendl_fd("PARENT EXECVED!!", 2);
-	execve(args->params[nth_cmd + 1][0], args->params[nth_cmd], NULL);
 }
 
-void	child_process(t_args *args, int *pipe_fd, int nth_cmd)
+void	grand_child(t_args *args, int *pipe_1st)
 {
 	pid_t	pid;
-	int		pipe_fd_1[2];
 
-	if (nth_cmd == args->argc - 4)
-		return ;
-	ft_putnbr_fd(nth_cmd, 2);
-	ft_putstr_fd(":here is child process\n", 2);
-	if (pipe(pipe_fd_1) == -1)
+	pid = fork();
+	if (pid == 0)
+	{
+		rdr_file_to_stdin(args->file[0]);
+		connect_pipe_fd(pipe_1st, STDOUT_FILENO);
+		execve(args->params[0][0], args->params[0], NULL);
+	}
+	else if (pid > 0)
+	{
+		wait(NULL);
+		parent_process(args, pipe_1st, 1);
+	}
+	else
+	{
+		perror("Error while breed process");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	breed_process_recursively(t_args *args, int cmd)
+{
+	int	pipe_prv[2];
+	pid_t	pid;
+
+	if (pipe(pipe_prv) == -1)
 	{
 		perror("Error while open pipe");
 		exit(EXIT_FAILURE);
 	}
 	pid = fork();
 	if (pid == 0)
-	{
-		if (nth_cmd == 0)
-		{
-			ft_putendl_fd("connecting file1...", 2);
-			rdr_file_to_stdin(args->file[0]);
-		}
-		else
-		{
-			ft_putendl_fd("connecting pipe_fd in child", 2);
-			connect_pipe_fd(pipe_fd, STDIN_FILENO);
-		}
-		ft_putendl_fd("connecting pipe_fd_1 in child", 2);
-		connect_pipe_fd(pipe_fd_1, STDOUT_FILENO);
-		ft_putnbr_fd(nth_cmd, 2);
-		ft_putendl_fd("CHILD EXECVED!!", 2);
-		execve(args->params[nth_cmd][0], args->params[nth_cmd], NULL);
-	}
+		grand_child(args, pipe_prv);
 	else if (pid > 0)
-		parent_process(args, pipe_fd_1, pipe_fd, nth_cmd);
-}
-
-void	breed_process_recursively(t_args *args, int cmd_idx)
-{
-	int		pipe_fd[2];
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
 	{
-		child_process(args, NULL, 0);
+		wait(NULL);
+		exit(EXIT_SUCCESS);
 	}
-//	ft_putnbr_fd(nth_cmd, 2);
-//	if (pipe(pipe_fd) == -1)
-//	{
-//		perror("Error while open pipe");
-//		exit(EXIT_FAILURE);
-//	}
-//	pid = fork();
-//	if (pid == 0)
-//		child_process(args, pipe_fd, nth_cmd - 2);
-//	else if (pid > 0)
-//		parent_process(args, pipe_fd, nth_cmd);
-//	else
-//	{
-//		perror("Error while Fork");
-//		exit(EXIT_FAILURE);
-//	}
+	else
+	{
+		perror("Error while breed process");
+		exit(EXIT_FAILURE);
+	}
 }

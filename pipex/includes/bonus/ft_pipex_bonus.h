@@ -6,14 +6,14 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/15 14:01:48 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/21 12:07:24 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PIPEX_BONUS_H
 # define FT_PIPEX_BONUS_H
 
-/*include libraries*/
+/*Include Libraries*/
 
 # include <sys/types.h>
 # include <unistd.h>
@@ -24,7 +24,7 @@
 # include <string.h> //strerror
 # include "../libft.h"
 
-/*user defines*/
+/*User Defines*/
 
 # define PIPE_RD 0
 # define PIPE_WR 1
@@ -41,9 +41,6 @@ typedef struct s_args
 
 /*Check Validity*/
 
-void	parent_process(t_args *args, int *pipe_fds, int *pipe_fd, int nth_cmd);
-void	child_process(t_args *args, int *pipe_fds, int nth_cmd);
-
 void	check_arg_validity(int argc, char **argv, char **envp);
 void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
 
@@ -53,15 +50,19 @@ void	rdr_file_to_stdin(char *file);
 void	rdr_stdout_to_file(char *file);
 void	connect_pipe_fd(int *pipe_fd, int pipe_status);
 
-void	breed_process(t_args *args);
+/*Execute Process considering pipe*/
+
+void	breed_process_recursively(t_args *args, int cmd);
+
 /*Preprocessing*/
 
 void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
 void	get_params(char **argv, t_args *args);
 
 /*Modified libft*/
+
 void	*ft_calloc_w_error(size_t count, size_t size);
 char	*ft_substr_w_error(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_w_error(char const *s1, char const *s2);
-void	breed_process_recursively(t_args *args, int nth_cmd);
+
 #endif
