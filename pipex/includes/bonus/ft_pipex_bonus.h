@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/22 18:01:02 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 19:22:53 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
 
 /*Redirecting*/
 
-void	rdr_file_to_stdin(char *file);
-void	rdr_stdout_to_file(char *file);
+void	rdr_file_to_stdin(char *file, t_args *args);
+void	rdr_stdout_to_file(char *file, t_args *args);
 void	connect_pipe_fd(int *pipe_fd, int pipe_status);
 
 /*Preprocessing*/

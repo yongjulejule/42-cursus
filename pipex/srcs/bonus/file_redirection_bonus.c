@@ -6,18 +6,43 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 15:18:57 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 19:40:32 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
 
-void	rdr_file_to_stdin(char *file)
+static int	make_tmp_heredoc(char *file, t_args *args)
+{
+	int		fd;
+	int		size;
+	char	*line;
+
+	size = ft_strlen(args->limiter);
+	fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	if (fd < 0)
+		return (fd);
+	while (1)
+	{
+		ft_putstr_fd("heredoc>", 1);
+		get_next_line(0, &line);
+		if (!ft_memcmp(args->limiter, line, size))
+			return (fd);
+		ft_putendl_fd(line, fd);
+		free(line);
+		line = NULL;
+	}
+}
+
+void	rdr_file_to_stdin(char *file, t_args *args)
 {
 	int			fd;
 	extern int	errno;
 
-	fd = open(file, O_RDONLY);
+	if (args->is_heredoc != 1)
+		fd = open(file, O_RDONLY);
+	else
+		fd = make_tmp_heredoc(file, args);
 	if (fd < 0)
 	{
 		ft_putstr_fd("zsh:", 2);
@@ -35,11 +60,14 @@ void	rdr_file_to_stdin(char *file)
 	return ;
 }
 
-void	rdr_stdout_to_file(char *file)
+void	rdr_stdout_to_file(char *file, t_args *args)
 {
 	int	fd;
 
-	fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	if (args->is_heredoc != 1)
+		fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	else
+		fd = open(file, O_RDWR | O_TRUNC | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 	{
 		perror("open error in rdr_file_to_stdout");
