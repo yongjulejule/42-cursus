@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:14:23 by jun               #+#    #+#             */
-/*   Updated: 2021/07/21 17:23:44 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 17:31:01 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,14 @@ void	get_params(char **argv, t_args *args)
 	idx = 0;
 	while (idx < args->argc - 3)
 	{
-		get_each_params(argv[idx + 2], idx, args);
+		if (args->is_heredoc == 0)
+			get_each_params(argv[idx + 2], idx, args);
+		else
+		{
+			if (idx == args->argc - 4)
+				break ;
+			get_each_params(argv[idx + 3], idx, args);
+		}
 		idx++;
 	}
 }

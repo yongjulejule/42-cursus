@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/21 17:25:17 by jun              ###   ########.fr        #
+#    Updated: 2021/07/22 18:39:26 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   libft_fuc_w_error_bonus.c\
 	   handle_error_bonus.c\
 	   string_utils_bonus.c\
+	   get_next_line_bonus.c\
+	   get_next_line_utils_bonus.c\
 	   )
 
 OBJS = ${SRCS:.c=.o}

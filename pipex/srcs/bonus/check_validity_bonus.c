@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:37:17 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/21 15:11:26 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 17:35:08 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@ void	check_arg_validity(int argc, char **argv, char **envp)
 {
 	int	idx;
 
-	idx = 1;
-	if (!argv)
+	if (argc < 5)
 	{
-		ft_putendl_fd("Argument Value Error", 2);
+		ft_putendl_fd("Check the number of Arguments", 2);
 		exit(EXIT_FAILURE);
 	}
-	if (!envp)
+	idx = 2;
+	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
+		idx = 3;
+	if (!argv || !envp)
 	{
-		ft_putendl_fd("Envp Error", 2);
+		if (!argv)
+			ft_putendl_fd("Argument Value Error", 2);
+		else if (!envp)
+			ft_putendl_fd("Envp Error", 2);
 		exit(EXIT_FAILURE);
 	}
 	while (idx < argc - 2)

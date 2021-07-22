@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 19:50:07 by jun               #+#    #+#             */
-/*   Updated: 2021/07/14 12:12:27 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 17:13:51 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	main(int argc, char **argv, char **envp)
 	args = (t_args *)ft_calloc_w_error(1, sizeof(t_args));
 	check_arg_validity(argc, argv, envp);
 	build_structure(argc, argv, envp, args);
-	breed_process_recursively(args, args->argc - 4);
+	breed_process_recursively(args);
 }

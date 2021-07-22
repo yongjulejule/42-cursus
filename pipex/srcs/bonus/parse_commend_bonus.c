@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/21 15:12:42 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/22 17:22:37 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 static	void	init_structure(int argc, char **argv, t_args *args)
 {
+	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
+	{
+		args->is_heredoc = 1;
+		args->limiter = argv[2];
+		args->file[0] = ft_strdup(".tmp.here_doc");
+		if (!(args->file[0]))
+			is_error("Error during malloc");
+	}
+	else
+	{
+		args->is_heredoc = 0;
+		args->file[0] = argv[1];
+	}
+	args->file[1] = argv[argc - 1];
 	args->params = (char ***)ft_calloc_w_error(argc - 2, sizeof(char **));
 	args->params[argc - 2 - 1] = NULL;
 	args->argc = argc;
-	args->file[0] = argv[1];
-	args->file[1] = argv[argc - 1];
 }
 
 static	void	get_path(char **envp, t_args *args)
