@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/22 17:22:37 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/23 11:57:26 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 {
 	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
 	{
+		if (argc < 6)
+		{
+			ft_putendl_fd("check arguments when put heredoc", 2);
+			exit(EXIT_FAILURE);
+		}
 		args->is_heredoc = 1;
 		args->limiter = argv[2];
 		args->file[0] = ft_strdup(".tmp.here_doc");

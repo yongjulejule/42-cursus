@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/23 11:21:19 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/23 11:33:27 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	breed_process_recursively(t_args *args)
 	int		status;
 	pid_t	pid;
 
+	if (args->is_heredoc == 1)
+		args->argc--;
 	if (pipe(pipe_prv) == -1)
 		is_error("Error while open pipe");
 	pid = fork();
