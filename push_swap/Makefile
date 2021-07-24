@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/24 14:27:54 by jun              ###   ########.fr        #
+#    Updated: 2021/07/24 16:53:46 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   push_swap_main.c\
 	   str_to_int.c\
 	   check_validity.c\
+	   make_stack.c\
+	   handle_c_d_lst.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \

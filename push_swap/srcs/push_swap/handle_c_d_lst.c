@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_main.c                                   :+:      :+:    :+:   */
+/*   handle_c_d_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/07/24 16:07:12 by jun              ###   ########.fr       */
+/*   Created: 2021/07/24 16:15:00 by jun               #+#    #+#             */
+/*   Updated: 2021/07/24 16:54:10 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-
-static int	push_swap_main(int *av_int, int ac)
+void	cdlst_add_back(t_deq **stack, int num)
 {
-	t_deq	*stack_a;
-	t_deq	*stack_b;
-//	t_ops	*op;
+	t_deq	*tail;
+	t_deq	*head;
+	t_deq	*newnode;
 
-	make_stack(&stack_a, &stack_b, av_int, ac);
-//	sorting();
-//	compress_op();
-//	print_result();
-	return ac;
+	head = *stack;
+	tail = *stack;
+	newnode = (t_deq *)ft_calloc_w_error(sizeof(t_deq), 1);
+	newnode->num = num;
+	while (tail->next == NULL)
+		tail = tail->next;
+	newnode->next = head->next;
+	newnode->prev = tail->prev;
+	newnode->next->prev = newnode;
+	newnode->prev->next = newnode;
 }
-
-int	main(int argc, char **argv)
-{
-	int *av_int;
-	int	ac;
-
-	if (argc < 2)
-		is_error("Error : Check the number of arguments");
-	av_int = parse_args(argc, argv, &ac);
-	check_validity(av_int, ac);
-	push_swap_main(av_int, ac);
-}
+//
+//void	cdlst_add_front(t_deq **stack, int num)
+//{
+//}
