@@ -6,19 +6,24 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 14:32:07 by jun               #+#    #+#             */
-/*   Updated: 2021/07/25 16:12:53 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/26 09:18:33 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	swap_stack(t_stk **stk)
+static void	swap_stack(t_stk **stk)
 {
 	t_deq	*root;
 	t_deq	*head;
 
 	head = (*stk)->head;
 	root = head->next;
+	if (head->next == (*stk)->tail || head->next->next == (*stk)->tail)
+	{
+		ft_putendl_fd("swap have less than 2 nbrs", 2);
+		return ;
+	}
 	head->next = root->next;
 	root->next = root->next->next;
 	head->next->next = root;
@@ -27,7 +32,7 @@ void	swap_stack(t_stk **stk)
 	root->next->prev = root;
 }
 
-void	push_stack(t_stk **src, t_stk **dst)
+static void	push_stack(t_stk **src, t_stk **dst)
 {
 	t_deq	*src_head;
 	t_deq	*dst_head;
@@ -38,17 +43,17 @@ void	push_stack(t_stk **src, t_stk **dst)
 	dst_head = (*dst)->head;
 	src_root = src_head->next;
 	dst_root = dst_head->next;
-	src_root->prev = dst_head;
-	dst_root->prev = src_head;
-	src_root->next = dst_root->next;
-	dst_root->next = src_root->next;
-	src_head->next->next->prev = dst_root;
-	dst_head->next->next->prev = src_root;
-	src_head->next = dst_root;
+	if (src_root == (*src)->tail)
+		return ;
+	src_head->next = src_root->next;
+	src_head->next->prev = src_head;
 	dst_head->next = src_root;
+	src_root->prev = dst_head;
+	src_root->next = dst_root;
+	dst_root->prev = src_root;
 }
 
-void	rotate_stack(t_stk **stk)
+static void	rotate_stack(t_stk **stk)
 {
 	t_deq	*root;
 	t_deq	*foot;
@@ -59,15 +64,20 @@ void	rotate_stack(t_stk **stk)
 	tail = (*stk)->tail;
 	root = head->next;
 	foot = tail->prev;
+	if (head->next == (*stk)->tail || head->next->next == (*stk)->tail)
+	{
+		ft_putendl_fd("rotate have less than 2 nbrs", 2);
+		return ;
+	}
 	head->next = root->next;
 	root->next->prev = head;
 	root->next = tail;
-	root->next->prev = tail->prev;
+	root->next->prev = root;
 	foot->next = root;
 	root->prev = foot;
 }
 
-void	rev_rotate_stack(t_stk **stk)
+static void	rev_rotate_stack(t_stk **stk)
 {
 	t_deq	*root;
 	t_deq	*foot;
@@ -78,6 +88,11 @@ void	rev_rotate_stack(t_stk **stk)
 	tail = (*stk)->tail;
 	root = head->next;
 	foot = tail->prev;
+	if (head->next == (*stk)->tail || head->next->next == (*stk)->tail)
+	{
+		ft_putendl_fd("rev_rotate have less than 2 nbrs", 2);
+		return ;
+	}
 	head->next = foot;
 	foot->next = root;
 	root->prev = foot;
@@ -90,9 +105,9 @@ void	do_op(t_stk **a, t_stk **b, t_stk **op, int op_idx)
 {
 	dllst_add_back(op, op_idx);
 	if (op_idx == PA)
-		push_stack(a, b);
-	else if (op_idx == PB)
 		push_stack(b, a);
+	else if (op_idx == PB)
+		push_stack(a, b);
 	else if (op_idx == SA)
 		swap_stack(a);
 	else if (op_idx == SB)

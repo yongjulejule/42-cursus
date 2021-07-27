@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/25 16:14:59 by jun              ###   ########.fr        #
+#    Updated: 2021/07/26 19:42:54 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   handle_dllst.c\
 	   binary_search_tree.c\
 	   operation_push_swap.c\
+	   divide_and_merge_data.c\
+	   sort_stack.c\
+	   compress_operations.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
@@ -79,7 +82,8 @@ re: fclean all
 
 .PHONY: debug
 debug: 
-	$(CC) $(DFLAGS) $(SRCS) $(LIB) -o push_swap
+	$(CC) $(DFLAGS) $(SRCS) $(LIB) srcs/push_swap/print_to_debug.c -o push_swap
+	
 bonusdebug: 
 	$(CC) $(DFLAGS) $(SRCS_BONUS) $(LIB) -o push_swap
 

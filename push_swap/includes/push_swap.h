@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/25 16:13:51 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/26 19:38:12 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	*ft_substr_w_error(char const *s, unsigned int start, size_t len);
 int		split_once(char *str, char *charset);
 void	dllst_add_back(t_stk **stk, int num);
 void	dllst_add_front(t_stk **stk, int num);
+void	dllst_delone(t_stk **stk, t_deq *del);
+void	dllst_del_n_node(t_stk **stk, t_deq *del, int nbr);
 
 /*
 **Parsing and Check Validity
@@ -85,5 +87,21 @@ int		*strset_to_integer(char **tmp, int *ac);
 void	check_validity(int *av_int, int ac);
 void	make_stack(t_stk **a, t_stk **b, int *av_int, int ac);
 void	indexing_args_by_bst(t_stk *a);
+
+/*
+**Operations
+*/
+
 void	do_op(t_stk **a, t_stk **b, t_stk **op, int op_idx);
+
+
+
+
+void	divide_data(t_stk **a, t_stk **b, t_stk **op);
+void	merge_stack(t_stk **a, t_stk **b, t_stk **op);
+void	sort_each_stack(t_stk **a, t_stk **b, t_stk **op);
+void	compress_each_op(t_stk **op_a, t_stk **op_b);
+
+// !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
+void	print_stack(t_stk *a, t_stk *b, t_stk *op);
 #endif
