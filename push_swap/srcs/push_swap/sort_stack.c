@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 11:41:25 by jun               #+#    #+#             */
-/*   Updated: 2021/07/26 21:48:17 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/28 13:43:38 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	move_spec_nbr_left(t_stk **stk, t_deq *cur, int start, t_stk **op)
 			cur = (*stk)->head->next;
 			cnt--;
 		}
+		if (cur == (*stk)->tail)
+			return ;
 	}
 }
 
@@ -66,12 +68,11 @@ void	sort_each_stack(t_stk **a, t_stk **b, t_stk **op)
 	t_stk	*op_b;
 
 	make_stack(&op_a, &op_b, NULL, 0);
-	op_a->ac = (*a)->ac - (*b)->ac;;
+	op_a->ac = (*a)->ac - (*b)->ac;
 	op_b->ac = (*b)->ac;
 	insertion_sort(a, &op_a, (*b)->ac + 1, (*a)->ac);
-	insertion_sort(b, &op_b, (*b)->ac, 1);
-	print_stack(*a, *b, op_b);
+	if ((*b)->ac != 0)
+		insertion_sort(b, &op_b, (*b)->ac, 1);
 	compress_each_op(&op_a, &op_b);
-	//	joint_stack(op, &op_a, &op_b);
-	//	free_stack(&op_a, &op_b);
+	joint_stack(op, &op_a, &op_b);
 }

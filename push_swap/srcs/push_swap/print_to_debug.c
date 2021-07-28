@@ -55,6 +55,7 @@ void	print_stack(t_stk *a, t_stk *b, t_stk *op)
 
 	if (op != NULL)
 	{
+	printf("op->ac is %d", op->ac);
 		idx = 0;
 		tmp = op->head->next;
 		printf("===================== OP iter =================\n");

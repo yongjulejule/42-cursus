@@ -6,11 +6,23 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/07/26 15:06:48 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/28 14:45:49 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+static void	bucket_sort(t_stk **a, t_stk **b, t_stk **op)
+{
+	divide_data(a, b, op);
+	sort_each_stack(a, b, op);
+	merge_stack(a, b, op);
+	compress_push(op);
+}
+
+static void	radix_sort(t_stk **a, t_stk **b, t_stk **op)
+{
+}
 
 static int	push_swap_main(int *av_int, int ac)
 {
@@ -20,12 +32,11 @@ static int	push_swap_main(int *av_int, int ac)
 
 	make_stack(&a, &b, av_int, ac);
 	make_stack(&op, NULL, NULL, ac);
-	divide_data(&a, &b, &op);
-	print_stack(a, b, NULL);
-	sort_each_stack(&a, &b, &op);
-	merge_stack(&a, &b, &op);
-//	compress_op(&op);
-//	print_result(op);
+	if (ac < 10)
+		bucket_sort(&a, &b, &op);
+//	else
+//		radix_sort(&a, &b, &op);
+	print_result(&op);
 	return (0);
 }
 

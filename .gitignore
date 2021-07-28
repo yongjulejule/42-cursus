@@ -6,3 +6,4 @@ tags
 *.log
 .DS_Store
 *.c.swp
+push_swap_tester/

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/26 19:38:12 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/28 13:45:05 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ void	dllst_add_back(t_stk **stk, int num);
 void	dllst_add_front(t_stk **stk, int num);
 void	dllst_delone(t_stk **stk, t_deq *del);
 void	dllst_del_n_node(t_stk **stk, t_deq *del, int nbr);
+void	dllst_append(t_stk **src, t_stk **dst);
 
+void	compress_rotation(t_stk **op);
+void	compress_r_revr(t_stk **op);
+void	compress_push(t_stk **op);
 /*
 **Parsing and Check Validity
 */
@@ -102,6 +106,8 @@ void	merge_stack(t_stk **a, t_stk **b, t_stk **op);
 void	sort_each_stack(t_stk **a, t_stk **b, t_stk **op);
 void	compress_each_op(t_stk **op_a, t_stk **op_b);
 
+void	print_result(t_stk **op);
+void	joint_stack(t_stk **op, t_stk **op_a, t_stk **op_b);
 // !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
 void	print_stack(t_stk *a, t_stk *b, t_stk *op);
 #endif

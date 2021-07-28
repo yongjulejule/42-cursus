@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/26 19:42:54 by jun              ###   ########.fr        #
+#    Updated: 2021/07/28 09:51:57 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   divide_and_merge_data.c\
 	   sort_stack.c\
 	   compress_operations.c\
+	   joint_stack.c\
+	   print_result.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \

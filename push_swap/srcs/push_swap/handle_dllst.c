@@ -6,11 +6,27 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:15:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/26 19:35:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/28 09:34:44 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+void	dllst_append(t_stk **dst, t_stk **src)
+{
+	t_deq	*src_head;
+	t_deq	*dst_tail;
+
+	src_head = (*src)->head;
+	dst_tail = (*dst)->tail;
+	dst_tail->next = src_head;
+	src_head->prev = dst_tail;
+	(*src)->head = NULL;
+	(*dst)->tail = (*src)->tail;
+	free(*src);
+	*src = NULL;
+	dllst_del_n_node(dst, dst_tail, 2);
+}
 
 void	dllst_delone(t_stk **stk, t_deq *del)
 {
