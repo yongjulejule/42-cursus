@@ -7,3 +7,4 @@ tags
 .DS_Store
 *.c.swp
 push_swap_tester/
+*/push_swap_tester/

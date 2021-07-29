@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 13:45:05 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/29 19:56:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void	compress_each_op(t_stk **op_a, t_stk **op_b);
 
 void	print_result(t_stk **op);
 void	joint_stack(t_stk **op, t_stk **op_a, t_stk **op_b);
+
+
+int		get_most_sigf_bit(int num);
+void	transf_based_bits(t_stk **a, t_stk **b, t_stk **op, int cnt);
 // !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
 void	print_stack(t_stk *a, t_stk *b, t_stk *op);
 #endif
