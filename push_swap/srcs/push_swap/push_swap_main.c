@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 14:45:49 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/29 19:42:07 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ static void	bucket_sort(t_stk **a, t_stk **b, t_stk **op)
 	compress_push(op);
 }
 
-static void	radix_sort(t_stk **a, t_stk **b, t_stk **op)
+static void	radix_msd_sort(t_stk **a, t_stk **b, t_stk **op)
 {
+	int		cnt;
+
+	cnt = get_most_sigf_bit((*a)->ac);
+	transf_based_bits(a, b, op, cnt);
+	merge_stack(a, b, op);
 }
 
 static int	push_swap_main(int *av_int, int ac)
@@ -32,7 +37,7 @@ static int	push_swap_main(int *av_int, int ac)
 
 	make_stack(&a, &b, av_int, ac);
 	make_stack(&op, NULL, NULL, ac);
-	if (ac < 10)
+//	if (ac < 10)
 		bucket_sort(&a, &b, &op);
 //	else
 //		radix_sort(&a, &b, &op);
