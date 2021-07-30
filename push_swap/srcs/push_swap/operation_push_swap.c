@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 14:32:07 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 10:16:14 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/30 12:25:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	do_op(t_stk **a, t_stk **b, t_stk **op, int op_idx)
 	else if (op_idx == RRA)
 		flag = rev_rotate_stack(a);
 	else if (op_idx == RRB)
-		flag = rev_rotate_stack(a);
+		flag = rev_rotate_stack(b);
 	if (flag == 1)
 		dllst_add_back(op, op_idx);
 }
