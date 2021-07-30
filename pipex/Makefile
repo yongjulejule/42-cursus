@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/22 22:05:09 by jun              ###   ########.fr        #
+#    Updated: 2021/07/31 08:48:51 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,8 @@ re: fclean all
 .PHONY: debug
 debug: 
 	$(CC) $(DFLAGS) $(SRCS) $(LIB) -o pipex
+
+.PHONY: bonusdebug
 bonusdebug: 
 	$(CC) $(DFLAGS) $(SRCS_BONUS) $(LIB) -o pipex
 
