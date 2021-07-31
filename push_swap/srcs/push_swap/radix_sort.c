@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 19:51:38 by jun               #+#    #+#             */
-/*   Updated: 2021/07/30 15:43:31 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/31 13:47:37 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,23 @@ void	update_idx(t_stk **a)
 	}
 }
 
+int		pow_to_get_pivot(int nbr)
+{
+	int	tmp;
+
+	tmp = 1;
+	while (nbr > 0)
+	{
+		tmp *= 2;
+		nbr--;
+	}
+	return (tmp);
+}
+
 void	radix_msd_sort(t_stk **a, t_stk **b, t_stk **op, int cnt)
 {
-	t_stk	*op_a;
-	t_stk	*op_b;
-
 	update_idx(a);
-	make_stack(&op_a, &op_b, NULL, 0);
-	op_a->ac = cnt;
-	op_b->ac = cnt;
-	transf_based_bits(a, b, &op_a, &op_b);
+	(*op)->ac = cnt;
+	(*op)->pivot = pow_to_get_pivot(cnt - 2);
+	transf_based_bits(a, b, op);
 }

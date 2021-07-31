@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/30 11:54:02 by jun              ###   ########.fr        #
+#    Updated: 2021/07/31 16:42:42 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   print_result.c\
 	   radix_sort.c\
 	   transfer_based_bits.c\
+	   init_transfer.c\
+	   transfer_b_to_a.c\
+	   transfer_a_to_b.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
