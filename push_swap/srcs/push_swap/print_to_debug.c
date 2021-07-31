@@ -29,11 +29,12 @@ static void	ft_putnbr_ui_base(int n)
 	make_nbr(n);
 }
 
-void	print_stack(t_stk *a, t_stk *b, t_stk *op)
+void	print_stack(t_stk *a, t_stk *b, t_stk *op, char *str)
 {
 	int idx;
 	t_deq *tmp;
 
+	printf("\n\n==========%s=============\n\n", str);
 	if (a != NULL)
 	{
 		printf("a->ac is %d", a->ac);

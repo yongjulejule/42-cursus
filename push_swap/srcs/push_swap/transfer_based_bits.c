@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 10:51:11 by jun               #+#    #+#             */
-/*   Updated: 2021/07/30 20:32:43 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/31 12:44:16 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 
 	bit_shift = (*op_a)->ac;
 	cnt = 0;
-	if (!(((*a)->head->next->idx >> bit_shift) & 1))
+	if (!(((*a)->head->next->idx >> (bit_shift + 1) & 1)))
 	{
 		do_op(a, b, op_a, PB);
 		(*b)->ac++;
-		if ((((*b)->head->next->idx >> (bit_shift + 1)) & 1))
+		if (!(((*b)->head->next->idx >> (bit_shift)) & 1))
 		{
 			do_op(NULL, b, op_a, RB);
 			cnt++;
@@ -41,11 +41,11 @@ int	transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 
 	bit_shift = (*op_a)->ac;
 	cnt = 0;
-	if ((((*a)->head->next->idx >> bit_shift) & 1))
+	if ((((*a)->head->next->idx >> (bit_shift + 1) & 1)))
 	{
 		do_op(a, b, op_a, PB);
 		(*b)->ac++;
-		if ((((*b)->head->next->idx >> (bit_shift + 1)) & 1))
+		if ((((*b)->head->next->idx >> bit_shift & 1)))
 		{
 			do_op(NULL, b, op_a, RB);
 			cnt++;
@@ -53,6 +53,50 @@ int	transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 	}
 	else
 		do_op(a, NULL, op_a, RA);
+	return (cnt);
+}
+
+int	transf_b_to_a_0(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
+{
+	int	cnt;
+	int	bit_shift;
+
+	bit_shift = (*op_a)->ac;
+	cnt = 0;
+	if (!(((*b)->head->next->idx >> (bit_shift + 1) & 1)))
+	{
+		do_op(a, b, op_a, PA);
+		(*a)->ac++;
+		if (!(((*a)->head->next->idx >> (bit_shift)) & 1))
+		{
+			do_op(a, b, op_a, RA);
+			cnt++;
+		}
+	}
+	else
+		do_op(a, b, op_a, RB);
+	return (cnt);
+}
+
+int	transf_b_to_a_1(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
+{
+	int	cnt;
+	int	bit_shift;
+
+	bit_shift = (*op_a)->ac;
+	cnt = 0;
+	if ((((*b)->head->next->idx >> (bit_shift + 1) & 1)))
+	{
+		do_op(a, b, op_a, PA);
+		(*a)->ac++;
+		if ((((*a)->head->next->idx >> bit_shift & 1)))
+		{
+			do_op(a, b, op_a, RA);
+			cnt++;
+		}
+	}
+	else
+		do_op(a, b, op_a, RB);
 	return (cnt);
 }
 
@@ -70,7 +114,7 @@ static void init_transf(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 		nbr = (*b)->ac;
 		while (nbr < (*a)->ac)
 		{
-			cnt += transf_a_to_b_0(a, b, op_a, op_b);
+			transf_a_to_b_0(a, b, op_a, op_b);
 			nbr++;
 		}
 //		while (cnt > 0)
@@ -79,20 +123,21 @@ static void init_transf(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 //			cnt--;
 //		}
 		nbr = (*b)->ac;
+	print_stack(*a, *b, NULL, "first a_to_b_0");
 		while (nbr < (*a)->ac)
 		{
 			cnt += transf_a_to_b_1(a, b, op_a, op_b);
 			nbr++;
 		}
-//		while (cnt > 0)
-//		{
-//			do_op(NULL, b, op_a, RRB);
-//			cnt--;
-//		}
-		(*op_a)->ac++;
+		while (cnt > 0)
+		{
+			do_op(NULL, b, op_a, RRB);
+			cnt--;
+		}
+		(*op_a)->ac += 2;
 	}
 	(*a)->ac =(*a)->ac - (*b)->ac;
-	print_stack(*a, *b, NULL);
+	print_stack(*a, *b, NULL, "first swap!!");
 
 //	while ((*op_a)->ac < 4)
 //	{
@@ -100,29 +145,30 @@ static void init_transf(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 //		nbr = (*a)->ac;
 //		while (nbr < (*b)->ac)
 //		{
-//			cnt += transf_a_to_b_0(b, a, op_a, op_b);
+//			cnt += transf_b_to_a_1(a, b, op_a, op_b);
 //			nbr++;
 //		}
-////		while (cnt > 0)
-////		{
-////			do_op(NULL, a, op_a, RRB);
-////			cnt--;
-////		}
+//	print_stack(*a, *b, NULL, "after b_to_a_1");
+//		while (cnt > 0)
+//		{
+//			do_op(a, NULL, op_a, RRA);
+//			cnt--;
+//		}
 //		nbr = (*a)->ac;
 //		while (nbr < (*b)->ac)
 //		{
-//			cnt += transf_a_to_b_1(b, a, op_a, op_b);
+//			cnt += transf_b_to_a_0(a, b, op_a, op_b);
 //			nbr++;
 //		}
-////		while (cnt > 0)
-////		{
-////			do_op(NULL, a, op_a, RRB);
-////			cnt--;
-////		}
-//		(*op_a)->ac++;
+//		while (cnt > 0)
+//		{
+//			do_op(a, NULL, op_a, RRA);
+//			cnt--;
+//		}
+//		(*op_a)->ac +=2;
 //	}
 //	(*b)->ac =(*b)->ac - (*a)->ac;
-//	print_stack(*a, *b, NULL);
+//	print_stack(*a, *b, NULL, "second_swap!!");
 //
 //	while ((*op_a)->ac < 6)
 //	{
@@ -130,44 +176,44 @@ static void init_transf(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 //		nbr = (*b)->ac;
 //		while (nbr < (*a)->ac)
 //		{
-//			cnt += transf_a_to_b_0(a, b, op_a, op_b);
+//			transf_a_to_b_0(a, b, op_a, op_b);
 //			nbr++;
 //		}
-//		while (cnt > 0)
-//		{
-//			do_op(NULL, b, op_a, RRB);
-//			cnt--;
-//		}
+////		while (cnt > 0)
+////		{
+////			do_op(NULL, b, op_a, RRB);
+////			cnt--;
+////		}
 //		nbr = (*b)->ac;
 //		while (nbr < (*a)->ac)
 //		{
 //			cnt += transf_a_to_b_1(a, b, op_a, op_b);
 //			nbr++;
 //		}
-//		while (cnt > 0)
-//		{
-//			do_op(NULL, b, op_a, RRB);
-//			cnt--;
-//		}
-//		(*op_a)->ac++;
+////		while (cnt > 0)
+////		{
+////			do_op(NULL, b, op_a, RRB);
+////			cnt--;
+////		}
+//		(*op_a)->ac += 2;
 //	}
 //	(*a)->ac =(*a)->ac - (*b)->ac;
-//	print_stack(*a, *b, NULL);
-//
+//	print_stack(*a, *b, NULL, "third swap");
+
 //	while ((*op_a)->ac < 8)
 //	{
 //		cnt = 0;
 //		nbr = (*a)->ac;
 //		while (nbr < (*b)->ac)
 //		{
-//			cnt += transf_a_to_b_0(b, a, op_a, op_b);
+//			transf_a_to_b_0(b, a, op_a, op_b);
 //			nbr++;
 //		}
-//		while (cnt > 0)
-//		{
-//			do_op(NULL, a, op_a, RRB);
-//			cnt--;
-//		}
+////		while (cnt > 0)
+////		{
+////			do_op(NULL, a, op_a, RRB);
+////			cnt--;
+////		}
 //		nbr = (*a)->ac;
 //		while (nbr < (*b)->ac)
 //		{
@@ -183,9 +229,9 @@ static void init_transf(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)
 //	}
 //	(*b)->ac =(*b)->ac - (*a)->ac;
 
-	print_stack(*a, *b, NULL);
+	print_stack(*a, *b, NULL, "final stack a, b");
 	(*op_a)->ac = bit_shift;
-	print_stack(*op_a, *op_b, NULL);
+	print_stack(*op_a, *op_b, NULL, "operation a and b");
 }
 
 static void	transf_b_to_a(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b)

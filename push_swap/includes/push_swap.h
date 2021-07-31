@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/30 10:51:35 by jun              ###   ########.fr       */
+/*   Updated: 2021/07/31 10:42:22 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,5 @@ void	transf_based_bits(t_stk **a, t_stk **b, t_stk **op_a, t_stk **op_b);
 
 
 // !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
-void	print_stack(t_stk *a, t_stk *b, t_stk *op);
+void	print_stack(t_stk *a, t_stk *b, t_stk *op, char *str);
 #endif
