@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:28:36 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 14:38:01 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int	push_swap_main(int *av_int, int ac)
 		bucket_sort_main(&a, &b, &op);
 	else
 		radix_msd_sort_main(&a, &b, &op);
-	print_result(&op);
-	return (0);
+	print_result(op);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)

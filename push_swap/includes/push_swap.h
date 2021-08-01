@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:38:15 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 14:33:13 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	merge_stack(t_stk **a, t_stk **b, t_stk **op);
 void	sort_each_stack(t_stk **a, t_stk **b, t_stk **op);
 void	compress_each_op(t_stk **op_a, t_stk **op_b);
 
-void	print_result(t_stk **op);
+void	print_result(t_stk *op);
 void	joint_stack(t_stk **op, t_stk **op_a, t_stk **op_b);
 
 int		get_most_sigf_bit(int num);

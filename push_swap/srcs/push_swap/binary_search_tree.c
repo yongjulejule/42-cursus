@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 12:48:26 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:25:34 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 14:30:29 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	indexing_args_by_bst(t_stk *a)
 	cur = a->head->next;
 	inorder_to_idxing(*bst, a, cur);
 	postorder_to_free(*bst);
+	free(bst);
 	bst = NULL;
 }
