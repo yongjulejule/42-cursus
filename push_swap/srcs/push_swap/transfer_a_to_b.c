@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 17:36:15 by jun               #+#    #+#             */
-/*   Updated: 2021/07/31 18:12:46 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 09:40:51 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 	{
 		do_op(a, b, op, PB);
 		(*b)->ac++;
-		if (!(((*b)->head->next->idx >> (bit_shift - 1)) & 1))
+		if ((((*b)->head->next->idx >> (bit_shift - 1)) & 1))
 		{
 			do_op(NULL, b, op, RB);
 			cnt++;
@@ -74,7 +74,7 @@ void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift)
 	nbr = (*a)->pivot - (*b)->ac + tmp;
 	while (cnt < nbr)
 	{
-		do_op(a, b, op, RRA);
+		do_op(a, NULL, op, RRA);
 		cnt++;
 	}
 	cnt = 0;
@@ -89,7 +89,5 @@ void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift)
 		do_op(NULL, b, op, RRB);
 		cnt--;
 	}
-			print_stack(*a, *b, NULL, "a_to_b");
-
 	(*a)->ac = (*a)->ac - nbr;
 }
