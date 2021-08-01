@@ -6,13 +6,13 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 17:36:15 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 12:33:25 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 14:05:54 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
+static int	transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 {
 	int	cnt;
 
@@ -32,7 +32,7 @@ int	transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 	return (cnt);
 }
 
-int	transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
+static int	transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 {
 	int	cnt;
 
@@ -51,8 +51,8 @@ int	transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 		do_op(a, NULL, op, RA);
 	return (cnt);
 }
-#include <stdio.h>
-void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift)
+
+static void	preserv_transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int shift)
 {
 	int		cnt;
 	int		nbr;
@@ -77,7 +77,17 @@ void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift)
 		do_op(a, NULL, op, RRA);
 		cnt++;
 	}
+}
+
+void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift)
+{
+	int		cnt;
+	int		nbr;
+	int		tmp;
+
 	cnt = 0;
+	tmp = (*b)->ac;
+	preserv_transf_a_to_b_0(a, b, op, shift);
 	nbr = (*b)->ac - tmp;
 	while (nbr < (*a)->pivot)
 	{

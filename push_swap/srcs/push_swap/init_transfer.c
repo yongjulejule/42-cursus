@@ -6,22 +6,22 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 17:34:18 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 10:44:47 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:26:18 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static int	init_transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
+static int	init_transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int shift)
 {
 	int	cnt;
 
 	cnt = 0;
-	if (!(((*a)->head->next->idx >> (bit_shift) & 1)))
+	if (!(((*a)->head->next->idx >> (shift) & 1)))
 	{
 		do_op(a, b, op, PB);
 		(*b)->ac++;
-		if (!(((*b)->head->next->idx >> (bit_shift - 1)) & 1))
+		if (!(((*b)->head->next->idx >> (shift - 1)) & 1))
 		{
 			do_op(NULL, b, op, RB);
 			cnt++;
@@ -32,16 +32,16 @@ static int	init_transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 	return (cnt);
 }
 
-static int	init_transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
+static int	init_transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int shift)
 {
 	int	cnt;
 
 	cnt = 0;
-	if ((((*a)->head->next->idx >> (bit_shift) & 1)))
+	if ((((*a)->head->next->idx >> (shift) & 1)))
 	{
 		do_op(a, b, op, PB);
 		(*b)->ac++;
-		if ((((*b)->head->next->idx >> (bit_shift - 1) & 1)))
+		if ((((*b)->head->next->idx >> (shift - 1) & 1)))
 		{
 			do_op(NULL, b, op, RB);
 			cnt++;
@@ -52,7 +52,7 @@ static int	init_transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 	return (cnt);
 }
 
-void init_transf(t_stk **a, t_stk **b, t_stk **op)
+void	init_transf(t_stk **a, t_stk **b, t_stk **op)
 {
 	int		cnt;
 	int		nbr;

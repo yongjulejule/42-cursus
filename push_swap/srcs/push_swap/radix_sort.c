@@ -6,13 +6,13 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 19:51:38 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:13:17 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:34:07 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int		get_most_sigf_bit(int num)
+int	get_most_sigf_bit(int num)
 {
 	int	cnt;
 
@@ -36,7 +36,7 @@ void	update_idx(t_stk **a)
 	}
 }
 
-int		pow_to_get_pivot(int nbr)
+int	pow_to_get_pivot(int nbr)
 {
 	int	tmp;
 

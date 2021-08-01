@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 11:41:25 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 13:43:38 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:19:49 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	move_spec_nbr_left(t_stk **stk, t_deq *cur, int start, t_stk **op)
 {
-	int cnt;
+	int	cnt;
 
 	while (cur->idx != start)
 	{

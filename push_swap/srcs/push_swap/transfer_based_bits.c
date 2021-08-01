@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 10:51:11 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:12:48 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:33:22 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	transf_b_to_a(t_stk **a, t_stk **b, t_stk **op)
 {
-	static	int	shift = 3;
+	static int	shift = 3;
 
 	(*b)->pivot = (*b)->ac % (*op)->pivot;
 	subprocess_b_to_a(a, b, op, shift);
@@ -27,7 +27,7 @@ static void	transf_b_to_a(t_stk **a, t_stk **b, t_stk **op)
 
 static void	transf_a_to_b(t_stk **a, t_stk **b, t_stk **op)
 {
-	static	int	shift = 5;
+	static int	shift = 5;
 
 	(*a)->pivot = (*op)->pivot;
 	while ((*a)->ac > (*a)->pivot)
@@ -53,13 +53,13 @@ static void	transf_b_to_a_last_bit(t_stk **a, t_stk **b, t_stk **op)
 			do_op(a, b, op, PA);
 			do_op(a, b, op, PA);
 		}
-		(*b)->ac -=2;
+		(*b)->ac -= 2;
 	}
 }
 
 void	transf_based_bits(t_stk **a, t_stk **b, t_stk **op)
 {
-	int cnt;
+	int	cnt;
 
 	init_transf(a, b, op);
 	transf_b_to_a(a, b, op);

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:54:16 by jun               #+#    #+#             */
-/*   Updated: 2021/07/24 13:33:33 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:20:29 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	arg_cnt(char **tmp)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	while (tmp[idx])
@@ -22,10 +22,9 @@ int	arg_cnt(char **tmp)
 	return (idx);
 }
 
-
 static int	go_to_digit(char *str, int *sign)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	if (*str == '-' || *str == '+')
@@ -75,7 +74,7 @@ int	*strset_to_integer(char **tmp, int *ac)
 	int	idx;
 
 	*ac = arg_cnt(tmp);
-	av_int = ft_calloc_w_error(sizeof(int*), *ac);
+	av_int = ft_calloc_w_error(sizeof(int *), *ac);
 	idx = 0;
 	while (tmp[idx])
 	{

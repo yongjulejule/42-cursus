@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:57:28 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 13:46:59 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:22:13 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	compress_push(t_stk **op)
 		cur = (*op)->head->next;
 		while (cur != (*op)->tail)
 		{
-			if ((cur->num == 1 && cur->next->num == 2)\
-					|| (cur->num == 2 && cur->next->num == 1))
+			if ((cur->num == 1 && cur->next->num == 2)
+				|| (cur->num == 2 && cur->next->num == 1))
 			{
 				tmp = cur;
 				cur = cur->prev;
@@ -35,7 +35,7 @@ void	compress_push(t_stk **op)
 			cur = cur->next;
 		}
 		if (flag == 0)
-			break;
+			break ;
 	}
 }
 
@@ -51,8 +51,8 @@ void	compress_rotation(t_stk **op)
 		cur = (*op)->head->next;
 		while (cur != (*op)->tail)
 		{
-			if ((cur->num == 6 && cur->next->num == 9)\
-					|| (cur->num == 9 && cur->next->num == 6))
+			if ((cur->num == 6 && cur->next->num == 9)
+				|| (cur->num == 9 && cur->next->num == 6))
 			{
 				tmp = cur;
 				cur = cur->prev;
@@ -62,13 +62,13 @@ void	compress_rotation(t_stk **op)
 			cur = cur->next;
 		}
 		if (flag == 0)
-			break;
+			break ;
 	}
 }
 
 static t_deq	*r_to_rev_r(t_stk **op, t_deq *cur, t_deq *tmp, int cnt_r)
 {
-	int cnt_rr;
+	int	cnt_rr;
 
 	tmp = cur->prev;
 	if (cnt_r == (*op)->ac)

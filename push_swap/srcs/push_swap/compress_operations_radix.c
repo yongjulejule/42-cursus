@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 10:06:24 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:15:51 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:23:16 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	compress_rotation_radix(t_stk **op)
 		cur = (*op)->head->next;
 		while (cur != (*op)->tail)
 		{
-			if ((cur->num == RA && cur->next->num == RRA)\
-					|| (cur->num == RRA && cur->next->num == RA)\
-					|| (cur->num == RB && cur->next->num == RRB)\
-					|| (cur->num == RRB && cur->next->num == RB))
+			if ((cur->num == RA && cur->next->num == RRA)
+				|| (cur->num == RRA && cur->next->num == RA)
+				|| (cur->num == RB && cur->next->num == RRB)
+				|| (cur->num == RRB && cur->next->num == RB))
 			{
 				tmp = cur;
 				cur = cur->prev;
@@ -37,11 +37,11 @@ void	compress_rotation_radix(t_stk **op)
 			cur = cur->next;
 		}
 		if (flag == 0)
-			break;
+			break ;
 	}
 }
 
-static	t_deq*	dual_rotation(t_stk **op, t_deq *cur, int op_1, int op_2)
+static	t_deq	*dual_rotation(t_stk **op, t_deq *cur, int op_1, int op_2)
 {
 	t_deq	*tmp;
 
@@ -58,7 +58,7 @@ static	t_deq*	dual_rotation(t_stk **op, t_deq *cur, int op_1, int op_2)
 	return (tmp);
 }
 
-static	t_deq*	dual_rev_rotation(t_stk **op, t_deq *cur, int op_1, int op_2)
+static	t_deq	*dual_rev_rotation(t_stk **op, t_deq *cur, int op_1, int op_2)
 {
 	t_deq	*tmp;
 

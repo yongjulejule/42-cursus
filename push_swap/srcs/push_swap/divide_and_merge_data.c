@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 10:05:22 by jun               #+#    #+#             */
-/*   Updated: 2021/07/28 14:03:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:28:08 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	divide_data(t_stk **a, t_stk **b, t_stk **op)
 {
 	float	pivot;
-	int		idx;
 	t_deq	*cur;
+	int		idx;
 
 	idx = 1;
 	pivot = ((float)(*a)->ac / 100) * 51;
@@ -30,7 +30,7 @@ void	divide_data(t_stk **a, t_stk **b, t_stk **op)
 			do_op(a, b, op, PB);
 			idx++;
 		}
-		else 
+		else
 			do_op(a, b, op, RA);
 	}
 	(*b)->ac = idx - 1;

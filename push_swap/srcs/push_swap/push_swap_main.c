@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:14:12 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:28:36 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	push_swap_main(int *av_int, int ac)
 
 int	main(int argc, char **argv)
 {
-	int *av_int;
+	int	*av_int;
 	int	ac;
 
 	if (argc < 2)

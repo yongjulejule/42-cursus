@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 10:48:42 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:38:15 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@
 
 typedef struct s_bst
 {
-	int		key;
-	struct s_bst *parent;
-	struct s_bst *left;
-	struct s_bst *right;
+	int				key;
+	struct s_bst	*parent;
+	struct s_bst	*left;
+	struct s_bst	*right;
 }	t_bst;
 
 typedef struct s_deq
@@ -99,8 +99,6 @@ void	indexing_args_by_bst(t_stk *a);
 
 void	do_op(t_stk **a, t_stk **b, t_stk **op, int op_idx);
 
-
-
 int		pow_to_get_pivot(int nbr);
 
 void	divide_data(t_stk **a, t_stk **b, t_stk **op);
@@ -111,23 +109,15 @@ void	compress_each_op(t_stk **op_a, t_stk **op_b);
 void	print_result(t_stk **op);
 void	joint_stack(t_stk **op, t_stk **op_a, t_stk **op_b);
 
-
 int		get_most_sigf_bit(int num);
 void	radix_msd_sort(t_stk **a, t_stk **b, t_stk **op, int cnt);
 void	transf_based_bits(t_stk **a, t_stk **b, t_stk **op);
 
-
 void	subprocess_a_to_b(t_stk **a, t_stk **b, t_stk **op, int shift);
-int		transf_a_to_b_0(t_stk **a, t_stk **b, t_stk **op, int shift);
-int		transf_a_to_b_1(t_stk **a, t_stk **b, t_stk **op, int shift);
 void	subprocess_b_to_a(t_stk **a, t_stk **b, t_stk **op, int shift);
-int		transf_b_to_a_0(t_stk **a, t_stk **b, t_stk **op, int shift);
-int		transf_b_to_a_1(t_stk **a, t_stk **b, t_stk **op, int shift);
 
-void init_transf(t_stk **a, t_stk **b, t_stk **op);
+void	init_transf(t_stk **a, t_stk **b, t_stk **op);
 
 void	compress_dual_rotation(t_stk **op);
 void	compress_rotation_radix(t_stk **op);
-// !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
-void	print_stack(t_stk *a, t_stk *b, t_stk *op, char *str);
 #endif

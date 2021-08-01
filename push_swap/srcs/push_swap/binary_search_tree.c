@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 12:48:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/25 13:34:31 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:25:34 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_bst	*init_newnode(int key)
 {
-	t_bst *newnode;
+	t_bst	*newnode;
 
 	newnode = (t_bst *)ft_calloc_w_error(sizeof(t_bst), 1);
 	newnode->parent = NULL;
@@ -26,9 +26,9 @@ static t_bst	*init_newnode(int key)
 
 static void	insert_node(t_bst **root, int key)
 {
-	t_bst *newnode;
-	t_bst *node_x;
-	t_bst *node_y;
+	t_bst	*newnode;
+	t_bst	*node_x;
+	t_bst	*node_y;
 
 	newnode = init_newnode(key);
 	node_y = NULL;

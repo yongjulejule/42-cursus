@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 14:08:08 by jun               #+#    #+#             */
-/*   Updated: 2021/07/24 16:38:02 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:25:10 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_dup(int *av_int, int ac)
 	{
 		tmp = av_int[num_idx];
 		search = num_idx;
-		while(search < ac)
+		while (search < ac)
 		{
 			if (tmp == av_int[search])
 			{
