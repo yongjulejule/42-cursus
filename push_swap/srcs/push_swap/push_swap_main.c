@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/07/30 13:50:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:14:12 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static void	radix_msd_sort_main(t_stk **a, t_stk **b, t_stk **op)
 	(*b)->ac = 0;
 	cnt = get_most_sigf_bit((*a)->ac - 1);
 	radix_msd_sort(a, b, op, cnt);
-//	merge_stack(a, b, op);
+	compress_rotation_radix(op);
+	compress_dual_rotation(op);
+	compress_push(op);
 }
 
 static int	push_swap_main(int *av_int, int ac)

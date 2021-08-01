@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:37:57 by jun               #+#    #+#             */
-/*   Updated: 2021/07/31 17:34:31 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:11:55 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	transf_b_to_a_1(t_stk **a, t_stk **b, t_stk **op, int bit_shift)
 		do_op(a, b, op, RB);
 	return (cnt);
 }
-
 
 void	subprocess_b_to_a(t_stk **a, t_stk **b, t_stk **op, int shift)
 {

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/07/31 16:35:23 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 10:48:42 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ int		transf_b_to_a_1(t_stk **a, t_stk **b, t_stk **op, int shift);
 
 void init_transf(t_stk **a, t_stk **b, t_stk **op);
 
+void	compress_dual_rotation(t_stk **op);
+void	compress_rotation_radix(t_stk **op);
 // !!!!!!!!!!!!!!!!!debuging!!!!!!!!!!!!!!!!!!!!!!!!! (delete before submit)
 void	print_stack(t_stk *a, t_stk *b, t_stk *op, char *str);
 #endif

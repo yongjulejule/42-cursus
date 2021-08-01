@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 10:51:11 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 09:38:50 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:12:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	transf_based_bits(t_stk **a, t_stk **b, t_stk **op)
 	{
 		transf_a_to_b(a, b, op);
 		cnt -= 2;
-		if (cnt != 1)
-			transf_b_to_a(a, b, op);
-		else
+		if (cnt == 1 || cnt == -1)
 			transf_b_to_a_last_bit(a, b, op);
+		else
+			transf_b_to_a(a, b, op);
 		cnt -= 2;
 	}
 }

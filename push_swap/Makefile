@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/31 16:42:42 by jun              ###   ########.fr        #
+#    Updated: 2021/08/01 10:24:00 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   init_transfer.c\
 	   transfer_b_to_a.c\
 	   transfer_a_to_b.c\
+	   compress_operations_radix.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \

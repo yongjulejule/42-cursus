@@ -7,7 +7,7 @@ static	void	make_nbr(int n)
 	char	c;
 	static int a;
 
-	if (a == 7)
+	if (a == 9)
 	{
 		a = 0;
 		return ;
@@ -23,7 +23,7 @@ static void	ft_putnbr_ui_base(int n)
 {
 	if (n == 0)
 	{
-		write(1, "0000000", 7);
+		write(1, "000000000", 9);
 		return ;
 	}
 	make_nbr(n);

@@ -6,24 +6,11 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 19:51:38 by jun               #+#    #+#             */
-/*   Updated: 2021/07/31 13:47:37 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/01 13:13:17 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-/*
-*1 1 1 0 1
-*1 1 1 0 0
-*1 1 0 1
-*1 1 0 0
-*1 0 1
-*1 0 0
-*0 1
-*0 0
-*stack_b
-*work like this way!
-*/
 
 int		get_most_sigf_bit(int num)
 {
