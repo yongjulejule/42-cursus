@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 16:24:58 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/22 18:37:20 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/04 12:33:52 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bonus/ft_pipex_bonus.h"
+#include "fdf.h"
 
 static	int	get_line(t_file **cur, char **line, int size, int flag)
 {

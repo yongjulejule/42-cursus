@@ -70,6 +70,6 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-#.PHONY: bonus
-#bonus: $(BONUS_OBJS)
-#	ar cr $(NAME) $(BONUS_OBJS)
+.PHONY: bonus
+bonus: $(BONUS_OBJS)
+	ar cr $(NAME) $(BONUS_OBJS)

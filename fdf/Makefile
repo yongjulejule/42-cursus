@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/03 10:33:57 by jun              ###   ########.fr        #
+#    Updated: 2021/08/04 12:38:43 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(NAME) : $(MLX_FILE) $(LIBFT_FILE) $(OBJ_FILES)
 
 
 $(LIBFT_FILE):
-	@make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) bonus
 
 $(MLX_FILE) :
 	@make -C $(MLX_DIR)
@@ -76,12 +76,12 @@ $(MLX_FILE) :
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)
 	make -C $(LIBFT_DIR) clean
-	make -C $(MLX_DIR) clean
 
 .PHONY: fclean
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
 
 .PHONY: ffclean
 ffclean: clean
