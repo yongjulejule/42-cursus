@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/04 12:38:43 by jun              ###   ########.fr        #
+#    Updated: 2021/08/06 17:45:42 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,11 @@ MLX_FILE = $(MLX_DIR)libmlx.dylib
 INC_DIR = ./includes/
 
 SRCS = $(addprefix $(SRCS_DIR), \
-	   main.c\
+    ft_atoi_basis.c\
+    ft_atoi_convert_base.c\
+    get_next_line_bonus.c\
+    get_next_line_utils_bonus.c\
+    main.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \

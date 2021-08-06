@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/24 12:18:07 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/06 15:22:57 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
+char			**ft_split_charset(char const *s, char *charset);
 
 /*
 ** To handle List
