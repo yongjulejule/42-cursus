@@ -6,10 +6,11 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:16:22 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/06 17:37:09 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 12:28:04 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO
 #include "../../includes/fdf.h"
 
 static unsigned long long	deci_to_int(const char *str)

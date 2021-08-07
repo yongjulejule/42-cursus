@@ -6,13 +6,16 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/06 17:45:42 by jun              ###   ########.fr        #
+#    Updated: 2021/08/07 14:26:04 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-DFLAGS = -g3 -fsanitize=address
+ifdef DEBUG
+	CFLAGS = -g3 -fsanitize=address
+else
+	CFLAGS = -Wall -Wextra -Werror
+endif
 LFLAGS = -g
 
 NAME = fdf
@@ -34,15 +37,17 @@ MLX_FILE = $(MLX_DIR)libmlx.dylib
 INC_DIR = ./includes/
 
 SRCS = $(addprefix $(SRCS_DIR), \
-    ft_atoi_basis.c\
-    ft_atoi_convert_base.c\
-    get_next_line_bonus.c\
-    get_next_line_utils_bonus.c\
-    main.c\
+	   ft_atoi_basis.c\
+	   ft_atoi_convert_base.c\
+	   get_next_line_bonus.c\
+	   get_next_line_utils_bonus.c\
+	   get_data.c\
+	   read_file.c\
+	   main.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
-	   )
+			 )
 
 OBJS = ${SRCS:.c=.o}
 
@@ -66,8 +71,8 @@ bonus: $(OBJ_FILES) $(NAME)
 	@make WITH_BONUS=1 $(NAME)
 
 $(NAME) : $(MLX_FILE) $(LIBFT_FILE) $(OBJ_FILES)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $@ 
-		@install_name_tool -change $(MLX_LIB) $(MLX_FILE) $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $@ 
+	@install_name_tool -change $(MLX_LIB) $(MLX_FILE) $(NAME)
 
 
 $(LIBFT_FILE):
@@ -97,8 +102,8 @@ re: fclean all
 
 .PHONY: debug
 debug: 
-	$(CC) $(DFLAGS) $(SRCS) $(LIB) srcs/push_swap/print_to_debug.c -o push_swap
-	
+	@make DEBUG=1
+
 bonusdebug: 
 	$(CC) $(DFLAGS) $(SRCS_BONUS) $(LIB) -o push_swap
 

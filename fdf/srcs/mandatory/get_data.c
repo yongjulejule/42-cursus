@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 14:35:58 by jun               #+#    #+#             */
-/*   Updated: 2021/08/07 14:27:30 by jun              ###   ########.fr       */
+/*   Created: 2021/08/07 12:35:44 by jun               #+#    #+#             */
+/*   Updated: 2021/08/07 14:47:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	handle_error(int argc)
-{
-	if (argc != 2)
-		is_error("Check The number of Arguments");
-}
-
-int	main(int argc, char **argv)
+t_data	*get_data(char **argv)
 {
 	t_data	*data;
+	char	**file;
 
-	handle_error(argc);
-	data = get_data(argv);
-//	execute_mlx(data);
-	return (0);
+	file = read_file(argv);
+	data = (t_data*)ft_calloc(1, sizeof(t_data));
+//	get_coord(data);
+//	get_color(data);
+	return NULL;
 }

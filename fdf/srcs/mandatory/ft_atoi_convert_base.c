@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_deci.c                                     :+:      :+:    :+:   */
+/*   ft_atoi_convert_base.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:16:22 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/06 17:42:52 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 11:28:53 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
-
+// TODO
 static unsigned long long	lower_case_hexa(const char *str)
 {
 	unsigned long long	num;

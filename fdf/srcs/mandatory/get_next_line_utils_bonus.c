@@ -6,18 +6,19 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 16:31:23 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/04 12:34:08 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 11:45:59 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+// TODO
+#include "../../includes/fdf.h"
 
 t_file	*init_fd(int fd)
 {
 	t_file	*newnode;
 
-	newnode = (t_file *)ft_calloc_w_error(sizeof(t_file), 1);
-	newnode->text = (char *)ft_calloc_w_error(sizeof(char), BUFFER_SIZE + 1);
+	newnode = (t_file *)ft_calloc(sizeof(t_file), 1);
+	newnode->text = (char *)ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	newnode->fd = fd;
 	newnode->nl = 0;
 	newnode->next = NULL;
@@ -66,7 +67,7 @@ char	*mysubstr(char *s, int nl, int len)
 	int		idx;
 
 	idx = 0;
-	substr = (char *)ft_calloc_w_error(len + 1, sizeof(char));
+	substr = (char *)ft_calloc(len + 1, sizeof(char));
 	while (idx < len)
 	{
 		*(substr + idx) = *(s + nl + idx);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/09 16:24:58 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/04 12:33:52 by jun              ###   ########.fr       */
+/*   Created: 2021/08/07 09:38:07 by jun               #+#    #+#             */
+/*   Updated: 2021/08/07 09:38:52 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../includes/fdf.h"
 
 static	int	get_line(t_file **cur, char **line, int size, int flag)
 {
