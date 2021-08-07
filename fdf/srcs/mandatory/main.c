@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 14:35:58 by jun               #+#    #+#             */
-/*   Updated: 2021/08/07 14:27:30 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 16:53:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 
 	handle_error(argc);
 	data = get_data(argv);
-//	execute_mlx(data);
+	//	execute_mlx(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/07 13:29:15 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 15:26:47 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ typedef struct	s_data{
 	int	**data[2];
 }	t_data;
 
+int					ft_atoi_basis(const char *str);
 unsigned long long	hexa_to_int(const char *str);
 unsigned long long	bi_to_int(const char *str);
 unsigned long long	oct_to_int(const char *str);
 t_data				*get_data(char **argv);
-char	**read_file(char **argv);
+char				**read_file(char **argv);
 #endif

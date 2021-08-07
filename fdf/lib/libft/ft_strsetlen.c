@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strsetlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 12:29:02 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/07 16:53:07 by jun              ###   ########.fr       */
+/*   Created: 2021/08/07 15:24:52 by jun               #+#    #+#             */
+/*   Updated: 2021/08/07 16:15:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_strsetlen(char **strs)
 {
-	char	*str;
-	int		len;
+	int	cnt;
 
-	len = ft_strlen(s);
-	str = (char *)s;
-	while (len > 0)
+	cnt = 0;
+	if (strs == NULL)
+		return (0);
+	if (*strs == NULL)
+		return (0);
+	while (*strs)
 	{
-		if (*(str + len) == (char)c)
-			return (str + len);
-		len--;
+		if (**strs == '\0')
+			break ;
+		cnt++;
+		strs++;
 	}
-	if (*str == (char)c)
-		return (str);
-	return (NULL);
+	return (cnt);
 }

@@ -6,11 +6,10 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:16:22 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/07 12:28:04 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/07 16:32:38 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO
 #include "../../includes/fdf.h"
 
 static unsigned long long	deci_to_int(const char *str)
@@ -50,7 +49,10 @@ int	ft_atoi_basis(const char *str)
 	unsigned long long	num;
 	int					sign;
 
+	if (str == NULL)
+		return (0);
 	sign = 1;
+	num = 0;
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
@@ -61,15 +63,9 @@ int	ft_atoi_basis(const char *str)
 		num = deci_to_int(str);
 	else if (*str == '0')
 		num = convert_to_int(str);
-	else 
-	{
-		ft_putendl_fd("Data is not number", 2);
-		exit(EXIT_FAILURE);
-	}
+	else
+		is_error("Data is not Number! Check it");
 	if (num > LIMIT_VALUE)
-	{
-		ft_putendl_fd("Data is out of range", 2);
-		exit(EXIT_FAILURE);
-	}
+		is_error("Data is out of range...!");
 	return (sign * num);
 }
