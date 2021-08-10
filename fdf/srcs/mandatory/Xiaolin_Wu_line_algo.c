@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:19:54 by jun               #+#    #+#             */
-/*   Updated: 2021/08/09 18:47:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/10 14:16:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,24 +106,11 @@ int	main()
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 1000, 600, "title");
-	double i = 0;
-	double j = 0;
-	double jj = 0;
-	while (jj < 200)
-	{
-		i = 0;
-		j = 0;
-		while (j < 500)
-		{
-			drawline(mlx_ptr, win_ptr, 50 + jj, 50 + i, 50 + jj, 50 + j);
-			i += 1;
-			j += 2;
-		}
-		jj += 1;
-	}
-	drawline(mlx_ptr, win_ptr, 60, 60 + i, 60, 60 + j);
-	drawline(mlx_ptr, win_ptr, 60, 400, 50, 300);
-	drawline(mlx_ptr, win_ptr, 50, 500, 60, 200);
-	drawline(mlx_ptr, win_ptr, 60, 400, 60, 200);
+			drawline(mlx_ptr, win_ptr, 50, 0, 50, 100);
+			drawline(mlx_ptr, win_ptr, 50, 100, 50, 100);
+//	drawline(mlx_ptr, win_ptr, 60, 60 + i, 60, 60 + j);
+//	drawline(mlx_ptr, win_ptr, 60, 400, 50, 300);
+//	drawline(mlx_ptr, win_ptr, 50, 500, 60, 200);
+//	drawline(mlx_ptr, win_ptr, 60, 400, 60, 200);
 	mlx_loop(mlx_ptr);
 }
