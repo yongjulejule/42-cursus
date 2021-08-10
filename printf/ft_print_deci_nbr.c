@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 02:20:31 by yongjule          #+#    #+#             */
-/*   Updated: 2021/06/19 14:20:08 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/08/08 20:42:22 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static	void	put_4bit_nbr(va_list cp_ap, t_lidx *strs)
 			ft_putnbr_char_fd(va_arg(cp_ap, int), 1);
 		else
 			ft_putnbr_abs_fd(va_arg(cp_ap, int), 1);
-	else
-	{
+	else 
+	{ 
 		if (get_length_flag(strs) == 1)
 			ft_putnbr_ushort_fd(va_arg(cp_ap, t_ui), 1);
 		else if (get_length_flag(strs) == 2)
@@ -34,7 +34,7 @@ static	void	put_4bit_nbr(va_list cp_ap, t_lidx *strs)
 }
 
 static	void	put_8bit_nbr(va_list cp_ap, t_lidx *strs)
-{
+{ 
 	if (strs->txt[strs->opts.spec] == 'd' || strs->txt[strs->opts.spec] == 'i')
 	{
 		if (get_length_flag(strs) == 3)

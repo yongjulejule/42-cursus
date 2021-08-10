@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/07 14:26:04 by jun              ###   ########.fr        #
+#    Updated: 2021/08/09 17:50:45 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,9 @@ MLX_FLAGS = -L./$(MLX_DIR) -lmlx -framework OpenGl -framework Appkit
 MLX_FILE = $(MLX_DIR)libmlx.dylib
 
 INC_DIR = ./includes/
-
-SRCS = $(addprefix $(SRCS_DIR), \
+SRCS = ./srcs/mandatory/Xiaolin_Wu_line_algo.c\
+	   ./srcs/mandatory/draw_line_utils.c
+#SRCS = $(addprefix $(SRCS_DIR), \
 	   ft_atoi_basis.c\
 	   ft_atoi_convert_base.c\
 	   get_next_line_bonus.c\

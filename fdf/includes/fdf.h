@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/07 15:26:47 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/09 17:40:05 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,39 @@ typedef struct	s_data{
 	int	**data[2];
 }	t_data;
 
+typedef struct	s_program{
+	int	*mlx_ptr;
+	int	*win_ptr;
+}	t_program;
+
+typedef	struct	s_vec{
+	double x;
+	double y;
+	double z;
+}	t_vec;
+
+typedef struct	s_fdf{
+	t_program	prog;
+	t_vec		vec;
+	t_data		*data;
+}	t_fdf;
+
 int					ft_atoi_basis(const char *str);
 unsigned long long	hexa_to_int(const char *str);
 unsigned long long	bi_to_int(const char *str);
 unsigned long long	oct_to_int(const char *str);
 t_data				*get_data(char **argv);
 char				**read_file(char **argv);
+
+/* Isometric Projection */
+t_vec	point_isometric_proj(t_vec vec);
+
+/* draw_line */
+
+void	plot(void *mlx_ptr, void * win_ptr, int x, int y, int color);
+double	ipart(double x);
+double	fpart(double x);
+double	rfpart(double x);
+void	swap(double *x, double *y);
+void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1);
 #endif
