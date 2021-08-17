@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/09 17:40:05 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/17 21:12:34 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // FIXME
 # include <sys/resource.h>
+# include <stdio.h>
 
 # include <fcntl.h>
 # include <string.h>
@@ -45,8 +46,9 @@ typedef	struct	s_vec{
 	double z;
 }	t_vec;
 
+/* TODO : Need to make IMG structure*/
 typedef struct	s_fdf{
-	t_program	prog;
+	t_program	*prog;
 	t_vec		vec;
 	t_data		*data;
 }	t_fdf;
@@ -58,8 +60,14 @@ unsigned long long	oct_to_int(const char *str);
 t_data				*get_data(char **argv);
 char				**read_file(char **argv);
 
+/* mlx */
+
+void	mlx_main(t_data *data);
+void	draw_wireframe(t_fdf *fdf);
+
 /* Isometric Projection */
-t_vec	point_isometric_proj(t_vec vec);
+
+t_vec	iso_proj(t_vec vec);
 
 /* draw_line */
 

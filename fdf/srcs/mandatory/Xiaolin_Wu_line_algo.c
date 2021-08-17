@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:19:54 by jun               #+#    #+#             */
-/*   Updated: 2021/08/10 14:16:23 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/17 21:26:39 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,31 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 		x++;
 	}
 }
-
-int	main()
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 600, "title");
-			drawline(mlx_ptr, win_ptr, 50, 0, 50, 100);
-			drawline(mlx_ptr, win_ptr, 50, 100, 50, 100);
-//	drawline(mlx_ptr, win_ptr, 60, 60 + i, 60, 60 + j);
-//	drawline(mlx_ptr, win_ptr, 60, 400, 50, 300);
-//	drawline(mlx_ptr, win_ptr, 50, 500, 60, 200);
-//	drawline(mlx_ptr, win_ptr, 60, 400, 60, 200);
-	mlx_loop(mlx_ptr);
-}
+//
+//#include <stdio.h>
+//int	main()
+//{
+//	void	*mlx_ptr;
+//	void	*win_ptr;
+//	t_vec	vec_0;
+//	t_vec	vec_1;
+//
+//	vec_0.x = 0;
+//	vec_0.y = 0;
+//	vec_0.z = 0;
+//	vec_1.x = 0;
+//	vec_1.y = 1;
+//	vec_1.z = 1;
+//	vec_0 = iso_proj(vec_0);
+//	vec_1 = iso_proj(vec_1);
+//	printf("%f, %f, %f", vec_0.x, vec_0.y, vec_0.z);
+//	printf("%f, %f, %f", vec_1.x, vec_1.y, vec_1.z);
+//	mlx_ptr = mlx_init();
+//	win_ptr = mlx_new_window(mlx_ptr, 1000, 600, "title");
+//	drawline(mlx_ptr, win_ptr, vec_0.x, vec_1.x, vec_0.y, vec_1.y);
+////	drawline(mlx_ptr, win_ptr, 50, 100, 50, 100);
+////	drawline(mlx_ptr, win_ptr, 60, 400, 50, 300);
+////	drawline(mlx_ptr, win_ptr, 50, 500, 60, 200);
+////	drawline(mlx_ptr, win_ptr, 60, 400, 60, 200);
+//	mlx_loop(mlx_ptr);
+//}

@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "printf/libft/libft.h"
 
 int sum = 0;
 void *runner(void *param);
