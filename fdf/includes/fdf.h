@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/17 21:12:34 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 00:47:55 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ double	ipart(double x);
 double	fpart(double x);
 double	rfpart(double x);
 void	swap(double *x, double *y);
-void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1);
+void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1, int color);
 #endif

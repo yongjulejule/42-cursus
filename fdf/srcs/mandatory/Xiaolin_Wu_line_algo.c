@@ -6,13 +6,13 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:19:54 by jun               #+#    #+#             */
-/*   Updated: 2021/08/17 21:26:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 01:00:36 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1)
+void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1, int color)
 {
 	int		steep;
 	int		x;
@@ -28,7 +28,9 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	double	ypxl2;
 	double	intery;
 
-	steep = abs((int)(y1 - y0)) > abs((int)(x1 - x0));
+	if (!color)
+		color = 0x00FFFF;
+	steep = fabs((y1 - y0)) > fabs((x1 - x0));
 	if (steep)
 	{
 		swap(&x0, &y0);
@@ -52,15 +54,16 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	xpxl1 = x_end;
 	ypxl1 = ipart(y_end);
 
+	/* First pixcel */
 	if (steep)
 	{
-		plot(mlx_ptr, win_ptr, ypxl1, xpxl1, rfpart(y_end) * x_gap + 0xFFFFFF);
-		plot(mlx_ptr, win_ptr, ypxl1 + 1, xpxl1, fpart(y_end) * x_gap + 0xFFFFFF);
+		plot(mlx_ptr, win_ptr, ypxl1, xpxl1, rfpart(y_end) * x_gap * color + color);
+		plot(mlx_ptr, win_ptr, ypxl1 + 1, xpxl1, fpart(y_end) * x_gap * color + color);
 	}
 	else
 	{
-		plot(mlx_ptr, win_ptr, xpxl1, ypxl1, rfpart(y_end) * x_gap + 0xFFFFFF);
-		plot(mlx_ptr, win_ptr, xpxl1, ypxl1 + 1, fpart(y_end) * x_gap + 0xFFFFFF);
+		plot(mlx_ptr, win_ptr, xpxl1, ypxl1, rfpart(y_end) * x_gap * color + color);
+		plot(mlx_ptr, win_ptr, xpxl1, ypxl1 + 1, fpart(y_end) * x_gap * color + color);
 	}
 	intery = y_end + gradient;
 
@@ -69,15 +72,17 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	x_gap = fpart(x1 + 0.5);
 	xpxl2 = x_end;
 	ypxl2 = ipart(y_end);
+
+	/* Last pixcel */
 	if (steep)
 	{
-		plot(mlx_ptr, win_ptr, ypxl2, xpxl2, rfpart(y_end) * x_gap + 0xFFFFFF);
-		plot(mlx_ptr, win_ptr, ypxl2 + 1, xpxl2, fpart(y_end) * x_gap + 0xFFFFFF);
+		plot(mlx_ptr, win_ptr, ypxl2, xpxl2, rfpart(y_end) * x_gap * color + color);
+		plot(mlx_ptr, win_ptr, ypxl2 + 1, xpxl2, fpart(y_end) * x_gap * color + color);
 	}
 	else
 	{
-		plot(mlx_ptr, win_ptr, xpxl2, ypxl2, rfpart(y_end) * x_gap + 0xFFFFFF);
-		plot(mlx_ptr, win_ptr, xpxl2, ypxl2 + 1, fpart(y_end) * x_gap + 0xFFFFFF);
+		plot(mlx_ptr, win_ptr, xpxl2, ypxl2, rfpart(y_end) * x_gap * color + color);
+		plot(mlx_ptr, win_ptr, xpxl2, ypxl2 + 1, fpart(y_end) * x_gap * color + color);
 	}
 
 	x = xpxl1 + 1;
@@ -85,14 +90,14 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	{
 		if (steep)
 		{
-			plot(mlx_ptr, win_ptr, ipart(intery), x, rfpart(intery) + 0xFFFFFF);
-			plot(mlx_ptr, win_ptr, ipart(intery) + 1, x, fpart(intery) + 0xFFFFFF);
+			plot(mlx_ptr, win_ptr, ipart(intery), x, rfpart(intery) * color + color);
+			plot(mlx_ptr, win_ptr, ipart(intery) + 1, x, fpart(intery) * color + color);
 			intery += gradient;
 		}
 		else
 		{
-			plot(mlx_ptr, win_ptr, x, ipart(intery), rfpart(intery) + 0xFFFFFF);
-			plot(mlx_ptr, win_ptr, x, ipart(intery) + 1, fpart(intery) + 0xFFFFFF);
+			plot(mlx_ptr, win_ptr, x, ipart(intery), rfpart(intery) * color + color);
+			plot(mlx_ptr, win_ptr, x, ipart(intery) + 1, fpart(intery) * color + color);
 			intery += gradient;
 		}
 		x++;

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:33:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/17 23:09:28 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 00:58:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ t_vec	iso_proj(t_vec vec)
 {
 	t_vec	proj_vec;
 
-	proj_vec.x = ((vec.x - vec.y) * cos(atan(0.5))) * 20;
-	proj_vec.y = (-vec.z + ((vec.x + vec.y) * sin(atan(0.5)))) * 20;
+	proj_vec.x = ((vec.x - vec.y) * cos(atan(0.5))) * 15;
+	proj_vec.y = (-vec.z + ((vec.x + vec.y) * sin(atan(0.5)))) * 15;
 	/* TODO : change location based on max_x, max_y*/
-	proj_vec.x += 380;
-	proj_vec.y += 220;
+	proj_vec.x += 680;
+	proj_vec.y += 420;
 	return (proj_vec);
 }
