@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/19 18:04:30 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/20 01:06:28 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,51 @@ static t_vec	get_coordi(t_fdf *fdf, int x, int y)
 	vec.z = fdf->data->data[0][y][x];
 	return (vec);
 }
+
+static void	init_img(t_fdf *fdf)
+{
+	int	count_h;
+	int	count_w;
+
+	count_h = 0;
+	while (count_h < WIN_H)
+	{
+		count_w = 0;
+		while (count_w < WIN_W)
+		{
+			if (count_w < T_W && count_h < T_H)
+				fdf->img->data[(count_h * fdf->img->size_l
+						+ count_w * fdf->img->bpp / 8) / 4] = 0x242424;
+			else
+				fdf->img->data[(count_h * fdf->img->size_l
+						+ count_w * fdf->img->bpp / 8) / 4] = 0x000000;
+			count_w++;
+		}
+		count_h++;
+	}
+}
+
+static void	init_img_structure(t_fdf *fdf)
+{
+	if (!fdf->img)
+		fdf->img = (t_img *)ft_calloc(1, sizeof(t_img));
+	fdf->img->img_ptr = mlx_new_image(fdf->prog->mlx_ptr, WIN_W, WIN_H);
+	if (!fdf->img->img_ptr)
+		is_error("Error while initiate image");
+	fdf->img->data = (int *)mlx_get_data_addr(fdf->img->img_ptr,
+			&fdf->img->bpp, &fdf->img->size_l, &fdf->img->endian);
+	if (!fdf->img->data)
+		is_error("Error while initiate image data");
+	init_img(fdf);
+}
+
 void	draw_wireframe(t_fdf *fdf)
 {
 	t_vec	vec_0;
 	t_vec	vec_1;
 	int		color[2];
 
+	init_img_structure(fdf);
 	while (fdf->data->y < fdf->data->max_y)
 	{
 		fdf->data->x = 0;
@@ -53,4 +92,6 @@ void	draw_wireframe(t_fdf *fdf)
 		}
 		fdf->data->y += 1;
 	}
+	fdf->data->x = 0;
+	fdf->data->y = 0;
 }

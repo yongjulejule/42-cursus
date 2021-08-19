@@ -6,23 +6,18 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:20:00 by jun               #+#    #+#             */
-/*   Updated: 2021/08/19 20:20:08 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/19 23:09:28 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	plot(t_fdf *fdf, void *mlx_ptr, void * win_ptr, int x, int y, double brightness, int color)
+void	plot(t_fdf *fdf, int x, int y, int color)
 {
-//	int	r;
-//	int	g;
-//	int	b;
-//	int	anti_aliased_color;
-//
-//	r = ((color >> 16) & 0xff) * brightness;
-//	g = ((color >> 8) & 0xff) * brightness;
-//	b = (color & 0xff) * brightness;
-//	anti_aliased_color = ((r << 16) | (g << 8) | b);
+	if (x < T_W && y < T_H)
+		return ;
+	if (x < 0 || x > 1600 || y < 0 || y > 900)
+		return ;
 	fdf->img->data[(y * fdf->img->size_l + x * fdf->img->bpp / 8) / 4] = color; 
 } 
 

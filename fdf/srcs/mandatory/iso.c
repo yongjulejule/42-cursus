@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:33:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/19 17:33:49 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/20 00:09:24 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_vec	vertical_rotate(t_vec vec, double angle)
 	vec.z = prev_vec.x * sin(angle) + prev_vec.z * cos(angle);
 	return (vec);
 }
+
 t_vec	iso_proj(t_fdf *fdf, t_vec vec)
 {
 	t_vec	proj_vec;

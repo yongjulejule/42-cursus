@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 12:35:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/18 00:49:40 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/19 21:39:32 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	free_double_ptr(char **strs)
 	{
 		free(strs[idx]);
 		idx++;
-//		*strs = NULL;
 	}
 	free(strs);
 }
@@ -104,5 +103,7 @@ t_data	*get_data(char **argv)
 	data = (t_data*)ft_calloc(1, sizeof(t_data));
 	init_t_data(data, file);
 	convert_str_data_to_int_arr(data, file);
+	free_double_ptr(file);
+	file = NULL;
 	return (data);
 }

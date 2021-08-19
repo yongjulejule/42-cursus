@@ -6,13 +6,14 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/17 21:28:25 by jun              ###   ########.fr        #
+#    Updated: 2021/08/20 00:07:57 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 ifdef DEBUG
-	CFLAGS = -g3 -fsanitize=address
+#	CFLAGS = -g3 -fsanitize=address
+	CFLAGS = -g
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
@@ -51,6 +52,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   Xiaolin_Wu_line_algo.c\
 	   draw_line_utils.c\
 	   main.c\
+	   hook_fdf.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
