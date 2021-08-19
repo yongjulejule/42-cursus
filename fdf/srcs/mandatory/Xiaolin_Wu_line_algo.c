@@ -6,22 +6,22 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:19:54 by jun               #+#    #+#             */
-/*   Updated: 2021/08/18 19:10:50 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/19 20:10:21 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-int	rastrized_color(int color, int color_end, double percent)
+int	rastrized_color(int *color, double percent)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	rast_color;
 
-	r = ((color >> 16) & 0xff) * (1 - percent) + ((color_end >> 16) & 0xff) * percent;
-	g = ((color >> 8) & 0xff) * (1 - percent) + ((color_end >> 8) & 0xff) * percent;
-	b = (color & 0xff) * (1 - percent) + ((color_end) & 0xff) * percent;
+	r = ((color[0] >> 16) & 0xff) * (1 - percent) + ((color[1] >> 16) & 0xff) * percent;
+	g = ((color[0] >> 8) & 0xff) * (1 - percent) + ((color[1] >> 8) & 0xff) * percent;
+	b = (color[0] & 0xff) * (1 - percent) + ((color[1]) & 0xff) * percent;
 	rast_color = ((r << 16) | (g << 8) | b);
 	return (rast_color);
 }
@@ -33,7 +33,7 @@ double	percentage(double start, double cur, double end)
 	return ((cur - start) / (end - start));
 }
 
-void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1, int color, int color_end)
+void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1, int *color)
 {
 	int		steep;
 	int		x;
@@ -50,28 +50,34 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	double	intery;
 	double	percent;
 
-	steep = fabs((y1 - y0)) > fabs((x1 - x0));
+	/* TODO : Handle offset here */
+	if (((vec_0.x < T_W  || vec_1.x < T_W)  && (vec_0.y < T_H
+			|| vec_1.y < T_H)) || vec_0.x > WIN_W || vec_1.x > WIN_W
+			|| vec_1.y > WIN_H || vec_0.y > WIN_H || vec_0.x < 0
+			|| vec_1.x < 0 || vec_0.y < 0 || vec_1.y < 0)
+		return ;
+	steep = fabs((vec_1.y - vec_0.y)) > fabs((vec_1.x - vec_0.x));
 	if (steep)
 	{
-		swap(&x0, &y0);
-		swap(&x1, &y1);
+		swap(&vec_0.x, &vec_0.y);
+		swap(&vec_1.x, &vec_1.y);
 	}
-	if (x0 > x1)
+	if (vec_0.x > vec_1.x)
 	{
-		swap(&x0, &x1);
-		swap(&y0, &y1);
-		swap_i(&color, &color_end);
+		swap(&vec_0.x, &vec_1.x);
+		swap(&vec_0.y, &vec_1.y);
+		swap_i(&color[0], &color[1]);
 	}
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = vec_1.x - vec_0.x;
+	dy = vec_1.y - vec_0.y;
 	if (dx == 0)
 		gradient = 1;
 	else
 		gradient = dy / dx;
 
-	x_end = round(x0);
-	y_end = y0 + gradient * (x_end - x0);
-	x_gap = rfpart(x0 + 0.5);
+	x_end = round(vec_0.x);
+	y_end = vec_0.y + gradient * (x_end - vec_0.x);
+	x_gap = rfpart(vec_0.x + 0.5);
 	xpxl1 = x_end;
 	ypxl1 = ipart(y_end);
 
@@ -79,19 +85,19 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	percent = 0;
 	if (steep)
 	{
-		plot(mlx_ptr, win_ptr, ypxl1, xpxl1, rfpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color_end);
-		plot(mlx_ptr, win_ptr, ypxl1 + 1, xpxl1, fpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color_end);
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ypxl1, xpxl1, rfpart(y_end) * x_gap, rastrized_color(color, percent));
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ypxl1 + 1, xpxl1, fpart(y_end) * x_gap, rastrized_color(color, percent));
 	}
 	else
 	{
-		plot(mlx_ptr, win_ptr, xpxl1, ypxl1, rfpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color_end);
-		plot(mlx_ptr, win_ptr, xpxl1, ypxl1 + 1, fpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color_end);
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, xpxl1, ypxl1, rfpart(y_end) * x_gap, rastrized_color(color, percent));
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, xpxl1, ypxl1 + 1, fpart(y_end) * x_gap, rastrized_color(color, percent));
 	}
 	intery = y_end + gradient;
 
-	x_end = round(x1);
-	y_end = y1 + gradient * (x_end - x1);
-	x_gap = fpart(x1 + 0.5);
+	x_end = round(vec_1.x);
+	y_end = vec_1.y + gradient * (x_end - vec_1.x);
+	x_gap = fpart(vec_1.x + 0.5);
 	xpxl2 = x_end;
 	ypxl2 = ipart(y_end);
 
@@ -99,13 +105,13 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 	percent = 1;
 	if (steep)
 	{
-		plot(mlx_ptr, win_ptr, ypxl2, xpxl2, rfpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color);
-		plot(mlx_ptr, win_ptr, ypxl2 + 1, xpxl2, fpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color);
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ypxl2, xpxl2, rfpart(y_end) * x_gap, rastrized_color(color, percent));
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ypxl2 + 1, xpxl2, fpart(y_end) * x_gap, rastrized_color(color, percent));
 	}
 	else
 	{
-		plot(mlx_ptr, win_ptr, xpxl2, ypxl2, rfpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color);
-		plot(mlx_ptr, win_ptr, xpxl2, ypxl2 + 1, fpart(y_end) * x_gap, rastrized_color(color, color_end, percent), color);
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, xpxl2, ypxl2, rfpart(y_end) * x_gap, rastrized_color(color, percent));
+		plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, xpxl2, ypxl2 + 1, fpart(y_end) * x_gap, rastrized_color(color, percent));
 	}
 
 	x = xpxl1 + 1;
@@ -114,43 +120,16 @@ void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, dou
 		percent = percentage((double)xpxl1 + 1, (double)x, (double)xpxl2);
 		if (steep)
 		{
-			plot(mlx_ptr, win_ptr, ipart(intery), x, rfpart(intery), rastrized_color(color, color_end, percent), color_end);
-			plot(mlx_ptr, win_ptr, ipart(intery) + 1, x, fpart(intery), rastrized_color(color, color_end, percent), color_end);
+			plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ipart(intery), x, rfpart(intery), rastrized_color(color, percent));
+			plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, ipart(intery) + 1, x, fpart(intery), rastrized_color(color, percent));
 			intery += gradient;
 		}
 		else
 		{
-			plot(mlx_ptr, win_ptr, x, ipart(intery), rfpart(intery), rastrized_color(color, color_end, percent), color_end);
-			plot(mlx_ptr, win_ptr, x, ipart(intery) + 1, fpart(intery), rastrized_color(color, color_end, percent), color_end);
+			plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, x, ipart(intery), rfpart(intery), rastrized_color(color, percent));
+			plot(fdf, fdf->prog->mlx_ptr, fdf->prog->win_ptr, x, ipart(intery) + 1, fpart(intery), rastrized_color(color, percent));
 			intery += gradient;
 		}
 		x++;
 	}
 }
-//#include <stdio.h>
-//int	main()
-//{
-//	void	*mlx_ptr;
-//	void	*win_ptr;
-//	t_vec	vec_0;
-//	t_vec	vec_1;
-//
-//	vec_0.x = 0;
-//	vec_0.y = 0;
-//	vec_0.z = 0;
-//	vec_1.x = 0;
-//	vec_1.y = 1;
-//	vec_1.z = 1;
-//	vec_0 = iso_proj(vec_0);
-//	vec_1 = iso_proj(vec_1);
-//	printf("%f, %f, %f", vec_0.x, vec_0.y, vec_0.z);
-//	printf("%f, %f, %f", vec_1.x, vec_1.y, vec_1.z);
-//	mlx_ptr = mlx_init();
-//	win_ptr = mlx_new_window(mlx_ptr, 1000, 600, "title");
-//	drawline(mlx_ptr, win_ptr, vec_0.x, vec_1.x, vec_0.y, vec_1.y);
-////	drawline(mlx_ptr, win_ptr, 50, 100, 50, 100);
-////	drawline(mlx_ptr, win_ptr, 60, 400, 50, 300);
-////	drawline(mlx_ptr, win_ptr, 50, 500, 60, 200);
-////	drawline(mlx_ptr, win_ptr, 60, 400, 60, 200);
-//	mlx_loop(mlx_ptr);
-//}

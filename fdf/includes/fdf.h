@@ -6,16 +6,12 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/18 19:11:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/19 20:14:25 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-// FIXME
-# include <sys/resource.h>
-# include <stdio.h>
 
 # include <fcntl.h>
 # include <string.h>
@@ -26,6 +22,11 @@
 # include "get_next_line_bonus.h"
 
 # define LIMIT_VALUE 960000000
+# define WIN_H 900
+# define WIN_W 1600
+# define T_W 320
+# define T_H 120
+# define PI 3.1415
 
 typedef struct	s_data{
 	int	x;
@@ -36,8 +37,8 @@ typedef struct	s_data{
 }	t_data;
 
 typedef struct	s_program{
-	int	*mlx_ptr;
-	int	*win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
 }	t_program;
 
 typedef	struct	s_vec{
@@ -46,11 +47,29 @@ typedef	struct	s_vec{
 	double z;
 }	t_vec;
 
+typedef struct	s_img{
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		*data;
+	void	*img_ptr;
+}	t_img;
+
+typedef struct	s_carema{
+	int		scale;
+	int		horizon;
+	int		vertical;
+	double	h_angle;
+	double	v_angle;
+}	t_carema;
+
 /* TODO : Need to make IMG structure*/
 typedef struct	s_fdf{
 	t_program	*prog;
-	t_vec		vec;
 	t_data		*data;
+	t_img		*img;
+	t_carema	*carema;
+	t_vec		vec;
 }	t_fdf;
 
 int					ft_atoi_basis(const char *str);
@@ -67,15 +86,15 @@ void	draw_wireframe(t_fdf *fdf);
 
 /* Isometric Projection */
 
-t_vec	iso_proj(t_vec vec);
+t_vec	iso_proj(t_fdf *fdf, t_vec vec);
 
 /* draw_line */
 
-void	plot(void *mlx_ptr, void * win_ptr, int x, int y, double brightness, int color, int color_end);
+void	plot(t_fdf *fdf, void *mlx_ptr, void * win_ptr, int x, int y, double brightness, int color);
 double	ipart(double x);
 double	fpart(double x);
 double	rfpart(double x);
 void	swap(double *x, double *y);
-void	drawline(void *mlx_ptr, void *win_ptr, double x0, double x1, double y0, double y1, int color, int color_end);
+void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1, int *color);
 void	swap_i(int *x, int *y);
 #endif
