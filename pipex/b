@@ -1,0 +1,57 @@
+MACH-O(5)                                                            MACH-O(5)
+
+
+
+NNAAMMEE
+       Mach-O - Mach-O assembler and link editor output
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<mmaacchh--oo//llooaaddeerr..hh>>
+       ##iinncclluuddee <<mmaacchh--oo//nnlliisstt..hh>>
+       ##iinncclluuddee <<mmaacchh--oo//ssttaabb..hh>>
+       ##iinncclluuddee <<mmaacchh--oo//rreelloocc..hh>>
+
+DDEESSCCRRIIPPTTIIOONN
+       The object files produced by the assembler and link editor are in Mach-
+       O (Mach object) file format.  The file name _a_._o_u_t is the default output
+       file  name  of the assembler _a_s(1) and the link editor _l_d(1) The format
+       of the object file however is not 4.3BSD a.out format as the name  sug-
+       gests,  but rather Mach-O format.  The link editor will make _a_._o_u_t exe-
+       cutable if the resulting format is an executable type and there were no
+       errors and no unresolved external references.
+
+       The  complete  description  of  a  Mach-O  file is given in a number of
+       include files.   The  file  <mach-o/loader.h>  describes  the  headers,
+       <mach-o/nlist.h>   describes  the  symbol  table  entries  with  <mach-
+       o/stab.h> supplementing it, and <mach-o/reloc.h> describes the  reloca-
+       tion entries.
+
+       The  actual  instructions and data used by the program represented by a
+       Mach-O file are the contents of its  sections.   Sections  are  grouped
+       together in segments.  Each section carries with it, in its header, the
+       information as to which segment it belongs in.  When a file  type  that
+       is  executable  is created the sections are placed in their proper seg-
+       ment and all the segment headers are created  and  the  segments  them-
+       selves  are  padded  out to the segment alignment (typically the target
+       pagesize).  For the object file type produced by an  assembler  (or  by
+       the link editor for further linking) all the sections are placed in one
+       segment for compactness.
+
+       When the kernel executes a Mach-O file it maps  in  the  object  file's
+       segments,  the  dynamic link editor (if used) and creates the thread(s)
+       for execution.  Any part of the object file that is not part of a  seg-
+       ment  is not mapped in for execution.  For executable using the dynamic
+       link editor the headers and other link edit information  is  needed  to
+       execute the file.  These parts include the relocation entries, the sym-
+       bol table and the string table.  These parts are mapped in with the use
+       of  the  link editor's --sseegglliinnkkeeddiitt option which creates a segment that
+       contains these parts.  These parts can be stripped  down  with  the  --SS
+       option to _l_d(1) or various options to _s_t_r_i_p(1).
+
+
+SSEEEE AALLSSOO
+       as(1), ld(1), nm(1), gdb(1), stab(5), strip(1)
+
+
+
+Apple Computer, Inc.           October 22, 2001                      MACH-O(5)

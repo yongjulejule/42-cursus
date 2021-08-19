@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/18 00:53:34 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 18:58:44 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_fdf	*init_fdf_structure(t_data *data)
 	if (!fdf->prog->mlx_ptr)
 		is_error("Error while initiating mlx");
 	fdf->prog->win_ptr = mlx_new_window(fdf->prog->mlx_ptr,\
-			fdf->data->max_x * 100, fdf->data->max_y * 100, "crazy_fdf");
+			1200, 900, "crazy_fdf");
 	/* TODO : need to put mlx_image */
 	if (!fdf->prog->win_ptr)
 		is_error("Error while open window");

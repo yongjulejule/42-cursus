@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:16:22 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/08 19:51:53 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 12:15:20 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static unsigned long long	convert_to_int(const char *str)
 	while (*str == '0')
 		str++;
 	if (*str == 'x' || *str == 'X')
-		num = hexa_to_int(str);
+		num = hexa_to_int(str + 1);
 	else if (*str == 'b' || *str == 'B')
 		num = bi_to_int(str + 1);
 	else if (*str > 0 && *str <= '9')

@@ -6,53 +6,27 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:16:22 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/07 11:28:53 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/18 12:15:14 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
-// TODO
-static unsigned long long	lower_case_hexa(const char *str)
-{
-	unsigned long long	num;
-
-	num = 0;
-	while (is_charset(*str, "0123456789abcdef"))
-	{
-		if (is_charset(*str, "0123456789"))
-			num = 16 * num + (*str - '0');
-		else
-			num = 16 * num + (*str - 'a' + 10);
-		str++;
-	}
-	return (num);
-}
-
-static unsigned long long	upper_case_hexa(const char *str)
-{
-	unsigned long long	num;
-
-	num = 0;
-	while (is_charset(*str, "0123456789ABCDEF"))
-	{
-		if (is_charset(*str, "0123456789"))
-			num = 16 * num + (*str - '0');
-		else
-			num = 16 * num + (*str - 'A' + 10);
-		str++;
-	}
-	return (num);
-}
 
 unsigned long long	hexa_to_int(const char *str)
 {
 	unsigned long long	num;
 
 	num = 0;
-	if (*str == 'x')
-		num = lower_case_hexa(str + 1);
-	else
-		num = upper_case_hexa(str + 1);
+	while (is_charset(*str, "0123456789abcdefABCDEF"))
+	{
+		if (is_charset(*str, "0123456789"))
+			num = 16 * num + (*str - '0');
+		else if (is_charset(*str, "abcdef"))
+			num = 16 * num + (*str - 'a' + 10);
+		else
+			num = 16 * num + (*str - 'A' + 10);
+		str++;
+	}
 	return (num);
 }
 
