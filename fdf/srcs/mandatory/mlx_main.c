@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 22:11:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 15:58:11 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	draw(t_fdf *fdf)
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 			fdf->img->img_ptr, 0, 0);
 	translate_fdf(fdf);
-	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
 }
 
 t_fdf	*mlx_main(t_data *data)
@@ -98,5 +97,7 @@ t_fdf	*mlx_main(t_data *data)
 	fdf = init_fdf_structure(data);
 	fdf->camera = init_camera_structure();
 	draw(fdf);
+	hook_fdf(fdf);
+	mlx_loop(fdf->prog->mlx_ptr);
 	return (fdf);
 }

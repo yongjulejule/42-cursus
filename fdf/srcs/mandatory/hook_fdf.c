@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 22:01:17 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 15:58:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	key_press(int keycode, void *param)
 	flag = 1;
 	fdf = (t_fdf *)param;
 	if (keycode == KEY_ESC)
-		exit(0);
+		exit(EXIT_SUCCESS);
 	else if (keycode == KEY_UP)
 		fdf->camera->vertical -= 5;
 	else if (keycode == KEY_DOWN)

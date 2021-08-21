@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 22:12:16 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 15:53:45 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	init_img_structure(t_fdf *fdf)
 {
 	if (!fdf->img)
 		fdf->img = (t_img *)ft_calloc(1, sizeof(t_img));
-	fdf->img->img_ptr = mlx_new_image(fdf->prog->mlx_ptr, WIN_W, WIN_H);
+	if (!fdf->img->img_ptr)
+		fdf->img->img_ptr = mlx_new_image(fdf->prog->mlx_ptr, WIN_W, WIN_H);
 	if (!fdf->img->img_ptr)
 		is_error("Error while initiate image");
 	fdf->img->data = (int *)mlx_get_data_addr(fdf->img->img_ptr,
