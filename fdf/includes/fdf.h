@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 22:11:16 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 21:33:20 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,15 @@ typedef struct	s_camera{
 	int		horizon;
 	int		vertical;
 	double	scale;
-	double	h_angle;
-	double	v_angle;
 	t_vec	center;
 	t_vec	angle;
 }	t_camera;
 
-/* TODO : Need to make IMG structure*/
 typedef struct	s_fdf{
 	t_program	*prog;
 	t_data		*data;
 	t_img		*img;
+	t_img		*background;
 	t_camera	*camera;
 	t_vec		vec;
 	t_vec	(*proj_func)(struct s_fdf *, t_vec);

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 15:58:11 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 21:33:41 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static t_camera	*init_camera_structure(void)
 	t_camera	*camera;
 
 	camera = (t_camera *)ft_calloc(1, sizeof(t_camera));
-	camera->h_angle = 0;
-	camera->v_angle = 0;
 	camera->scale = 2;
 	camera->horizon = T_W;
 	camera->vertical = T_H * 2;
@@ -73,10 +71,26 @@ static void	translate_fdf(t_fdf *fdf)
 			10, 180, 0xffffff, "Press ESC to exit");
 }
 
+static void	get_fdf_background(t_fdf *fdf)
+{
+	int	width;
+	int	height;
+
+	width = WIN_W;
+	height = WIN_H;
+	if (!fdf->background)
+		fdf->background = (t_img *)ft_calloc(1, sizeof(t_img));
+	if (!fdf->background->img_ptr)
+		fdf->background->img_ptr = mlx_png_file_to_image(fdf->prog->mlx_ptr,\
+				"./asset/cosmos.png", &width, &height);
+	if (!fdf->background->img_ptr)
+		is_error("Error while initiate image");
+}
+
 #include <stdio.h>
 void	draw(t_fdf *fdf)
 {
-	fprintf(stderr, "scale : %f, v_angle : %f, h_angle : %f ,vert : %dhori :%d\n", fdf->camera->scale, fdf->camera->v_angle, fdf->camera->h_angle, fdf->camera->vertical, fdf->camera->horizon);
+	fprintf(stderr, "scale : %f, v_angle : %f, h_angle : %f ,vert : %dhori :%d\n", fdf->camera->scale, fdf->camera->angle.x, fdf->camera->angle.y, fdf->camera->vertical, fdf->camera->horizon);
 //	fdf->camera->center = get_center(fdf);
 	if (fdf->camera->proj == ISO)
 		fdf->proj_func = iso_proj;
@@ -85,10 +99,15 @@ void	draw(t_fdf *fdf)
 	else
 		fdf->proj_func = one_perspective_proj;
 	draw_wireframe(fdf);
-	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,\
+			fdf->background->img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,\
 			fdf->img->img_ptr, 0, 0);
 	translate_fdf(fdf);
+	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
+	fdf->img->img_ptr = NULL;
 }
+
 
 t_fdf	*mlx_main(t_data *data)
 {
@@ -96,8 +115,11 @@ t_fdf	*mlx_main(t_data *data)
 
 	fdf = init_fdf_structure(data);
 	fdf->camera = init_camera_structure();
+	get_fdf_background(fdf);
 	draw(fdf);
 	hook_fdf(fdf);
 	mlx_loop(fdf->prog->mlx_ptr);
+	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->background->img_ptr);
+	fdf->background->img_ptr = NULL;
 	return (fdf);
 }

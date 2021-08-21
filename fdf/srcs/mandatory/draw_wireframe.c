@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 15:53:45 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 21:35:39 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	init_img(t_fdf *fdf)
 						+ count_w * fdf->img->bpp / 8) / 4] = 0x242424;
 			else
 				fdf->img->data[(count_h * fdf->img->size_l\
-						+ count_w * fdf->img->bpp / 8) / 4] = 0x000000;
+						+ count_w * fdf->img->bpp / 8) / 4] = 0xff000000;
 			count_w++;
 		}
 		count_h++;

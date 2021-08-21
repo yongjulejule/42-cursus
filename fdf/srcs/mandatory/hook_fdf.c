@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 15:58:48 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/21 21:10:42 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,26 @@ int	key_press(int keycode, void *param)
 		fdf->camera->horizon += 5;
 	else if (keycode == KEY_Z)
 		fdf->camera->angle.x += 3.14 / 60;
-	else if (keycode == KEY_X)
+	else if (keycode == KEY_X && fdf->camera->proj != PALL)
 		fdf->camera->angle.y += 3.14 / 60;
-	else if (keycode == KEY_C)
+	else if (keycode == KEY_C && fdf->camera->proj != PALL)
 		fdf->camera->angle.z += 3.14 / 60;
 	else if (keycode == KEY_A)
 		fdf->camera->angle.x -= 3.14 / 60;
-	else if (keycode == KEY_S)
+	else if (keycode == KEY_S && fdf->camera->proj != PALL)
 		fdf->camera->angle.y -= 3.14 / 60;
-	else if (keycode == KEY_D)
+	else if (keycode == KEY_D && fdf->camera->proj != PALL)
 		fdf->camera->angle.z -= 3.14 / 60;
 	else if (keycode == KEY_SPACE)
 	{
 		fdf->camera->proj += 1;
 		fdf->camera->proj %= 3;
+		if (fdf->camera->proj == PALL)
+		{
+			fdf->camera->angle.x = 0;
+			fdf->camera->angle.y = 0;
+			fdf->camera->angle.z = 0;
+		}
 	}
 	else
 		flag = 0;
@@ -100,13 +106,13 @@ int	mouse_move(int button, int x, int y, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (fdf->camera->mouse_l == PRESSED_L)
+	if (fdf->camera->mouse_l == PRESSED_L && fdf->camera->proj != PALL)
 	{
 		fdf->camera->angle.y -= 3.14 / 15;
 		fdf->camera->angle.z += 3.14 / 15;
 		draw(fdf);
 	}
-	else if (fdf->camera->mouse_r == PRESSED_R)
+	else if (fdf->camera->mouse_r == PRESSED_R && fdf->camera->proj != PALL)
 	{
 		fdf->camera->angle.y += 3.14 / 15;
 		fdf->camera->angle.z -= 3.14 / 15;

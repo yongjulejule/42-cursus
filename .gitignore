@@ -7,6 +7,8 @@ tags
 .DS_Store
 *.c.swp
 tester/*
+pipex-tester/
+pipex-tester/*
 push_swap_tester/*
 push_swap_tester/
 fdf/42MapGenerator/
