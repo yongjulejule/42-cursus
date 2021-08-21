@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 21:33:20 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/22 00:37:50 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@ typedef struct	s_fdf{
 	t_img		*img;
 	t_img		*background;
 	t_camera	*camera;
+	t_vec		(*proj_func)(struct s_fdf *, t_vec);
+	t_vec		yongjule;
 	t_vec		vec;
-	t_vec	(*proj_func)(struct s_fdf *, t_vec);
 }	t_fdf;
 
 int					ft_atoi_basis(const char *str);
