@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 12:35:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/19 21:39:32 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/20 22:51:38 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	put_data(t_data *data, char **nbrs)
 	{
 		data->data[0][col][row] = ft_atoi_basis(*nbrs);
 		color = ft_strrchr(*nbrs, ',');
+		if (!color)
+			ft_strrchr(*nbrs, '.');
 		if (color != NULL)
 			data->data[1][col][row] = ft_atoi_basis(&color[1]);
 		else

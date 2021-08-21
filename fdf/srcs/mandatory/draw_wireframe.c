@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 01:06:28 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/20 22:12:16 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void	init_img(t_fdf *fdf)
 		while (count_w < WIN_W)
 		{
 			if (count_w < T_W && count_h < T_H)
-				fdf->img->data[(count_h * fdf->img->size_l
+				fdf->img->data[(count_h * fdf->img->size_l\
 						+ count_w * fdf->img->bpp / 8) / 4] = 0x242424;
 			else
-				fdf->img->data[(count_h * fdf->img->size_l
+				fdf->img->data[(count_h * fdf->img->size_l\
 						+ count_w * fdf->img->bpp / 8) / 4] = 0x000000;
 			count_w++;
 		}
@@ -71,10 +71,10 @@ void	draw_wireframe(t_fdf *fdf)
 		fdf->data->x = 0;
 		while (fdf->data->x < fdf->data->max_x)
 		{
-			vec_0 = iso_proj(fdf, get_coordi(fdf, fdf->data->x, fdf->data->y));
+			vec_0 = fdf->proj_func(fdf, get_coordi(fdf, fdf->data->x, fdf->data->y));
 			if (fdf->data->x != fdf->data->max_x - 1)
 			{
-				vec_1 = iso_proj(fdf,
+				vec_1 = fdf->proj_func(fdf,
 						get_coordi(fdf, fdf->data->x + 1, fdf->data->y));
 				color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
 				color[1] = fdf->data->data[1][fdf->data->y][fdf->data->x + 1];
@@ -82,7 +82,7 @@ void	draw_wireframe(t_fdf *fdf)
 			}
 			if (fdf->data->y != fdf->data->max_y - 1)
 			{
-				vec_1 = iso_proj(fdf,
+				vec_1 = fdf->proj_func(fdf,
 						get_coordi(fdf, fdf->data->x, fdf->data->y + 1));
 				color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
 				color[1] = fdf->data->data[1][fdf->data->y + 1][fdf->data->x];

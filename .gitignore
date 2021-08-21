@@ -9,3 +9,6 @@ tags
 tester/*
 push_swap_tester/*
 push_swap_tester/
+fdf/42MapGenerator/
+fdf/42MapGenerator/*
+*.a

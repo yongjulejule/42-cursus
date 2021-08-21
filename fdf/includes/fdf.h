@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 01:29:14 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/20 22:11:16 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define LIMIT_VALUE 960000000
 # define WIN_H 900
 # define WIN_W 1600
-# define T_W 320
-# define T_H 120
+# define T_W 400
+# define T_H 160
 # define PI 3.1415
 
 # define KEY_PRESS 2
@@ -37,17 +37,26 @@
 # define KEY_S 1
 # define KEY_D 2
 # define KEY_W 13
+# define KEY_Z 6
+# define KEY_X 7
+# define KEY_C 8
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_UP 126
+# define KEY_DOWN 125
 # define KEY_ESC 53
+# define KEY_SPACE 49
 # define MOUSE_L 1
 # define MOUSE_R 2
 # define SCR_UP 4
 # define SCR_DOWN 5
 # define PRESSED_L 1
 # define RELEASED_L 0
-# define PRESSED_R 2
-# define RELEASED_R 0
+# define PRESSED_R 3
+# define RELEASED_R 2
 # define ISO 0
-# define OTH 1
+# define PALL 1
+# define ONE_POINT 2
 
 typedef struct	s_data{
 	int	x;
@@ -76,23 +85,27 @@ typedef struct	s_img{
 	void	*img_ptr;
 }	t_img;
 
-typedef struct	s_carema{
+typedef struct	s_camera{
 	int		proj;
-	int		mouse;
-	int		scale;
+	int		mouse_r;
+	int		mouse_l;
 	int		horizon;
 	int		vertical;
+	double	scale;
 	double	h_angle;
 	double	v_angle;
-}	t_carema;
+	t_vec	center;
+	t_vec	angle;
+}	t_camera;
 
 /* TODO : Need to make IMG structure*/
 typedef struct	s_fdf{
 	t_program	*prog;
 	t_data		*data;
 	t_img		*img;
-	t_carema	*carema;
+	t_camera	*camera;
 	t_vec		vec;
+	t_vec	(*proj_func)(struct s_fdf *, t_vec);
 }	t_fdf;
 
 int					ft_atoi_basis(const char *str);
@@ -122,5 +135,8 @@ void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1, int *color);
 void	swap_i(int *x, int *y);
 
 void	hook_fdf(t_fdf *fdf);
+t_vec	get_center(t_fdf *fdf);
 void	draw(t_fdf *fdf);
+t_vec	one_perspective_proj(t_fdf *fdf, t_vec vec);
+t_vec	parallel(t_fdf *fdf, t_vec vec);
 #endif
