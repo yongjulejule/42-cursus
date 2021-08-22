@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 13:29:42 by jun               #+#    #+#             */
-/*   Updated: 2021/08/19 21:30:28 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/22 13:35:02 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char	**lst_to_arr(t_list *lines)
 {
-	int		idx;
-	char	**tmp;
-	t_list	*backup;
+	int			idx;
+	char		**tmp;
+	t_list		*backup;
 	extern int	errno;
 
 	idx = 0;

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 12:35:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/20 22:51:38 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/22 13:38:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	convert_str_data_to_int_arr(t_data *data, char **file)
 			free_double_ptr(nbrs);
 			nbrs = NULL;
 		}
-		else 
+		else
 			break ;
 		file++;
 	}
@@ -71,7 +71,7 @@ static void	convert_str_data_to_int_arr(t_data *data, char **file)
 
 static void	init_t_data(t_data *data, char **file)
 {
-	char 	**tmp;
+	char	**tmp;
 	int		idx;
 	int		col;
 
@@ -102,7 +102,7 @@ t_data	*get_data(char **argv)
 	char	**file;
 
 	file = read_file(argv);
-	data = (t_data*)ft_calloc(1, sizeof(t_data));
+	data = (t_data *)ft_calloc(1, sizeof(t_data));
 	init_t_data(data, file);
 	convert_str_data_to_int_arr(data, file);
 	free_double_ptr(file);

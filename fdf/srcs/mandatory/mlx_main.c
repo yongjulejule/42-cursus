@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/22 01:12:26 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/22 13:44:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_fdf	*init_fdf_structure(t_data *data)
 	fdf->prog->mlx_ptr = mlx_init();
 	if (!fdf->prog->mlx_ptr)
 		is_error("Error while initiate mlx");
-	fdf->prog->win_ptr = mlx_new_window(fdf->prog->mlx_ptr,\
+	fdf->prog->win_ptr = mlx_new_window(fdf->prog->mlx_ptr,
 			WIN_W, WIN_H, "crazy_fdf");
 	if (!fdf->prog->win_ptr)
 		is_error("Error while initiate window");
@@ -55,23 +55,23 @@ static t_camera	*init_camera_structure(void)
 static void	translate_fdf(t_fdf *fdf)
 {
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 20, 0xffffff, "Welcome to FDF!");
+		10, 20, 0xffffff, "Welcome to FDF!");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 40, 0xffffff, "if cur_projection == ISO {");
+		10, 40, 0xffffff, "if cur_projection == ISO {");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 60, 0xffffff, "    Press Arrow key to move");
+		10, 60, 0xffffff, "    Press Arrow key to move");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 80, 0xffffff, "    Press A/S/D to rotate");
+		10, 80, 0xffffff, "    Press A/S/D to rotate");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 100, 0xffffff, "    Use Z/X/C to rotate inversely");
+		10, 100, 0xffffff, "    Use Z/X/C to rotate inversely");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 120, 0xffffff, "    Press MOUSE_L to rotate_crazy");
+		10, 120, 0xffffff, "    Press MOUSE_L to rotate_crazy");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 140, 0xffffff, "    Press MOUSE_R to inverse_rotate_crazy");
+		10, 140, 0xffffff, "    Press MOUSE_R to inverse_rotate_crazy");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 160, 0xffffff, "}");
+		10, 160, 0xffffff, "}");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-			10, 180, 0xffffff, "Press ESC to exit");
+		10, 180, 0xffffff, "Press ESC to exit");
 }
 
 static void	get_fdf_background(t_fdf *fdf)
@@ -84,7 +84,7 @@ static void	get_fdf_background(t_fdf *fdf)
 	if (!fdf->background)
 		fdf->background = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!fdf->background->img_ptr)
-		fdf->background->img_ptr = mlx_png_file_to_image(fdf->prog->mlx_ptr,\
+		fdf->background->img_ptr = mlx_png_file_to_image(fdf->prog->mlx_ptr,
 				"./asset/cosmos.png", &width, &height);
 	if (!fdf->background->img_ptr)
 		is_error("Error while initiate image");
@@ -102,15 +102,14 @@ void	draw(t_fdf *fdf)
 	else
 		fdf->proj_func = one_perspective_proj;
 	draw_wireframe(fdf);
-	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,\
-			fdf->background->img_ptr, 0, 0);
-	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,\
-			fdf->img->img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+		fdf->background->img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+		fdf->img->img_ptr, 0, 0);
 	translate_fdf(fdf);
 	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
 	fdf->img->img_ptr = NULL;
 }
-
 
 t_fdf	*mlx_main(t_data *data)
 {
