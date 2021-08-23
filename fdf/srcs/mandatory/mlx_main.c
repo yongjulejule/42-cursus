@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/22 13:44:23 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/23 17:02:51 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ static t_fdf	*init_fdf_structure(t_data *data)
 			WIN_W, WIN_H, "crazy_fdf");
 	if (!fdf->prog->win_ptr)
 		is_error("Error while initiate window");
-	fdf->yongjule.x = 1;
-	fdf->yongjule.y = 1;
-	fdf->yongjule.z = 0;
 	return (fdf);
 }
 
@@ -37,7 +34,7 @@ static t_camera	*init_camera_structure(void)
 	t_camera	*camera;
 
 	camera = (t_camera *)ft_calloc(1, sizeof(t_camera));
-	camera->scale = 2;
+	camera->scale = 10;
 	camera->horizon = T_W;
 	camera->vertical = T_H * 2;
 	camera->mouse_l = RELEASED_L;
@@ -46,14 +43,14 @@ static t_camera	*init_camera_structure(void)
 	camera->angle.x = 0;
 	camera->angle.y = 0;
 	camera->angle.z = 0;
-	camera->center.x = 0;
-	camera->center.y = 0;
-	camera->center.z = 0;
 	return (camera);
 }
 
 static void	translate_fdf(t_fdf *fdf)
 {
+	char	*scale;
+
+	scale = ft_itoa(fdf->camera->scale);
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		10, 20, 0xffffff, "Welcome to FDF!");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
@@ -72,6 +69,9 @@ static void	translate_fdf(t_fdf *fdf)
 		10, 160, 0xffffff, "}");
 	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		10, 180, 0xffffff, "Press ESC to exit");
+	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+		10, 200, 0xffffff, scale);
+	free(scale);
 }
 
 static void	get_fdf_background(t_fdf *fdf)
@@ -90,17 +90,12 @@ static void	get_fdf_background(t_fdf *fdf)
 		is_error("Error while initiate image");
 }
 
-#include <stdio.h>
 void	draw(t_fdf *fdf)
 {
-	fprintf(stderr, "scale : %f, v_angle : %f, h_angle : %f ,vert : %dhori :%d\n", fdf->camera->scale, fdf->camera->angle.x, fdf->camera->angle.y, fdf->camera->vertical, fdf->camera->horizon);
-//	fdf->camera->center = get_center(fdf);
 	if (fdf->camera->proj == ISO)
 		fdf->proj_func = iso_proj;
-	else if (fdf->camera->proj == PALL)
-		fdf->proj_func = parallel;
 	else
-		fdf->proj_func = one_perspective_proj;
+		fdf->proj_func = parallel;
 	draw_wireframe(fdf);
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		fdf->background->img_ptr, 0, 0);

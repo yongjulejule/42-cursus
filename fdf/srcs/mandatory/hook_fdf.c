@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 21:10:42 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/23 13:37:22 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ int	key_press(int keycode, void *param)
 	else if (keycode == KEY_RIGHT)
 		fdf->camera->horizon += 5;
 	else if (keycode == KEY_Z)
-		fdf->camera->angle.x += 3.14 / 60;
+		fdf->camera->angle.x += PI / 60;
 	else if (keycode == KEY_X && fdf->camera->proj != PALL)
-		fdf->camera->angle.y += 3.14 / 60;
+		fdf->camera->angle.y += PI / 60;
 	else if (keycode == KEY_C && fdf->camera->proj != PALL)
-		fdf->camera->angle.z += 3.14 / 60;
-	else if (keycode == KEY_A)
-		fdf->camera->angle.x -= 3.14 / 60;
+		fdf->camera->angle.z += PI / 60;
+	else if (keycode == KEY_A)  
+		fdf->camera->angle.x -= PI / 60;
 	else if (keycode == KEY_S && fdf->camera->proj != PALL)
-		fdf->camera->angle.y -= 3.14 / 60;
+		fdf->camera->angle.y -= PI / 60;
 	else if (keycode == KEY_D && fdf->camera->proj != PALL)
-		fdf->camera->angle.z -= 3.14 / 60;
+		fdf->camera->angle.z -= PI / 60;
 	else if (keycode == KEY_SPACE)
 	{
 		fdf->camera->proj += 1;
-		fdf->camera->proj %= 3;
+		fdf->camera->proj %= 2;
 		if (fdf->camera->proj == PALL)
 		{
 			fdf->camera->angle.x = 0;
@@ -55,7 +55,10 @@ int	key_press(int keycode, void *param)
 	else
 		flag = 0;
 	if (flag)
+	{
+		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
 		draw(fdf);
+	}
 	return (SUCCESS_FLAG);
 }
 
@@ -79,7 +82,10 @@ int	mouse_press(int button, int x, int y, void *param)
 	else
 		flag = 0;
 	if (flag)
+	{
+		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
 		draw(fdf);
+	}
 	return (x + y);
 }
 
@@ -97,7 +103,10 @@ int	mouse_release(int button, int x, int y, void *param)
 	else
 		flag = 0;
 	if (flag)
+	{
+		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
 		draw(fdf);
+	}
 	return (x + y);
 }
 
@@ -108,17 +117,18 @@ int	mouse_move(int button, int x, int y, void *param)
 	fdf = (t_fdf *)param;
 	if (fdf->camera->mouse_l == PRESSED_L && fdf->camera->proj != PALL)
 	{
-		fdf->camera->angle.y -= 3.14 / 15;
-		fdf->camera->angle.z += 3.14 / 15;
+		fdf->camera->angle.y -= PI / 15;
+		fdf->camera->angle.z += PI / 15;
 		draw(fdf);
 	}
 	else if (fdf->camera->mouse_r == PRESSED_R && fdf->camera->proj != PALL)
 	{
-		fdf->camera->angle.y += 3.14 / 15;
-		fdf->camera->angle.z -= 3.14 / 15;
+		fdf->camera->angle.y += PI / 15;
+		fdf->camera->angle.z -= PI / 15;
+		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
 		draw(fdf);
 	}
-	return (button + y);
+	return (button + y + x);
 }
 
 void	hook_fdf(t_fdf *fdf)

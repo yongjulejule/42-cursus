@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:20:00 by jun               #+#    #+#             */
-/*   Updated: 2021/08/22 13:36:41 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/23 16:55:20 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,28 @@ void	plot(t_fdf *fdf, int x, int y, int color)
 	fdf->img->data[(y * fdf->img->size_l + x * fdf->img->bpp / 8) / 4] = color;
 }
 
-double	ipart(double x)
+int	rasterized_color(int *color, double percent)
 {
-	return (floor(x));
+	int	r;
+	int	g;
+	int	b;
+	int	rast_color;
+
+	r = ((color[0] >> 16) & 0xff) * (1 - percent)
+		+ ((color[1] >> 16) & 0xff) * percent;
+	g = ((color[0] >> 8) & 0xff) * (1 - percent)
+		+ ((color[1] >> 8) & 0xff) * percent;
+	b = (color[0] & 0xff) * (1 - percent)
+		+ ((color[1]) & 0xff) * percent;
+	rast_color = ((r << 16) | (g << 8) | b);
+	return (rast_color);
 }
 
-double	fpart(double x)
+double	percentage(double start, double cur, double end)
 {
-	return (x - floor(x));
-}
-
-double	rfpart(double x)
-{
-	return (1 - fpart(x));
+	if (end == start)
+		return (1);
+	return ((cur - start) / (end - start));
 }
 
 void	swap(double *x, double *y)

@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/22 16:06:39 by jun              ###   ########.fr        #
+#    Updated: 2021/08/23 11:04:42 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   get_next_line_utils_bonus.c\
 	   get_data.c\
 	   read_file.c\
-	   iso.c\
+	   projection.c\
 	   draw_wireframe.c\
 	   mlx_main.c\
 	   Xiaolin_Wu_line_algo.c\

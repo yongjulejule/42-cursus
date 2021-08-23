@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/22 00:37:50 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/23 18:16:58 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
-# define KEY_W 13
 # define KEY_Z 6
 # define KEY_X 7
 # define KEY_C 8
@@ -56,7 +55,6 @@
 # define RELEASED_R 2
 # define ISO 0
 # define PALL 1
-# define ONE_POINT 2
 
 typedef struct	s_data{
 	int	x;
@@ -89,22 +87,27 @@ typedef struct	s_camera{
 	int		proj;
 	int		mouse_r;
 	int		mouse_l;
-	int		horizon;
-	int		vertical;
+	double	horizon;
+	double	vertical;
 	double	scale;
-	t_vec	center;
 	t_vec	angle;
 }	t_camera;
 
+typedef struct s_line_info{
+	int		steep;
+	double	gradient;
+	t_vec	vec_0;
+	t_vec	vec_1;
+}	t_line_info;
+
 typedef struct	s_fdf{
+	int			color[2];
 	t_program	*prog;
 	t_data		*data;
 	t_img		*img;
 	t_img		*background;
 	t_camera	*camera;
 	t_vec		(*proj_func)(struct s_fdf *, t_vec);
-	t_vec		yongjule;
-	t_vec		vec;
 }	t_fdf;
 
 int					ft_atoi_basis(const char *str);
@@ -130,7 +133,7 @@ double	ipart(double x);
 double	fpart(double x);
 double	rfpart(double x);
 void	swap(double *x, double *y);
-void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1, int *color);
+void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1);
 void	swap_i(int *x, int *y);
 
 void	hook_fdf(t_fdf *fdf);
@@ -138,4 +141,6 @@ t_vec	get_center(t_fdf *fdf);
 void	draw(t_fdf *fdf);
 t_vec	one_perspective_proj(t_fdf *fdf, t_vec vec);
 t_vec	parallel(t_fdf *fdf, t_vec vec);
+int		rasterized_color(int *color, double percent);
+double	percentage(double start, double cur, double end);
 #endif

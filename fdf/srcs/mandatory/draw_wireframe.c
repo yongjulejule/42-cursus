@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/21 21:35:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/23 17:20:00 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	init_img(t_fdf *fdf)
 						+ count_w * fdf->img->bpp / 8) / 4] = 0x242424;
 			else
 				fdf->img->data[(count_h * fdf->img->size_l\
-						+ count_w * fdf->img->bpp / 8) / 4] = 0xff000000;
+						+ count_w * fdf->img->bpp / 8) / 4] = 0x8f000000;
 			count_w++;
 		}
 		count_h++;
@@ -60,11 +60,32 @@ static void	init_img_structure(t_fdf *fdf)
 	init_img(fdf);
 }
 
-void	draw_wireframe(t_fdf *fdf)
+static void	draw_wireframe_sub(t_fdf *fdf)
 {
 	t_vec	vec_0;
 	t_vec	vec_1;
-	int		color[2];
+
+	vec_0 = fdf->proj_func(fdf, get_coordi(fdf, fdf->data->x, fdf->data->y));
+	if (fdf->data->x != fdf->data->max_x - 1)
+	{
+		vec_1 = fdf->proj_func(fdf,
+				get_coordi(fdf, fdf->data->x + 1, fdf->data->y));
+		fdf->color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
+		fdf->color[1] = fdf->data->data[1][fdf->data->y][fdf->data->x + 1];
+		drawline(fdf, vec_0, vec_1);
+	}
+	if (fdf->data->y != fdf->data->max_y - 1)
+	{
+		vec_1 = fdf->proj_func(fdf,
+				get_coordi(fdf, fdf->data->x, fdf->data->y + 1));
+		fdf->color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
+		fdf->color[1] = fdf->data->data[1][fdf->data->y + 1][fdf->data->x];
+		drawline(fdf, vec_0, vec_1);
+	}
+}
+
+void	draw_wireframe(t_fdf *fdf)
+{
 
 	init_img_structure(fdf);
 	while (fdf->data->y < fdf->data->max_y)
@@ -72,23 +93,7 @@ void	draw_wireframe(t_fdf *fdf)
 		fdf->data->x = 0;
 		while (fdf->data->x < fdf->data->max_x)
 		{
-			vec_0 = fdf->proj_func(fdf, get_coordi(fdf, fdf->data->x, fdf->data->y));
-			if (fdf->data->x != fdf->data->max_x - 1)
-			{
-				vec_1 = fdf->proj_func(fdf,
-						get_coordi(fdf, fdf->data->x + 1, fdf->data->y));
-				color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
-				color[1] = fdf->data->data[1][fdf->data->y][fdf->data->x + 1];
-				drawline(fdf, vec_0, vec_1, color);
-			}
-			if (fdf->data->y != fdf->data->max_y - 1)
-			{
-				vec_1 = fdf->proj_func(fdf,
-						get_coordi(fdf, fdf->data->x, fdf->data->y + 1));
-				color[0] = fdf->data->data[1][fdf->data->y][fdf->data->x];
-				color[1] = fdf->data->data[1][fdf->data->y + 1][fdf->data->x];
-				drawline(fdf, vec_0, vec_1, color);
-			}
+			draw_wireframe_sub(fdf);
 			fdf->data->x += 1;
 		}
 		fdf->data->y += 1;
