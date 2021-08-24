@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:41:22 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 23:45:39 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	key_press(int keycode, void *param)
 int	close_window(void *param)
 {
 	t_fdf	*fdf;
-	
+
 	fdf = param;
 	exit(EXIT_SUCCESS);
 }
