@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/23 11:20:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 16:33:43 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_args
 	char	*limiter;
 	char	*file[2];
 	char	**env_path;
+	char	**envp;
 	char	***params;
 }	t_args;
 

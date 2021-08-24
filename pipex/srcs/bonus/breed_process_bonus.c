@@ -6,23 +6,20 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/25 16:39:11 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 20:13:28 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
+#include <string.h>
 
-void	destroy_pipe(int *pipe_fd)
+static void	wait_process(pid_t pid)
 {
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
-}
+	int	status;
 
-void	connect_pipe_fd(int *pipe_fd, int pipe_status)
-{
-	if (dup2(pipe_fd[pipe_status], pipe_status) == -1)
-		is_error("Error while connecting pipe");
-	destroy_pipe(pipe_fd);
+	waitpid(pid, &status, 0);
+	if (!WIFEXITED(status))
+		is_error("child process exited unexpectedly");
 }
 
 void	parent_process(t_args *args, int *pipe_prv, int cmd)
@@ -40,13 +37,14 @@ void	parent_process(t_args *args, int *pipe_prv, int cmd)
 		else
 			rdr_stdout_to_file(args->file[1], args, pipe_new);
 		connect_pipe_fd(pipe_prv, STDIN_FILENO);
-		execve(args->params[cmd][0], args->params[cmd], NULL);
+		execve(args->params[cmd][0], args->params[cmd], args->envp);
 	}
 	else if (pid > 0)
 	{
 		destroy_pipe(pipe_prv);
 		if (cmd == args->argc - 4)
 			return ;
+		wait_process(pid);
 		parent_process(args, pipe_new, ++cmd);
 	}
 	else
@@ -55,7 +53,6 @@ void	parent_process(t_args *args, int *pipe_prv, int cmd)
 
 void	grand_child(t_args *args, int *pipe_1st)
 {
-	int		status;
 	pid_t	pid;
 
 	pid = fork();
@@ -63,13 +60,11 @@ void	grand_child(t_args *args, int *pipe_1st)
 	{
 		rdr_file_to_stdin(args->file[0], args);
 		connect_pipe_fd(pipe_1st, STDOUT_FILENO);
-		execve(args->params[0][0], args->params[0], NULL);
+		execve(args->params[0][0], args->params[0], args->envp);
 	}
 	else if (pid > 0)
 	{
-		waitpid(pid, &status, 0);
-		if (!WIFEXITED(status))
-			is_error("child process exited unexpectedly");
+		wait_process(pid);
 		parent_process(args, pipe_1st, 1);
 	}
 	else
@@ -79,7 +74,6 @@ void	grand_child(t_args *args, int *pipe_1st)
 void	breed_process_recursively(t_args *args)
 {
 	int		pipe_prv[2];
-	int		status;
 	pid_t	pid;
 
 	if (args->is_heredoc == 1)
@@ -91,9 +85,8 @@ void	breed_process_recursively(t_args *args)
 		grand_child(args, pipe_prv);
 	else if (pid > 0)
 	{
-		waitpid(pid, &status, 0);
-		if (!WIFEXITED(status))
-			is_error("child process exited unexpectedly");
+		fprintf(stderr, "1st fork");
+		wait_process(-1);
 		exit(EXIT_SUCCESS);
 	}
 	else

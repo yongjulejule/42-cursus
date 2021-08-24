@@ -6,11 +6,24 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/23 12:07:40 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 19:51:57 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
+
+void	destroy_pipe(int *pipe_fd)
+{
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+}
+
+void	connect_pipe_fd(int *pipe_fd, int pipe_status)
+{
+	if (dup2(pipe_fd[pipe_status], pipe_status) == -1)
+		is_error("Error while connecting pipe");
+	destroy_pipe(pipe_fd);
+}
 
 static void	make_tmp_heredoc(char *file, t_args *args)
 {

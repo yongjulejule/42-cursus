@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/07/13 15:17:19 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 19:47:53 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@ void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 }
 
 static void	is_child_process(t_args *args, int *pipe_fd)
-{		
+{
+	extern int	errno;
+
 	rdr_file_to_stdin(args->file[0]);
 	connect_pipe_fd(pipe_fd, STDOUT_FILENO);
-	execve(args->params[0][0], args->params[0], NULL);
+	if (execve(args->params[0][0], args->params[0], args->envp) == -1)
+		is_error(strerror(errno));
 }
 
 static void	is_parent_process(t_args *args, int *pipe_fd)
 {
-	int	status;
+	int			status;
+	extern int	errno;
 
 	wait(&status);
 	if (!WIFEXITED(status))
@@ -42,7 +46,8 @@ static void	is_parent_process(t_args *args, int *pipe_fd)
 	}
 	rdr_stdout_to_file(args->file[1]);
 	connect_pipe_fd(pipe_fd, STDIN_FILENO);
-	execve(args->params[1][0], args->params[1], NULL);
+	if (execve(args->params[1][0], args->params[1], args->envp) == -1)
+		is_error(strerror(errno));
 }
 
 void	breed_process(t_args *args)

@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/07/31 08:48:51 by jun              ###   ########.fr        #
+#    Updated: 2021/08/24 17:25:39 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   pipex_main.c\
 	   libft_fuc_w_error.c\
 	   string_utils.c\
+	   is_error.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
