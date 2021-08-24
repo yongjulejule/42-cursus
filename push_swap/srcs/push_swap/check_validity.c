@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 14:08:08 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:25:10 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 14:37:44 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	check_dup(int *av_int, int ac)
 			if (tmp == av_int[search])
 			{
 				if (search != num_idx)
-					is_error("Error : Have duplicated number");
+					is_error("Error");
 			}
 			search++;
 		}

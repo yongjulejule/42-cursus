@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:54:16 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 13:20:29 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 14:38:31 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static int	go_to_digit(char *str, int *sign)
 		idx++;
 		str++;
 	}
+	if (*str == '\0')
+		is_error("Error");
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			is_error("Error : argv should contain only digit and single sign");
+			is_error("Error");
 		str++;
 	}
 	return (idx);
@@ -61,7 +63,7 @@ int	ft_atoi_only_num(const char *str)
 	{
 		if (num == 2147483648 && sign < 0 )
 			return (sign * num);
-		is_error("Error : argv is not INT");
+		is_error("Error");
 	}
 	free((char *)str);
 	str = NULL;

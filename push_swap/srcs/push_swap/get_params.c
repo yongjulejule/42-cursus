@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:14:23 by jun               #+#    #+#             */
-/*   Updated: 2021/07/24 13:32:53 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 14:35:02 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	*parse_args(int argc, char **argv, int *ac)
 	idx = 0;
 	while (idx < argc)
 	{
+		if (argv[idx][0] == '\0')
+			is_error("Error");
 		argv[idx] = ft_strtrim(argv[idx], WSPACE);
 		idx++;
 	}

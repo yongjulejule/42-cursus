@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/08/01 10:24:00 by jun              ###   ########.fr        #
+#    Updated: 2021/08/24 15:53:36 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,25 +43,12 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   compress_operations_radix.c\
 	   )
 
-SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
-	   )
-
 OBJS = ${SRCS:.c=.o}
 
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
-
-ifdef WITH_BONUS
-	OBJ_FILES = $(OBJS_BONUS)
-else
-	OBJ_FILES = $(OBJS)
-endif
+OBJ_FILES = $(OBJS)
 
 .PHONY: all
 all: $(OBJ_FILES) $(NAME)
-
-.PHONY: bonus
-bonus: $(OBJ_FILES) $(NAME)
-	@make WITH_BONUS=1 $(NAME)
 
 $(NAME) : $(OBJ_FILES) $(LIB)
 		$(CC) $(CFLAGS) $(OBJ_FILES) $(LIB) -o $@ 
@@ -92,9 +79,6 @@ re: fclean all
 debug: 
 	$(CC) $(DFLAGS) $(SRCS) $(LIB) srcs/push_swap/print_to_debug.c -o push_swap
 	
-bonusdebug: 
-	$(CC) $(DFLAGS) $(SRCS_BONUS) $(LIB) -o push_swap
-
 .PHONY: leakschk
 leakschk:
 	$(CC) $(LFLAGS) $(SRCS) $(LIB) -o push_swap
