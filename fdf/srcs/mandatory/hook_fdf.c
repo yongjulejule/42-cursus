@@ -6,22 +6,18 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/23 13:37:22 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 13:45:33 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-int	key_press(int keycode, void *param)
+static int	handle_translation(t_fdf *fdf, int keycode)
 {
-	t_fdf	*fdf;
-	int		flag;
+	int	flag;
 
 	flag = 1;
-	fdf = (t_fdf *)param;
-	if (keycode == KEY_ESC)
-		exit(EXIT_SUCCESS);
-	else if (keycode == KEY_UP)
+	if (keycode == KEY_UP)
 		fdf->camera->vertical -= 5;
 	else if (keycode == KEY_DOWN)
 		fdf->camera->vertical += 5;
@@ -29,106 +25,58 @@ int	key_press(int keycode, void *param)
 		fdf->camera->horizon -= 5;
 	else if (keycode == KEY_RIGHT)
 		fdf->camera->horizon += 5;
-	else if (keycode == KEY_Z)
+	else
+		flag = 0;
+	return (flag);
+}
+
+static int	handle_rotation(t_fdf *fdf, int keycode)
+{
+	int	flag;
+
+	flag = 1;
+	if (keycode == KEY_Z)
 		fdf->camera->angle.x += PI / 60;
 	else if (keycode == KEY_X && fdf->camera->proj != PALL)
 		fdf->camera->angle.y += PI / 60;
 	else if (keycode == KEY_C && fdf->camera->proj != PALL)
 		fdf->camera->angle.z += PI / 60;
-	else if (keycode == KEY_A)  
+	else if (keycode == KEY_A)
 		fdf->camera->angle.x -= PI / 60;
 	else if (keycode == KEY_S && fdf->camera->proj != PALL)
 		fdf->camera->angle.y -= PI / 60;
 	else if (keycode == KEY_D && fdf->camera->proj != PALL)
 		fdf->camera->angle.z -= PI / 60;
-	else if (keycode == KEY_SPACE)
+	else
+		flag = 0;
+	return (flag);
+}
+
+int	key_press(int keycode, void *param)
+{
+	t_fdf	*fdf;
+	int		flag;
+
+	flag = 0;
+	fdf = (t_fdf *)param;
+	if (keycode == KEY_ESC)
+		exit(EXIT_SUCCESS);
+	flag += handle_translation(fdf, keycode);
+	flag += handle_rotation(fdf, keycode);
+	if (keycode == KEY_SPACE)
 	{
 		fdf->camera->proj += 1;
 		fdf->camera->proj %= 2;
-		if (fdf->camera->proj == PALL)
-		{
-			fdf->camera->angle.x = 0;
-			fdf->camera->angle.y = 0;
-			fdf->camera->angle.z = 0;
-		}
+		fdf->camera->angle.y = 0;
+		fdf->camera->angle.z = 0;
+		flag += 1;
 	}
-	else
-		flag = 0;
 	if (flag)
 	{
 		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
 		draw(fdf);
 	}
 	return (SUCCESS_FLAG);
-}
-
-int	mouse_press(int button, int x, int y, void *param)
-{
-	t_fdf	*fdf;
-	int		flag;
-
-	flag = 1;
-	fdf = (t_fdf *)param;
-	if (button == MOUSE_L)
-		fdf->camera->mouse_l = PRESSED_L;
-	else if (button == MOUSE_R)
-		fdf->camera->mouse_r = PRESSED_R;
-	else if (button == SCR_UP)
-	{
-		fdf->camera->scale *= 1.1;
-	}
-	else if (button == SCR_DOWN)
-		fdf->camera->scale *= 0.9;
-	else
-		flag = 0;
-	if (flag)
-	{
-		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
-		draw(fdf);
-	}
-	return (x + y);
-}
-
-int	mouse_release(int button, int x, int y, void *param)
-{
-	t_fdf	*fdf;
-	int		flag;
-
-	flag = 1;
-	fdf = (t_fdf *)param;
-	if (button == MOUSE_L)
-		fdf->camera->mouse_l = RELEASED_L;
-	else if (button == MOUSE_R)
-		fdf->camera->mouse_r = RELEASED_R;
-	else
-		flag = 0;
-	if (flag)
-	{
-		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
-		draw(fdf);
-	}
-	return (x + y);
-}
-
-int	mouse_move(int button, int x, int y, void *param)
-{
-	t_fdf	*fdf;
-
-	fdf = (t_fdf *)param;
-	if (fdf->camera->mouse_l == PRESSED_L && fdf->camera->proj != PALL)
-	{
-		fdf->camera->angle.y -= PI / 15;
-		fdf->camera->angle.z += PI / 15;
-		draw(fdf);
-	}
-	else if (fdf->camera->mouse_r == PRESSED_R && fdf->camera->proj != PALL)
-	{
-		fdf->camera->angle.y += PI / 15;
-		fdf->camera->angle.z -= PI / 15;
-		mlx_clear_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr);
-		draw(fdf);
-	}
-	return (button + y + x);
 }
 
 void	hook_fdf(t_fdf *fdf)

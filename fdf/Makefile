@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/23 11:04:42 by jun              ###   ########.fr        #
+#    Updated: 2021/08/24 13:54:17 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,7 @@ MLX_FLAGS = -L./$(MLX_DIR) -lmlx -framework OpenGl -framework Appkit
 MLX_FILE = $(MLX_DIR)libmlx.dylib
 
 INC_DIR = ./includes/
-#SRCS = ./srcs/mandatory/Xiaolin_Wu_line_algo.c\
-	   ./srcs/mandatory/draw_line_utils.c\
-	   ./srcs/mandatory/iso.c
+
 SRCS = $(addprefix $(SRCS_DIR), \
 	   ft_atoi_basis.c\
 	   ft_atoi_convert_base.c\
@@ -53,6 +51,8 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   draw_line_utils.c\
 	   main.c\
 	   hook_fdf.c\
+	   fdf_image_base.c\
+	   hook_mouse.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
@@ -80,7 +80,7 @@ bonus: $(OBJ_FILES) $(NAME)
 	@make WITH_BONUS=1 $(NAME)
 
 $(NAME) : $(MLX_FILE) $(LIBFT_FILE) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $@ 
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) -I$(INC_DIR) -o $@ 
 	@install_name_tool -change $(MLX_LIB) $(MLX_FILE) $(NAME)
 
 
@@ -112,10 +112,3 @@ re: fclean all
 .PHONY: debug
 debug: 
 	@make DEBUG=1
-
-bonusdebug: 
-	$(CC) $(DFLAGS) $(SRCS_BONUS) $(LIB) -o push_swap
-
-.PHONY: leakschk
-leakschk:
-	$(CC) $(LFLAGS) $(SRCS) $(LIB) -o push_swap

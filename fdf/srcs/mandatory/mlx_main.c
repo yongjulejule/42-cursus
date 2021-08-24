@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/23 17:02:51 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 12:04:15 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,34 +46,6 @@ static t_camera	*init_camera_structure(void)
 	return (camera);
 }
 
-static void	translate_fdf(t_fdf *fdf)
-{
-	char	*scale;
-
-	scale = ft_itoa(fdf->camera->scale);
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 20, 0xffffff, "Welcome to FDF!");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 40, 0xffffff, "if cur_projection == ISO {");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 60, 0xffffff, "    Press Arrow key to move");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 80, 0xffffff, "    Press A/S/D to rotate");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 100, 0xffffff, "    Use Z/X/C to rotate inversely");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 120, 0xffffff, "    Press MOUSE_L to rotate_crazy");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 140, 0xffffff, "    Press MOUSE_R to inverse_rotate_crazy");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 160, 0xffffff, "}");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 180, 0xffffff, "Press ESC to exit");
-	mlx_string_put(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		10, 200, 0xffffff, scale);
-	free(scale);
-}
-
 static void	get_fdf_background(t_fdf *fdf)
 {
 	int	width;
@@ -101,7 +73,7 @@ void	draw(t_fdf *fdf)
 		fdf->background->img_ptr, 0, 0);
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		fdf->img->img_ptr, 0, 0);
-	translate_fdf(fdf);
+	description_fdf(fdf);
 	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
 	fdf->img->img_ptr = NULL;
 }

@@ -6,13 +6,13 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 14:35:58 by jun               #+#    #+#             */
-/*   Updated: 2021/08/23 11:54:27 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 11:36:21 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	handle_error(int argc ,char **argv)
+void	handle_error(int argc, char **argv)
 {
 	char	*expension;
 

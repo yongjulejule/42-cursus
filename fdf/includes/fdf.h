@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/23 18:16:58 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 13:52:34 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define LIMIT_VALUE 960000000
 # define WIN_H 900
 # define WIN_W 1600
-# define T_W 400
-# define T_H 160
+# define T_W 360
+# define T_H 200
 # define PI 3.1415
 
 # define KEY_PRESS 2
@@ -56,7 +56,7 @@
 # define ISO 0
 # define PALL 1
 
-typedef struct	s_data{
+typedef struct s_data{
 	int	x;
 	int	y;
 	int	max_x;
@@ -64,18 +64,18 @@ typedef struct	s_data{
 	int	**data[2];
 }	t_data;
 
-typedef struct	s_program{
+typedef struct s_program{
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_program;
 
-typedef	struct	s_vec{
-	double x;
-	double y;
-	double z;
+typedef struct s_vec{
+	double	x;
+	double	y;
+	double	z;
 }	t_vec;
 
-typedef struct	s_img{
+typedef struct s_img{
 	int		size_l;
 	int		bpp;
 	int		endian;
@@ -83,7 +83,7 @@ typedef struct	s_img{
 	void	*img_ptr;
 }	t_img;
 
-typedef struct	s_camera{
+typedef struct s_camera{
 	int		proj;
 	int		mouse_r;
 	int		mouse_l;
@@ -96,11 +96,12 @@ typedef struct	s_camera{
 typedef struct s_line_info{
 	int		steep;
 	double	gradient;
+	double	intery;
 	t_vec	vec_0;
 	t_vec	vec_1;
 }	t_line_info;
 
-typedef struct	s_fdf{
+typedef struct s_fdf{
 	int			color[2];
 	t_program	*prog;
 	t_data		*data;
@@ -119,28 +120,32 @@ char				**read_file(char **argv);
 
 /* mlx */
 
-t_fdf	*mlx_main(t_data *data);
-void	draw_wireframe(t_fdf *fdf);
+t_fdf				*mlx_main(t_data *data);
+void				draw_wireframe(t_fdf *fdf);
 
 /* Isometric Projection */
 
-t_vec	iso_proj(t_fdf *fdf, t_vec vec);
+t_vec				iso_proj(t_fdf *fdf, t_vec vec);
 
 /* draw_line */
 
-void	plot(t_fdf *fdf, int x, int y, int color);
-double	ipart(double x);
-double	fpart(double x);
-double	rfpart(double x);
-void	swap(double *x, double *y);
-void	drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1);
-void	swap_i(int *x, int *y);
+void				plot(t_fdf *fdf, int x, int y, int color);
+double				ipart(double x);
+double				fpart(double x);
+double				rfpart(double x);
+void				swap(double *x, double *y);
+void				drawline(t_fdf *fdf, t_vec vec_0, t_vec vec_1);
+void				swap_i(int *x, int *y);
 
-void	hook_fdf(t_fdf *fdf);
-t_vec	get_center(t_fdf *fdf);
-void	draw(t_fdf *fdf);
-t_vec	one_perspective_proj(t_fdf *fdf, t_vec vec);
-t_vec	parallel(t_fdf *fdf, t_vec vec);
-int		rasterized_color(int *color, double percent);
-double	percentage(double start, double cur, double end);
+void				hook_fdf(t_fdf *fdf);
+t_vec				get_center(t_fdf *fdf);
+void				draw(t_fdf *fdf);
+t_vec				parallel(t_fdf *fdf, t_vec vec);
+int					rasterized_color(int *color, double percent);
+double				percentage(double start, double cur, double end);
+void				init_img_structure(t_fdf *fdf);
+void				description_fdf(t_fdf *fdf);
+int					mouse_press(int button, int x, int y, void *param);
+int					mouse_release(int button, int x, int y, void *param);
+int					mouse_move(int button, int x, int y, void *param);
 #endif

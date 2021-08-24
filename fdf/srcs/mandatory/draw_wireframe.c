@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/23 17:20:00 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 11:48:24 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,12 @@
 
 static t_vec	get_coordi(t_fdf *fdf, int x, int y)
 {
-	t_vec vec;
+	t_vec	vec;
 
 	vec.x = x;
 	vec.y = y;
 	vec.z = fdf->data->data[0][y][x];
 	return (vec);
-}
-
-static void	init_img(t_fdf *fdf)
-{
-	int	count_h;
-	int	count_w;
-
-	count_h = 0;
-	while (count_h < WIN_H)
-	{
-		count_w = 0;
-		while (count_w < WIN_W)
-		{
-			if (count_w < T_W && count_h < T_H)
-				fdf->img->data[(count_h * fdf->img->size_l\
-						+ count_w * fdf->img->bpp / 8) / 4] = 0x242424;
-			else
-				fdf->img->data[(count_h * fdf->img->size_l\
-						+ count_w * fdf->img->bpp / 8) / 4] = 0x8f000000;
-			count_w++;
-		}
-		count_h++;
-	}
-}
-
-static void	init_img_structure(t_fdf *fdf)
-{
-	if (!fdf->img)
-		fdf->img = (t_img *)ft_calloc(1, sizeof(t_img));
-	if (!fdf->img->img_ptr)
-		fdf->img->img_ptr = mlx_new_image(fdf->prog->mlx_ptr, WIN_W, WIN_H);
-	if (!fdf->img->img_ptr)
-		is_error("Error while initiate image");
-	fdf->img->data = (int *)mlx_get_data_addr(fdf->img->img_ptr,
-			&fdf->img->bpp, &fdf->img->size_l, &fdf->img->endian);
-	if (!fdf->img->data)
-		is_error("Error while initiate image data");
-	init_img(fdf);
 }
 
 static void	draw_wireframe_sub(t_fdf *fdf)
@@ -86,7 +48,6 @@ static void	draw_wireframe_sub(t_fdf *fdf)
 
 void	draw_wireframe(t_fdf *fdf)
 {
-
 	init_img_structure(fdf);
 	while (fdf->data->y < fdf->data->max_y)
 	{
