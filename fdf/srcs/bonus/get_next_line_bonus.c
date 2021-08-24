@@ -6,11 +6,11 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 09:38:07 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 22:04:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 21:16:56 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static	int	get_line(t_file **cur, char **line, int size, int flag)
 {

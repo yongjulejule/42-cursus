@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_main.c                                         :+:      :+:    :+:   */
+/*   mlx_main_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:32:16 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 21:16:56 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static t_fdf	*init_fdf_structure(t_data *data)
 {
@@ -35,9 +35,14 @@ static t_camera	*init_camera_structure(void)
 
 	camera = (t_camera *)ft_calloc(1, sizeof(t_camera));
 	camera->scale = 10;
-	camera->horizon = WIN_W * 0.3;
-	camera->vertical = WIN_H * 0.3;
+	camera->horizon = T_W;
+	camera->vertical = T_H * 2;
+	camera->mouse_l = RELEASED_L;
+	camera->mouse_r = RELEASED_R;
 	camera->proj = ISO;
+	camera->angle.x = 0;
+	camera->angle.y = 0;
+	camera->angle.z = 0;
 	return (camera);
 }
 
@@ -59,12 +64,16 @@ static void	get_fdf_background(t_fdf *fdf)
 
 void	draw(t_fdf *fdf)
 {
-	fdf->proj_func = iso_proj;
+	if (fdf->camera->proj == ISO)
+		fdf->proj_func = iso_proj;
+	else
+		fdf->proj_func = parallel;
 	draw_wireframe(fdf);
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		fdf->background->img_ptr, 0, 0);
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		fdf->img->img_ptr, 0, 0);
+	description_fdf(fdf);
 	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
 	fdf->img->img_ptr = NULL;
 }

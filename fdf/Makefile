@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/24 13:54:17 by jun              ###   ########.fr        #
+#    Updated: 2021/08/24 23:05:07 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ ifdef DEBUG
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
-LFLAGS = -g
 
 NAME = fdf
 
@@ -35,9 +34,10 @@ MLX_DIR = $(LIB_DIR)mlx/
 MLX_FLAGS = -L./$(MLX_DIR) -lmlx -framework OpenGl -framework Appkit
 MLX_FILE = $(MLX_DIR)libmlx.dylib
 
-INC_DIR = ./includes/
+INC_DIR_MAN = ./includes/mandatory/
+INC_DIR_BONUS = ./includes/bonus/
 
-SRCS = $(addprefix $(SRCS_DIR), \
+SRCS_MAN = $(addprefix $(SRCS_DIR), \
 	   ft_atoi_basis.c\
 	   ft_atoi_convert_base.c\
 	   get_next_line_bonus.c\
@@ -52,37 +52,56 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   main.c\
 	   hook_fdf.c\
 	   fdf_image_base.c\
-	   hook_mouse.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
-			 )
+	   ft_atoi_basis_bonus.c\
+	   ft_atoi_convert_base_bonus.c\
+	   get_next_line_bonus.c\
+	   get_next_line_utils_bonus.c\
+	   get_data_bonus.c\
+	   read_file_bonus.c\
+	   projection_bonus.c\
+	   draw_wireframe_bonus.c\
+	   mlx_main_bonus.c\
+	   Xiaolin_Wu_line_algo_bonus.c\
+	   draw_line_utils_bonus.c\
+	   main_bonus.c\
+	   hook_fdf_bonus.c\
+	   fdf_image_base_bonus.c\
+	   hook_mouse_bonus.c\
+	   )
 
-OBJS = ${SRCS:.c=.o}
+OBJS_MAN = ${SRCS_MAN:%.c=%.o}
 
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
-
+OBJS_BONUS = ${SRCS_BONUS:%.c=%.o}
 
 ifdef WITH_BONUS
 	OBJ_FILES = $(OBJS_BONUS)
 else
-	OBJ_FILES = $(OBJS)
+	OBJ_FILES = $(OBJS_MAN)
 endif
 
-%.o : %.c
-	$(CC) $(CFLAGS) -I$(INC_DIR)  -c $< -o $@
+ifdef WITH_BONUS
+	INC_DIR = $(INC_DIR_BONUS)
+else
+	INC_DIR = $(INC_DIR_MAN)
+endif
+
 
 .PHONY: all
 all: $(LIBFT_FILE) $(MLX_FILE) $(OBJ_FILES) $(NAME)
 
-.PHONY: bonus
-bonus: $(OBJ_FILES) $(NAME)
-	@make WITH_BONUS=1 $(NAME)
-
 $(NAME) : $(MLX_FILE) $(LIBFT_FILE) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) -I$(INC_DIR) -o $@ 
+	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -I$(INC_DIR) -o $@ 
 	@install_name_tool -change $(MLX_LIB) $(MLX_FILE) $(NAME)
 
+.PHONY: bonus
+bonus:
+	@make WITH_BONUS=1 $(NAME)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -I$(INC_DIR)  -c $< -o $@
 
 $(LIBFT_FILE):
 	@make -C $(LIBFT_DIR) bonus
@@ -92,7 +111,7 @@ $(MLX_FILE) :
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS_MAN) $(OBJS_BONUS)
 	make -C $(LIBFT_DIR) clean
 
 .PHONY: fclean
@@ -108,6 +127,9 @@ ffclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: re_bonus
+re_bonus: fclean bonus
 
 .PHONY: debug
 debug: 

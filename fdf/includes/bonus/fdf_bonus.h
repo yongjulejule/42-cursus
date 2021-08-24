@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 13:52:34 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 23:40:41 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
 # include <sys/errno.h>
-# include "../lib/libft/libft.h"
-# include "../lib/mlx/mlx.h"
+# include "../../lib/libft/libft.h"
+# include "../../lib/mlx/mlx.h"
 # include "get_next_line_bonus.h"
 
 # define LIMIT_VALUE 960000000
@@ -30,6 +30,7 @@
 
 # define KEY_PRESS 2
 # define KEY_REL 3
+# define RED_DOT 17
 # define MOUSE_PRESS 4
 # define MOUSE_REL 5
 # define MOUSE_MOV 6

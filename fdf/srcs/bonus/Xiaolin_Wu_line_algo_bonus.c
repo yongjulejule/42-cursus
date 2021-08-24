@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Xiaolin_Wu_line_algo.c                             :+:      :+:    :+:   */
+/*   Xiaolin_Wu_line_algo_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:19:54 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 22:04:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/24 21:16:55 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static void	drawline_sub(t_fdf *fdf, t_line_info info)
 {
