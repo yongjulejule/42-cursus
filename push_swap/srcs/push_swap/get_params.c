@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:14:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 14:35:02 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/25 17:49:42 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ static	char	**get_each_args(char **args)
 
 int	*parse_args(int argc, char **argv, int *ac)
 {
-	int		idx;
-	char	**tmp;
+	int			idx;
+	char		**tmp;
 
 	idx = 0;
 	while (idx < argc)
@@ -92,6 +92,8 @@ int	*parse_args(int argc, char **argv, int *ac)
 		if (argv[idx][0] == '\0')
 			is_error("Error");
 		argv[idx] = ft_strtrim(argv[idx], WSPACE);
+		if (!argv[idx])
+			is_error("Error");
 		idx++;
 	}
 	tmp = get_each_args(argv);
