@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/08/24 17:25:39 by jun              ###   ########.fr        #
+#    Updated: 2021/08/25 19:17:18 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ endif
 all: $(OBJ_FILES) $(NAME)
 
 .PHONY: bonus
-bonus: $(OBJ_FILES) $(NAME)
+bonus:
 	@make WITH_BONUS=1 $(NAME)
 
 $(NAME) : $(OBJ_FILES) $(LIB)

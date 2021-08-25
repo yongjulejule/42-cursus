@@ -6,12 +6,11 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 20:13:28 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/25 19:24:00 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
-#include <string.h>
 
 static void	wait_process(pid_t pid)
 {
@@ -85,7 +84,6 @@ void	breed_process_recursively(t_args *args)
 		grand_child(args, pipe_prv);
 	else if (pid > 0)
 	{
-		fprintf(stderr, "1st fork");
 		wait_process(-1);
 		exit(EXIT_SUCCESS);
 	}
