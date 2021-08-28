@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/24 19:51:57 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/25 20:30:23 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	rdr_stdout_to_file(char *file, t_args *args, int *pipe_fd)
 {
 	int	fd;
 
-	destroy_pipe(pipe_fd);
+	if (pipe_fd != NULL)
+		destroy_pipe(pipe_fd);
 	if (args->is_heredoc != 1)
 		fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	else

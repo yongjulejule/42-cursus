@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/08/25 19:17:18 by jun              ###   ########.fr        #
+#    Updated: 2021/08/25 20:25:05 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS = $(addprefix $(SRCS_DIR), \
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   breed_process_bonus.c\
+	   breed_one_pipe_bonus.c\
 	   check_validity_bonus.c\
 	   file_redirection_bonus.c\
 	   get_params_bonus.c\
