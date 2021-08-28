@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 15:17:06 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:52:29 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	rdr_file_to_stdin(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("zsh:", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(file, 2);
+		is_error("zsh: no such file or directory : ", file);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)

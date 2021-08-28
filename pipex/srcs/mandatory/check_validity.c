@@ -6,13 +6,13 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:37:17 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/13 15:17:06 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:52:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/mandatory/ft_pipex.h"
 
-void	check_arg_validity(int argc, char **argv, char **envp)
+void	check_arg_validity(int argc, char **argv)
 {
 	int	idx;
 
@@ -20,16 +20,6 @@ void	check_arg_validity(int argc, char **argv, char **envp)
 	if (argc != 5)
 	{
 		ft_putendl_fd("Check Number of Arguments", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (!argv)
-	{
-		ft_putendl_fd("Argument Value Error", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (!envp)
-	{
-		ft_putendl_fd("Envp Error", 2);
 		exit(EXIT_FAILURE);
 	}
 	while (idx < argc - 2)
@@ -55,7 +45,6 @@ void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd)
 {
 	int			nth_path;
 	char		*tmp_cmd;
-	extern int	errno;
 
 	nth_path = 0;
 	while (args->env_path[nth_path] != NULL)
@@ -75,6 +64,4 @@ void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd)
 		}
 		nth_path++;
 	}
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putendl_fd(cmd, 2);
 }

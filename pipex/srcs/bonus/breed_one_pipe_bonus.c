@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/08/25 20:28:01 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:01:27 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	is_parent_process(t_args *args, int *pipe_fd)
 		is_error(strerror(errno));
 }
 
-void	breed_process(t_args *args)
+void	breed_one_process(t_args *args)
 {
 	pid_t	pid;
 	int		pipe_fd[2];

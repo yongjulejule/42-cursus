@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 19:47:53 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 17:00:11 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,64 @@ void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 
 static void	is_child_process(t_args *args, int *pipe_fd)
 {
+	pid_t	pid;
 	extern int	errno;
 
-	rdr_file_to_stdin(args->file[0]);
-	connect_pipe_fd(pipe_fd, STDOUT_FILENO);
-	if (execve(args->params[0][0], args->params[0], args->envp) == -1)
-		is_error(strerror(errno));
+	pid = fork();
+	if (pid == 0)
+	{
+		rdr_file_to_stdin(args->file[0]);
+		connect_pipe_fd(pipe_fd, STDOUT_FILENO);
+		if (execve(args->params[0][0], args->params[0], args->envp) == -1)
+			is_error("zsh: command not found: ", args->params[0][0]);
+	}
+	else if (pid < 0)
+		is_error("pipex: ", strerror(errno));
 }
 
 static void	is_parent_process(t_args *args, int *pipe_fd)
 {
-	int			status;
+	pid_t	pid;
 	extern int	errno;
 
-	wait(&status);
-	if (!WIFEXITED(status))
+	pid = fork();
+	if (pid == 0)
 	{
-		perror("child process quited unexpectedly");
-		exit(EXIT_FAILURE);
+		rdr_stdout_to_file(args->file[1]);
+		connect_pipe_fd(pipe_fd, STDIN_FILENO);
+		if (execve(args->params[1][0], args->params[1], args->envp) == -1)
+			is_error("zsh: command not found: ", args->params[0][0]);
 	}
-	rdr_stdout_to_file(args->file[1]);
-	connect_pipe_fd(pipe_fd, STDIN_FILENO);
-	if (execve(args->params[1][0], args->params[1], args->envp) == -1)
-		is_error(strerror(errno));
+	else if (pid < 0)
+		is_error("pipex: ", strerror(errno));
 }
 
 void	breed_process(t_args *args)
 {
 	pid_t	pid;
 	int		pipe_fd[2];
+	int			status;
+	extern int	errno;
 
 	if (pipe(pipe_fd) == -1)
-	{
-		perror("Fail to Open PIPE");
-		exit(EXIT_FAILURE);
-	}
+		is_error("pipex: ", strerror(errno));
 	pid = fork();
 	if (pid == 0)
+	{
 		is_child_process(args, pipe_fd);
-	else if (pid > 0)
 		is_parent_process(args, pipe_fd);
+		waitpid(-1, NULL, 0);
+	}
+	else if (pid > 0)
+	{
+		waitpid(-1, &status, 0);
+		if (!WIFEXITED(status))
+		{
+			perror("child process quited unexpectedly");
+			exit(EXIT_FAILURE);
+		}
+		exit(EXIT_SUCCESS);
+	}
 	else
 	{
 		perror("Fail to fork");

@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/24 20:15:36 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:51:12 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_args
 ** Check Validity
 */
 
-void	check_arg_validity(int argc, char **argv, char **envp);
+void	check_arg_validity(int argc, char **argv);
 void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
-void	is_error(char *str);
+void	is_error(char *str_1, char *str_2);
 
 /*
 ** Redirecting

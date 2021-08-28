@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 19:50:07 by jun               #+#    #+#             */
-/*   Updated: 2021/08/25 20:18:41 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:02:14 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		breed_process_recursively(args);
 	else
-		breed_process(args);
+		breed_one_process(args);
 }

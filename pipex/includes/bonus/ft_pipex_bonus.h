@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/25 20:25:38 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 12:01:37 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	destroy_pipe(int *pipe_fd);
 void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
 void	get_params(char **argv, t_args *args);
 void	breed_process_recursively(t_args *args);
-void	breed_process(t_args *args);
+void	breed_one_process(t_args *args);
 
 /*Utils*/
 
