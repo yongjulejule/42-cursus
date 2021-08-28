@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/08/24 15:53:36 by jun              ###   ########.fr        #
+#    Updated: 2021/08/28 11:35:37 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ re: fclean all
 .PHONY: debug
 debug: 
 	$(CC) $(DFLAGS) $(SRCS) $(LIB) srcs/push_swap/print_to_debug.c -o push_swap
-	
+
 .PHONY: leakschk
 leakschk:
 	$(CC) $(LFLAGS) $(SRCS) $(LIB) -o push_swap

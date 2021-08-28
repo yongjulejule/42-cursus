@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 08:57:34 by jun               #+#    #+#             */
-/*   Updated: 2021/08/25 18:50:30 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/28 10:57:30 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	main(int argc, char **argv)
 	int	*av_int;
 	int	ac;
 
-	if (argc < 2)
-		is_error("Error");
 	av_int = parse_args(argc, argv, &ac);
 	check_validity(av_int, ac);
 	push_swap_main(av_int, ac);
