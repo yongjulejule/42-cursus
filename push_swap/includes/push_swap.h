@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:39:26 by jun               #+#    #+#             */
-/*   Updated: 2021/08/01 14:33:13 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/29 10:16:14 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **My Mecro
 */
 
-# define WSPACE "\t\r\n\v\f "
+# define WSPACE " "
 
 /*
 **Define operations
