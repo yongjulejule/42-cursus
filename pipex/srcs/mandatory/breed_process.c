@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/08/28 17:00:11 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/31 14:21:15 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 	close(pipe_fd[PIPE_WR]);
 }
 
-static void	is_child_process(t_args *args, int *pipe_fd)
+static pid_t	is_child_process(t_args *args, int *pipe_fd)
 {
 	pid_t	pid;
 	extern int	errno;
@@ -38,9 +38,10 @@ static void	is_child_process(t_args *args, int *pipe_fd)
 	}
 	else if (pid < 0)
 		is_error("pipex: ", strerror(errno));
+	return pid;
 }
 
-static void	is_parent_process(t_args *args, int *pipe_fd)
+static pid_t	is_parent_process(t_args *args, int *pipe_fd)
 {
 	pid_t	pid;
 	extern int	errno;
@@ -51,10 +52,11 @@ static void	is_parent_process(t_args *args, int *pipe_fd)
 		rdr_stdout_to_file(args->file[1]);
 		connect_pipe_fd(pipe_fd, STDIN_FILENO);
 		if (execve(args->params[1][0], args->params[1], args->envp) == -1)
-			is_error("zsh: command not found: ", args->params[0][0]);
+			is_error("zsh: command not found: ", args->params[1][0]);
 	}
 	else if (pid < 0)
 		is_error("pipex: ", strerror(errno));
+	return pid;
 }
 
 void	breed_process(t_args *args)
@@ -71,11 +73,11 @@ void	breed_process(t_args *args)
 	{
 		is_child_process(args, pipe_fd);
 		is_parent_process(args, pipe_fd);
-		waitpid(-1, NULL, 0);
+		while(waitpid(-1, &status, WNOHANG) != -1);
 	}
 	else if (pid > 0)
 	{
-		waitpid(-1, &status, 0);
+		waitpid(pid, &status, 0);
 		if (!WIFEXITED(status))
 		{
 			perror("child process quited unexpectedly");

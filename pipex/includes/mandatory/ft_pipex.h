@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/28 12:51:12 by jun              ###   ########.fr       */
+/*   Updated: 2021/08/30 14:15:30 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** Include Libraries
 */
 
+# include <sys/errno.h>
 # include <sys/types.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -36,6 +37,7 @@
 typedef struct s_args
 {
 	int		argc;
+	pid_t	stat;
 	char	*file[2];
 	char	**env_path;
 	char	**envp;
