@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/28 12:52:29 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 12:34:48 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@ void	rdr_file_to_stdin(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		is_error("zsh: no such file or directory : ", file);
-		exit(EXIT_FAILURE);
-	}
+		is_error("zsh: no such file or directory : ", file, EXIT_FAILURE);
 	if (dup2(fd, STDIN_FILENO) == -1)
-	{
-		perror("dup error in rdr_file_to_stdin");
-		exit(EXIT_FAILURE);
-	}
+		is_error("pipex: ", "error while dup file descriptor", EXIT_FAILURE);
 	close(fd);
 	return ;
 }

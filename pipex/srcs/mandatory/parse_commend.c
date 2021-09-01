@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/13 15:17:06 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 11:33:30 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 {
 	args->params = (char ***)ft_calloc_w_error(argc - 2, sizeof(char **));
 	args->params[argc - 2 - 1] = NULL;
+	args->pid = (pid_t *)ft_calloc_w_error(argc - 3, sizeof(pid_t));
 	args->argc = argc;
 	args->file[0] = argv[1];
 	args->file[1] = argv[argc - 1];

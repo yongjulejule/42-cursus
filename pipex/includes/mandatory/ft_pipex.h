@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/30 14:15:30 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 12:32:50 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@
 typedef struct s_args
 {
 	int		argc;
-	pid_t	stat;
+	int		status;
 	char	*file[2];
 	char	**env_path;
 	char	**envp;
 	char	***params;
+	pid_t	*pid;
 }	t_args;
 
 /*
@@ -50,7 +51,7 @@ typedef struct s_args
 
 void	check_arg_validity(int argc, char **argv);
 void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
-void	is_error(char *str_1, char *str_2);
+void	is_error(char *str_1, char *str_2, int exit_status);
 
 /*
 ** Redirecting
