@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 12:32:50 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 16:55:02 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 
 # define PIPE_RD 0
 # define PIPE_WR 1
+# define X_ERR 126
+# define CMD_ERR 127
 
 typedef struct s_args
 {
@@ -60,6 +62,7 @@ void	is_error(char *str_1, char *str_2, int exit_status);
 void	rdr_file_to_stdin(char *file);
 void	rdr_stdout_to_file(char *file);
 void	connect_pipe_fd(int *pipe_fd, int pipe_status);
+void	destory_pipe(int *pipe_fd);
 
 /*
 ** Preprocessing
