@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 16:55:02 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 17:12:06 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ void	destory_pipe(int *pipe_fd);
 void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
 void	get_params(char **argv, t_args *args);
 void	breed_process(t_args *args);
+
+/*
+** Wait info
+*/
+
+int wstatus(int status);
+int	wifexited(int status);
+int wifsignaled(int status);
+int wexitstatus(int status);
+int	wtermsig(int status);
 
 /*
 ** Modified libft

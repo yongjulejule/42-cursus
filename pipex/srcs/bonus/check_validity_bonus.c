@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:37:17 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/22 17:35:08 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 21:58:39 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_arg_validity(int argc, char **argv, char **envp)
 	{
 		argv[idx] = ft_strtrim(argv[idx], "\t\f\v\n\r ");
 		if (argv[idx] == NULL)
-			is_error("Error while malloc");
+			is_error("pipex: ", "error in malloc", EXIT_FAILURE);
 		idx++;
 	}
 }

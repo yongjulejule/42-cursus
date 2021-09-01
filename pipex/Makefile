@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/08/25 20:25:05 by jun              ###   ########.fr        #
+#    Updated: 2021/09/01 21:55:17 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ SRCS = $(addprefix $(SRCS_DIR), \
 	   libft_fuc_w_error.c\
 	   string_utils.c\
 	   is_error.c\
+	   wait_info.c\
 	   )
 
 SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   breed_process_bonus.c\
-	   breed_one_pipe_bonus.c\
 	   check_validity_bonus.c\
 	   file_redirection_bonus.c\
 	   get_params_bonus.c\
@@ -44,6 +44,7 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   string_utils_bonus.c\
 	   get_next_line_bonus.c\
 	   get_next_line_utils_bonus.c\
+	   wait_info_bonus.c\
 	   )
 
 OBJS = ${SRCS:.c=.o}

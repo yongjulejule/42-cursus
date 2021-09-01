@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error_bonus.c                               :+:      :+:    :+:   */
+/*   wait_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 15:09:26 by jun               #+#    #+#             */
-/*   Updated: 2021/09/01 20:03:02 by jun              ###   ########.fr       */
+/*   Created: 2021/09/01 17:01:01 by jun               #+#    #+#             */
+/*   Updated: 2021/09/01 17:15:24 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bonus/ft_pipex_bonus.h"
+#include "../../includes/mandatory/ft_pipex.h"
 
-void	is_error(char *str_1, char *str_2, int exit_status)
+int wstatus(int status)
 {
-	if (str_1 != NULL)
-		ft_putstr_fd(str_1, 2);
-	if (str_2 != NULL)
-		ft_putstr_fd(str_2, 2);
-	write(2, "\n", 1);
-	exit(exit_status);
+	return (status & 0177);
+}
+
+int	wifexited(int status)
+{
+	return (wstatus(status) == 0);
+}
+
+int wifsignaled(int status)
+{
+	return (wstatus(status) != 0177 && wstatus(status) != 0);
+}
+
+int wexitstatus(int status)
+{
+	return ((status >> 8) & 0x000000ff);
+}
+
+int	wtermsig(int status)
+{
+	return (wstatus(status));
 }

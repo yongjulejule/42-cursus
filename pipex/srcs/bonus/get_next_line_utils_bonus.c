@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 16:31:23 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/22 18:19:22 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 22:02:50 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	re_alloc(t_file *cur, int size)
 	idx = 0;
 	tmp = (char *)malloc(size + 1);
 	if (!tmp)
-		is_error("Error during malloc");
+		is_error("gnl: ", "Error during malloc", EXIT_FAILURE);
 	while (idx < cur->size)
 	{
 		*(tmp + idx) = *(cur->text + idx);

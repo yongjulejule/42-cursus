@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/28 12:01:37 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 20:02:26 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ typedef struct s_args
 	char	**env_path;
 	char	**envp;
 	char	***params;
+	pid_t	*pid;
 }	t_args;
 
 /*FUNCTIONS*/
 
 /*Check Validity*/
 
-void	is_error(char *str);
+void	is_error(char *str_1, char *str_2, int exit_status);
 void	check_arg_validity(int argc, char **argv, char **envp);
 void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd);
 
@@ -62,6 +63,16 @@ void	build_structure(int argc, char **argv, char **envp, t_args *cmds);
 void	get_params(char **argv, t_args *args);
 void	breed_process_recursively(t_args *args);
 void	breed_one_process(t_args *args);
+
+/*
+** Handle exit code
+*/
+
+int		wstatus(int status);
+int		wifexited(int status);
+int		wifsignaled(int status);
+int		wexitstatus(int status);
+int		wtermsig(int status);  
 
 /*Utils*/
 

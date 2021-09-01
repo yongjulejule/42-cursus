@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/08/25 20:30:23 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 22:01:36 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,24 @@ void	destroy_pipe(int *pipe_fd)
 
 void	connect_pipe_fd(int *pipe_fd, int pipe_status)
 {
+	extern int	errno;
+
 	if (dup2(pipe_fd[pipe_status], pipe_status) == -1)
-		is_error("Error while connecting pipe");
+		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	destroy_pipe(pipe_fd);
 }
 
 static void	make_tmp_heredoc(char *file, t_args *args)
 {
-	int		fd;
-	int		size;
-	char	*line;
+	int			fd;
+	int			size;
+	char		*line;
+	extern int	errno;
 
 	size = ft_strlen(args->limiter);
 	fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (fd < 0)
-		is_error("Error while make tmp file");
+		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	while (1)
 	{
 		ft_putstr_fd("heredoc>", 1);
@@ -69,7 +72,7 @@ void	rdr_file_to_stdin(char *file, t_args *args)
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
-		is_error("dup error in rdr_file_to_stdin");
+		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	close(fd);
 	if (args->is_heredoc == 1)
 		unlink(file);
@@ -78,7 +81,8 @@ void	rdr_file_to_stdin(char *file, t_args *args)
 
 void	rdr_stdout_to_file(char *file, t_args *args, int *pipe_fd)
 {
-	int	fd;
+	int			fd;
+	extern int	errno;
 
 	if (pipe_fd != NULL)
 		destroy_pipe(pipe_fd);
@@ -87,9 +91,9 @@ void	rdr_stdout_to_file(char *file, t_args *args, int *pipe_fd)
 	else
 		fd = open(file, O_RDWR | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
-		is_error("open error in rdr_file_to_stdout");
+		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	if (dup2(fd, STDOUT_FILENO) == -1)
-		is_error("dup error in rdr_file_to_stdout");
+		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	close(fd);
 	return ;
 }

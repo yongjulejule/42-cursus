@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/07/23 11:57:26 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 21:58:02 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
 	{
 		if (argc < 6)
-		{
-			ft_putendl_fd("check arguments when put heredoc", 2);
-			exit(EXIT_FAILURE);
-		}
+			is_error("pipex: ", "check arguments in heredoc", EXIT_FAILURE);
 		args->is_heredoc = 1;
 		args->limiter = argv[2];
 		args->file[0] = ft_strdup(".tmp.here_doc");
 		if (!(args->file[0]))
-			is_error("Error during malloc");
+			is_error("pipex: ", "error in malloc", EXIT_FAILURE);
 	}
 	else
 	{
@@ -56,7 +53,7 @@ static	void	get_path(char **envp, t_args *args)
 	}
 	args->env_path = ft_split(&envp[env_str_idx][5], ':');
 	if (args->env_path == NULL)
-		is_error("Error while split");
+		is_error("pipex: ", "error while split", EXIT_FAILURE);
 }
 
 void	make_cmds(t_args *args)

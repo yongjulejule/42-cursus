@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 16:24:58 by yongjule          #+#    #+#             */
-/*   Updated: 2021/07/22 18:37:20 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 22:02:28 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	read_fd(int fd, t_file *cur)
 		return (0);
 	cur->size += size;
 	if (size == -1 || !re_alloc(cur, cur->size + BUFFER_SIZE))
-		is_error("error while read");
+		is_error("gnl: ", "error while read", EXIT_FAILURE);
 	return (size);
 }
 
@@ -63,7 +63,7 @@ int	get_next_line(int fd, char **line)
 	if (!root)
 		root = init_fd(fd);
 	if (BUFFER_SIZE < 1 || !line)
-		is_error("check get_next_line arguments");
+		is_error("gnl: ", "error while read", EXIT_FAILURE);
 	cur = root;
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/09/01 16:55:31 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/01 17:12:27 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ static void	wait_processes(t_args *args, int *pipe_fd)
 		else if (execed_pid == args->pid[1])
 		{
 			close(pipe_fd[0]);
-			if (WIFEXITED(status))
-				exit_code = WEXITSTATUS(status);
-			else if (WIFSIGNALED(status))
-				exit_code = WTERMSIG(status);
+			if (wifexited(status))
+				exit_code = wexitstatus(status);
+			else if (wifsignaled(status))
+				exit_code = wtermsig(status);
 			else
 				exit_code = EXIT_FAILURE;
 		}
@@ -117,8 +117,8 @@ void	breed_process(t_args *args)
 	{
 		destory_pipe(pipe_fd);
 		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			exit(WEXITSTATUS(status));
+		if (wifexited(status))
+			exit(wexitstatus(status));
 		else
 			exit(EXIT_FAILURE);
 	}
