@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/09/01 17:12:27 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:16:17 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ static void	is_child_process(t_args *args, int *pipe_fd)
 	{
 		rdr_file_to_stdin(args->file[0]);
 		connect_pipe_fd(pipe_fd, STDOUT_FILENO);
-		if (!ft_strlen(args->params[0][0]))
-			is_error("zsh: permission denied: ", args->params[1][0], X_ERR);
-		if (access(args->params[0][0], F_OK) == -1)
-			is_error("zsh: command not found: ", args->params[0][0], CMD_ERR);
-		if (access(args->params[0][0], X_OK) == -1)
-			is_error("zsh: permission denied: ", args->params[0][0], X_ERR);
 		execve(args->params[0][0], args->params[0], args->envp);
-		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
+		if (errno == E_ACCESS || args->params[0][0] == NULL)
+			is_error("zsh: permission denied: ", args->params[0][0], X_ERR);
+		else if (errno == E_NOCMD)
+			is_error("zsh: command not found: ", args->params[0][0], CMD_ERR);
+		else
+			is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	}
 	else if (pid < 0)
 		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
@@ -57,21 +56,20 @@ static void	is_parent_process(t_args *args, int *pipe_fd)
 	{
 		rdr_stdout_to_file(args->file[1]);
 		connect_pipe_fd(pipe_fd, STDIN_FILENO);
-		if (!ft_strlen(args->params[1][0]))
-			is_error("zsh: permission denied: ", args->params[1][0], X_ERR);
-		if (access(args->params[1][0], F_OK) == -1)
-			is_error("zsh: command not found: ", args->params[1][0], CMD_ERR);
-		if (access(args->params[1][0], X_OK) == -1)
-			is_error("zsh: permission denied: ", args->params[1][0], X_ERR);
 		execve(args->params[1][0], args->params[1], args->envp);
-		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
+		if (errno == E_ACCESS || args->params[1][0] == NULL)
+			is_error("zsh: permission denied: ", args->params[1][0], X_ERR);
+		else if (errno == E_NOCMD)
+			is_error("zsh: command not found: ", args->params[1][0], CMD_ERR);
+		else
+			is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	}
 	else if (pid < 0)
 		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	args->pid[1] = pid;
 }
 
-static void	wait_processes(t_args *args, int *pipe_fd)
+static void	wait_processes(t_args *args)
 {
 	pid_t	execed_pid;
 	int		status;
@@ -81,11 +79,8 @@ static void	wait_processes(t_args *args, int *pipe_fd)
 	while (execed_pid != -1)
 	{
 		execed_pid = wait(&status);
-		if (execed_pid == args->pid[0])
-			close(pipe_fd[1]);
-		else if (execed_pid == args->pid[1])
+		if (execed_pid == args->pid[1])
 		{
-			close(pipe_fd[0]);
 			if (wifexited(status))
 				exit_code = wexitstatus(status);
 			else if (wifsignaled(status))
@@ -104,18 +99,18 @@ void	breed_process(t_args *args)
 	int			status;
 	extern int	errno;
 
-	if (pipe(pipe_fd) == -1)
-		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 	pid = fork();
 	if (pid == 0)
 	{
+		if (pipe(pipe_fd) == -1)
+			is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 		is_child_process(args, pipe_fd);
 		is_parent_process(args, pipe_fd);
-		wait_processes(args, pipe_fd);
+		destory_pipe(pipe_fd);
+		wait_processes(args);
 	}
 	else if (pid > 0)
 	{
-		destory_pipe(pipe_fd);
 		waitpid(pid, &status, 0);
 		if (wifexited(status))
 			exit(wexitstatus(status));

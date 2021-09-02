@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 17:12:06 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:18:36 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 # include <sys/errno.h>
 # include <sys/types.h>
-# include <unistd.h>
 # include <sys/wait.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -35,11 +35,12 @@
 # define PIPE_WR 1
 # define X_ERR 126
 # define CMD_ERR 127
+# define E_ACCESS 13
+# define E_NOCMD 2
 
 typedef struct s_args
 {
 	int		argc;
-	int		status;
 	char	*file[2];
 	char	**env_path;
 	char	**envp;
@@ -76,11 +77,11 @@ void	breed_process(t_args *args);
 ** Wait info
 */
 
-int wstatus(int status);
-int	wifexited(int status);
-int wifsignaled(int status);
-int wexitstatus(int status);
-int	wtermsig(int status);
+int		wstatus(int status);
+int		wifexited(int status);
+int		wifsignaled(int status);
+int		wexitstatus(int status);
+int		wtermsig(int status);
 
 /*
 ** Modified libft

@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 14:25:30 by jun               #+#    #+#             */
-/*   Updated: 2021/07/13 15:18:57 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:19:40 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_calloc_w_error(size_t count, size_t size)
 	str = (unsigned char *)malloc(sizeof(unsigned char) * size * count);
 	if (str == 0)
 	{
-		perror("Error while Memory Allocating");
+		perror("pipex");
 		exit(EXIT_FAILURE);
 	}
 	while (idx < count * size)

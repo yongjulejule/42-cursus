@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/09/02 11:29:30 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:23:31 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	init_structure(int argc, char **argv, t_args *args)
 		args->file[0] = ft_strdup(".tmp.here_doc");
 		if (!(args->file[0]))
 			is_error("pipex: ", "error in malloc", EXIT_FAILURE);
-		argc--;
 	}
 	else
 	{
@@ -48,7 +47,6 @@ static void	init_structure(int argc, char **argv, t_args *args)
 	args->params[argc - 2 - 1] = NULL;
 	args->argc = argc;
 	args->pid = (pid_t *)ft_calloc_w_error(argc - 3, sizeof(pid_t));
-	allocate_pipe_memory(args);
 }
 
 static	void	get_path(char **envp, t_args *args)
@@ -63,10 +61,7 @@ static	void	get_path(char **envp, t_args *args)
 		env_str_idx++;
 	}
 	if (envp[env_str_idx] == NULL)
-	{
-		ft_putendl_fd("PATH EVNP not found", 2);
-		exit(EXIT_FAILURE);
-	}
+		is_error("pipex: ", "path envp not found", EXIT_FAILURE);
 	args->env_path = ft_split(&envp[env_str_idx][5], ':');
 	if (args->env_path == NULL)
 		is_error("pipex: ", "error while split", EXIT_FAILURE);
@@ -93,4 +88,7 @@ void	build_structure(int argc, char **argv, char **envp, t_args *args)
 	get_path(envp, args);
 	get_params(argv, args);
 	make_cmds(args);
+	if (args->is_heredoc)
+		args->argc--;
+	allocate_pipe_memory(args);
 }

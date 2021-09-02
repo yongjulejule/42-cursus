@@ -6,7 +6,7 @@
 #    By: yongjule <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 16:23:07 by yongjule          #+#    #+#              #
-#    Updated: 2021/09/01 21:55:17 by jun              ###   ########.fr        #
+#    Updated: 2021/09/02 13:14:48 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   get_next_line_bonus.c\
 	   get_next_line_utils_bonus.c\
 	   wait_info_bonus.c\
+	   waiting_bonus.c\
 	   )
 
 OBJS = ${SRCS:.c=.o}
@@ -88,6 +89,9 @@ ffclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: re_bonus
+re_bonus: fclean bonus
 
 .PHONY: debug
 debug: 

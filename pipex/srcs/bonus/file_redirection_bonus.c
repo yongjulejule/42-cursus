@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 09:37:24 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 22:01:36 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:24:03 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	rdr_file_to_stdin(char *file, t_args *args)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("zsh:", 2);
+		ft_putstr_fd("zsh: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(file, 2);
@@ -79,13 +79,11 @@ void	rdr_file_to_stdin(char *file, t_args *args)
 	return ;
 }
 
-void	rdr_stdout_to_file(char *file, t_args *args, int *pipe_fd)
+void	rdr_stdout_to_file(char *file, t_args *args)
 {
 	int			fd;
 	extern int	errno;
 
-	if (pipe_fd != NULL)
-		destroy_pipe(pipe_fd);
 	if (args->is_heredoc != 1)
 		fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	else

@@ -6,37 +6,30 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 03:37:17 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 21:58:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:22:14 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
 
-void	check_arg_validity(int argc, char **argv, char **envp)
+void	check_arg_validity(int argc, char **argv)
 {
-	int	idx;
+	int			idx;
+	extern int	errno;
 
 	if (argc < 5)
 	{
-		ft_putendl_fd("Check the number of Arguments", 2);
+		ft_putendl_fd("pipex: check the number of arguments", 2);
 		exit(EXIT_FAILURE);
 	}
 	idx = 2;
 	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
 		idx = 3;
-	if (!argv || !envp)
-	{
-		if (!argv)
-			ft_putendl_fd("Argument Value Error", 2);
-		else if (!envp)
-			ft_putendl_fd("Envp Error", 2);
-		exit(EXIT_FAILURE);
-	}
 	while (idx < argc - 2)
 	{
 		argv[idx] = ft_strtrim(argv[idx], "\t\f\v\n\r ");
 		if (argv[idx] == NULL)
-			is_error("pipex: ", "error in malloc", EXIT_FAILURE);
+			is_error("pipex: ", strerror(errno), EXIT_FAILURE);
 		idx++;
 	}
 }
@@ -77,6 +70,4 @@ void	check_cmd_validity(t_args *args, int cmd_idx, char *cmd)
 		}
 		nth_path++;
 	}
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putendl_fd(cmd, 2);
 }
