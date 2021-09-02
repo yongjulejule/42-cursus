@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/09/02 14:26:29 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 14:41:00 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	execute_processes(t_args *args, int cmd)
 		rdr_stdout_to_file(args->file[1], args);
 	connect_pipe_fd(args->pipe_fd[cmd - 1], STDIN_FILENO);
 	execve(args->params[cmd][0], args->params[cmd], args->envp);
-	if (errno == EACCES || args->params[cmd][0] == NULL)
+	if (errno == E_ACCESS || args->params[cmd][0] == NULL)
 		is_error("zsh: permission denied: ", args->params[cmd][0], X_ERR);
-	else if (errno == ENOENT)
+	else if (errno == E_NOCMD)
 		is_error("zsh: command not found: ", args->params[cmd][0], CMD_ERR);
 	else
 		is_error("pipex: ", strerror(errno), EXIT_FAILURE);
@@ -67,9 +67,9 @@ static void	execute_first_process(t_args *args)
 		rdr_file_to_stdin(args->file[0], args);
 		connect_pipe_fd(args->pipe_fd[0], STDOUT_FILENO);
 		execve(args->params[0][0], args->params[0], args->envp);
-		if (errno == EACCES || args->params[0][0] == NULL)
+		if (errno == E_ACCESS || args->params[0][0] == NULL)
 			is_error("zsh: permission denied: ", args->params[0][0], X_ERR);
-		else if (errno == ENOENT)
+		else if (errno == E_NOCMD)
 			is_error("zsh: command not found: ", args->params[0][0], CMD_ERR);
 		else
 			is_error("pipex: ", strerror(errno), EXIT_FAILURE);
