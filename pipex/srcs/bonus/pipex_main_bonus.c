@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 19:50:07 by jun               #+#    #+#             */
-/*   Updated: 2021/09/01 21:54:12 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 09:06:40 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,5 @@ int	main(int argc, char **argv, char **envp)
 	args->envp = envp;
 	check_arg_validity(argc, argv, envp);
 	build_structure(argc, argv, envp, args);
-//	if (argc != 5)
-		breed_process_recursively(args);
-//	else
-//		breed_one_process(args);
+	breed_process_recursively(args);
 }

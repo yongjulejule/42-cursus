@@ -6,7 +6,7 @@
 /*   By: yongjule <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:18:34 by yongjule          #+#    #+#             */
-/*   Updated: 2021/09/01 20:02:26 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 09:10:25 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_args
 	char	**envp;
 	char	***params;
 	pid_t	*pid;
+	int		**pipe_fd;
 }	t_args;
 
 /*FUNCTIONS*/

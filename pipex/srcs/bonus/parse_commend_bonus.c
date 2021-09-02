@@ -6,13 +6,26 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:36:00 by jun               #+#    #+#             */
-/*   Updated: 2021/09/01 21:58:02 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/02 11:29:30 by jun              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
 
-static	void	init_structure(int argc, char **argv, t_args *args)
+static void	allocate_pipe_memory(t_args *args)
+{
+	int	cnt;
+
+	cnt = 0;
+	args->pipe_fd = (int **)ft_calloc_w_error(args->argc - 4, sizeof(int *));
+	while (cnt < args->argc - 4)
+	{
+		args->pipe_fd[cnt] = (int *)ft_calloc_w_error(2, sizeof(int));
+		cnt++;
+	}
+}
+
+static void	init_structure(int argc, char **argv, t_args *args)
 {
 	if (!ft_memcmp(argv[1], "here_doc", ft_strlen("here_doc") + 1))
 	{
@@ -23,6 +36,7 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 		args->file[0] = ft_strdup(".tmp.here_doc");
 		if (!(args->file[0]))
 			is_error("pipex: ", "error in malloc", EXIT_FAILURE);
+		argc--;
 	}
 	else
 	{
@@ -33,6 +47,8 @@ static	void	init_structure(int argc, char **argv, t_args *args)
 	args->params = (char ***)ft_calloc_w_error(argc - 2, sizeof(char **));
 	args->params[argc - 2 - 1] = NULL;
 	args->argc = argc;
+	args->pid = (pid_t *)ft_calloc_w_error(argc - 3, sizeof(pid_t));
+	allocate_pipe_memory(args);
 }
 
 static	void	get_path(char **envp, t_args *args)
