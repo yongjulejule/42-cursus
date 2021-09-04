@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/08/24 23:05:07 by jun              ###   ########.fr        #
+#    Updated: 2021/09/05 08:12:25 by jun              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ $(MLX_FILE) :
 clean:
 	rm -f $(OBJS_MAN) $(OBJS_BONUS)
 	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 
 .PHONY: fclean
 fclean: clean
