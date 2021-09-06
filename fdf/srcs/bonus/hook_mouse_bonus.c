@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:40:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:16:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 19:05:27 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	mouse_press(int button, int x, int y, void *param)
 	}
 	return (x + y);
 }
-
 int	mouse_release(int button, int x, int y, void *param)
 {
 	t_fdf	*fdf;
@@ -58,6 +57,14 @@ int	mouse_release(int button, int x, int y, void *param)
 		draw(fdf);
 	}
 	return (x + y);
+}
+
+int	close_window(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	exit(EXIT_SUCCESS);
 }
 
 int	mouse_move(int button, int x, int y, void *param)

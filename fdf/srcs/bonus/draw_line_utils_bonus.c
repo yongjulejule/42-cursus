@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:20:00 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:16:55 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 12:18:22 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	plot(t_fdf *fdf, int x, int y, int color)
 {
-	if (x < T_W && y < T_H)
+	if (x <= T_W && y <= T_H)
 		return ;
-	if (x < 0 || x > WIN_W || y < 0 || y > WIN_H)
+	if (x <= 0 || x >= WIN_W || y <= 0 || y >= WIN_H)
 		return ;
-	fdf->img->data[(y * fdf->img->size_l + x * fdf->img->bpp / 8) / 4] = color;
+	fdf->img->data[((y * fdf->img->size_l + x * fdf->img->bpp / 8) / 4)] = color;
 }
 
 int	rasterized_color(int *color, double percent)

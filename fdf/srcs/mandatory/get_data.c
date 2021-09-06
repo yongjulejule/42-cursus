@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 12:35:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 22:04:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 11:22:08 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ static void	free_double_ptr(char **strs)
 
 static void	put_data(t_data *data, char **nbrs)
 {
-	int			row;
 	static int	col = 0;
+	int			row;
 	char		*color;
 
 	row = 0;
 	while (*nbrs)
 	{
 		data->data[0][col][row] = ft_atoi_basis(*nbrs);
+		if (data->max_z < data->data[0][col][row])
+			data->max_z = data->data[0][col][row];
 		color = ft_strrchr(*nbrs, ',');
 		if (!color)
 			ft_strrchr(*nbrs, '.');
@@ -81,6 +83,7 @@ static void	init_t_data(t_data *data, char **file)
 	data->y = 0;
 	data->max_x = ft_strsetlen(tmp);
 	data->max_y = ft_strsetlen(file);
+	data->max_z = 0;
 	while (idx < 2)
 	{
 		col = 0;

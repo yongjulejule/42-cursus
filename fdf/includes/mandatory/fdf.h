@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:37:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 12:16:05 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data{
 	int	y;
 	int	max_x;
 	int	max_y;
+	int	max_z;
 	int	**data[2];
 }	t_data;
 

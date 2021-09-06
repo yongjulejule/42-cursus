@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:16:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 17:45:13 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	draw(t_fdf *fdf)
 		fdf->proj_func = iso_proj;
 	else
 		fdf->proj_func = parallel;
+	init_img_structure(fdf);
 	draw_wireframe(fdf);
 	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
 		fdf->background->img_ptr, 0, 0);

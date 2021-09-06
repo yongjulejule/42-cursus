@@ -6,14 +6,14 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/09/05 08:12:25 by jun              ###   ########.fr        #
+#    Updated: 2021/09/06 16:01:29 by yongjule         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 ifdef DEBUG
-#	CFLAGS = -g3 -fsanitize=address
-	CFLAGS = -g
+	CFLAGS = -g3 -fsanitize=address
+#	CFLAGS = -g
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
@@ -134,4 +134,4 @@ re_bonus: fclean bonus
 
 .PHONY: debug
 debug: 
-	@make DEBUG=1
+	@make DEBUG=1 WITH_BONUS=1

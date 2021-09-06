@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 22:04:24 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 11:26:58 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ static void	draw_wireframe_sub(t_fdf *fdf)
 		fdf->color[1] = fdf->data->data[1][fdf->data->y + 1][fdf->data->x];
 		drawline(fdf, vec_0, vec_1);
 	}
+}
+
+void	draw(t_fdf *fdf)
+{
+	fdf->proj_func = iso_proj;
+	draw_wireframe(fdf);
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+		fdf->background->img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
+		fdf->img->img_ptr, 0, 0);
+	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
+	fdf->img->img_ptr = NULL;
 }
 
 void	draw_wireframe(t_fdf *fdf)

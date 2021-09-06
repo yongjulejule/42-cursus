@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:16:55 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 21:21:49 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,60 @@ static void	draw_wireframe_sub(t_fdf *fdf)
 
 void	draw_wireframe(t_fdf *fdf)
 {
-	init_img_structure(fdf);
-	while (fdf->data->y < fdf->data->max_y)
-	{
-		fdf->data->x = 0;
-		while (fdf->data->x < fdf->data->max_x)
+//	if (fdf->camera->angle.x > PI / 2)
+//	recursion based on 4 angles
+
+//	if (fdf->camera->angle.x < PI / 2)
+//	{
+		while (fdf->data->y < fdf->data->max_y)
 		{
-			draw_wireframe_sub(fdf);
-			fdf->data->x += 1;
+			fdf->data->x = 0;
+			while (fdf->data->x < fdf->data->max_x)
+			{
+				draw_wireframe_sub(fdf);
+				fdf->data->x += 1;
+			}
+			fdf->data->y += 1;
 		}
-		fdf->data->y += 1;
-	}
+//	}
+//	else if (fdf->camera->angle.x < PI)
+//	{
+//		while (fdf->data->y < fdf->data->max_y)
+//		{
+//			fdf->data->x = fdf->data->max_x - 1;
+//			while (fdf->data->x >= 0)
+//			{
+//				draw_wireframe_sub(fdf);
+//				fdf->data->x -= 1;
+//			}
+//			fdf->data->y += 1;
+//		}
+//	}
+//	else if (fdf->camera->angle.x < (PI * 3) / 2)
+//	{
+//		while (fdf->data->y < fdf->data->max_y)
+//		{
+//			fdf->data->x = fdf->data->max_x - 1;
+//			while (fdf->data->x >= 0)
+//			{
+//				draw_wireframe_sub(fdf);
+//				fdf->data->x -= 1;
+//			}
+//			fdf->data->y += 1;
+//		}
+//	}
+//	else{
+//		while (fdf->data->y < fdf->data->max_y)
+//		{
+//			fdf->data->x = fdf->data->max_x - 1;
+//			while (fdf->data->x >= 0)
+//			{
+//				draw_wireframe_sub(fdf);
+//				fdf->data->x -= 1;
+//			}
+//			fdf->data->y += 1;
+//		}
+//	}
 	fdf->data->x = 0;
 	fdf->data->y = 0;
 }

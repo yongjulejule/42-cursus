@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:45:39 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 19:10:02 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ static int	handle_translation(t_fdf *fdf, int keycode)
 	return (flag);
 }
 
+static void	mod_angle(t_fdf *fdf)
+{
+	if (fdf->camera->angle.x >= 2 * PI)
+		fdf->camera->angle.x -= 2 * PI;
+	else if (fdf->camera->angle.x < 0)
+		fdf->camera->angle.x += 2 * PI;
+	if (fdf->camera->angle.y >= 2 * PI)
+		fdf->camera->angle.y -= 2 * PI;
+	else if (fdf->camera->angle.y < 0)
+		fdf->camera->angle.y += 2 * PI;
+	if (fdf->camera->angle.z >= 2 * PI)
+		fdf->camera->angle.z -= 2 * PI;
+	else if (fdf->camera->angle.z < 0)
+		fdf->camera->angle.z += 2 * PI;
+}
+
 static int	handle_rotation(t_fdf *fdf, int keycode)
 {
 	int	flag;
@@ -48,7 +64,8 @@ static int	handle_rotation(t_fdf *fdf, int keycode)
 	else if (keycode == KEY_D && fdf->camera->proj != PALL)
 		fdf->camera->angle.z -= PI / 60;
 	else
-		flag = 0;
+		return (0);
+	mod_angle(fdf);
 	return (flag);
 }
 
@@ -77,14 +94,6 @@ int	key_press(int keycode, void *param)
 		draw(fdf);
 	}
 	return (SUCCESS_FLAG);
-}
-
-int	close_window(void *param)
-{
-	t_fdf	*fdf;
-
-	fdf = param;
-	exit(EXIT_SUCCESS);
 }
 
 void	hook_fdf(t_fdf *fdf)

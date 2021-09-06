@@ -6,15 +6,16 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:20:00 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:28:11 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 10:16:35 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+#include <stdio.h>
 void	plot(t_fdf *fdf, int x, int y, int color)
 {
-	if (x < 0 || x > WIN_W || y < 0 || y > WIN_H)
+	if (x <= 0 || x >= WIN_W || y <= 0 || y >= WIN_H)
 		return ;
 	fdf->img->data[(y * fdf->img->size_l + x * fdf->img->bpp / 8) / 4] = color;
 }

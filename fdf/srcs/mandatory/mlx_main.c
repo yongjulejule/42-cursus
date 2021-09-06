@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:01:28 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 23:32:16 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/06 12:13:23 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,30 @@ static t_fdf	*init_fdf_structure(t_data *data)
 	return (fdf);
 }
 
-static t_camera	*init_camera_structure(void)
+static double	get_scale(t_data *data, double hori, double verdi)
+{
+	double	scale_w;
+	double	scale_h;
+
+	hori = verdi;
+	scale_w = fabs(WIN_W
+			/ ((data->max_x * cos(atan(0.5))) * 2));
+	scale_h = fabs(WIN_H
+			/ ((-data->max_z + (data->max_x + data->max_y) * sin(atan(0.5)))));
+	if (scale_w > scale_h)
+		return (scale_h);
+	else
+		return (scale_w);
+}
+
+static t_camera	*init_camera_structure(t_data *data)
 {
 	t_camera	*camera;
 
 	camera = (t_camera *)ft_calloc(1, sizeof(t_camera));
-	camera->scale = 10;
-	camera->horizon = WIN_W * 0.3;
-	camera->vertical = WIN_H * 0.3;
+	camera->horizon = WIN_W * 0.4;
+	camera->vertical = WIN_H * 0.55;
+	camera->scale = get_scale(data, camera->horizon, camera->vertical) / 2;
 	camera->proj = ISO;
 	return (camera);
 }
@@ -57,24 +73,12 @@ static void	get_fdf_background(t_fdf *fdf)
 		is_error("Error while initiate image");
 }
 
-void	draw(t_fdf *fdf)
-{
-	fdf->proj_func = iso_proj;
-	draw_wireframe(fdf);
-	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		fdf->background->img_ptr, 0, 0);
-	mlx_put_image_to_window(fdf->prog->mlx_ptr, fdf->prog->win_ptr,
-		fdf->img->img_ptr, 0, 0);
-	mlx_destroy_image(fdf->prog->mlx_ptr, fdf->img->img_ptr);
-	fdf->img->img_ptr = NULL;
-}
-
 t_fdf	*mlx_main(t_data *data)
 {
 	t_fdf	*fdf;
 
 	fdf = init_fdf_structure(data);
-	fdf->camera = init_camera_structure();
+	fdf->camera = init_camera_structure(data);
 	get_fdf_background(fdf);
 	draw(fdf);
 	hook_fdf(fdf);
