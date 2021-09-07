@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:40:44 by jun               #+#    #+#             */
-/*   Updated: 2021/09/06 19:05:27 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/09/07 16:33:03 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	mouse_press(int button, int x, int y, void *param)
 	}
 	return (x + y);
 }
+
 int	mouse_release(int button, int x, int y, void *param)
 {
 	t_fdf	*fdf;

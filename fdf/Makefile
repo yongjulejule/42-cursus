@@ -6,7 +6,7 @@
 #    By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 10:02:28 by jun               #+#    #+#              #
-#    Updated: 2021/09/06 16:01:29 by yongjule         ###   ########.fr        #
+#    Updated: 2021/09/07 17:13:50 by yongjule         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), \
 	   hook_fdf_bonus.c\
 	   fdf_image_base_bonus.c\
 	   hook_mouse_bonus.c\
+	   get_priority_bonus.c\
 	   )
 
 OBJS_MAN = ${SRCS_MAN:%.c=%.o}

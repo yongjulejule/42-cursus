@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 09:11:23 by jun               #+#    #+#             */
-/*   Updated: 2021/09/06 19:05:14 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/09/07 14:21:33 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,16 @@ char				**read_file(char **argv);
 /* mlx */
 
 t_fdf				*mlx_main(t_data *data);
-void				draw_wireframe(t_fdf *fdf);
+void				draw_wireframe_main(t_fdf *fdf);
 
+/*
+** get priority 
+*/
+
+int					**get_priority_arr(t_fdf *fdf, int x_end, int y_end);
+t_vec				init_vector(double x, double y, double z);
+int					compare_point(double x0, double x1, double x2, double x3);
+t_vec				get_endpoint(t_fdf *fdf);
 /* Isometric Projection */
 
 t_vec				iso_proj(t_fdf *fdf, t_vec vec);

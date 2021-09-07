@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 17:33:44 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:16:56 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/07 09:51:49 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vec	iso_proj(t_fdf *fdf, t_vec vec)
 
 	vec = rotation_based_angle(vec, fdf->camera->angle);
 	proj_vec.x = (((vec.x - vec.y) * cos(atan(0.5))) * fdf->camera->scale);
-	proj_vec.y = ((-vec.z + ((vec.x + vec.y) * sin(atan(0.5))))
+	proj_vec.y = ((-vec.z * 0.9 + ((vec.x + vec.y) * sin(atan(0.5))))
 			* fdf->camera->scale);
 	proj_vec.x += fdf->camera->horizon;
 	proj_vec.y += fdf->camera->vertical;

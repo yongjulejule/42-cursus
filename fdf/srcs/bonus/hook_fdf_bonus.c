@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:26:06 by jun               #+#    #+#             */
-/*   Updated: 2021/09/06 19:10:02 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/09/07 09:54:06 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	handle_translation(t_fdf *fdf, int keycode)
 
 	flag = 1;
 	if (keycode == KEY_UP)
-		fdf->camera->vertical -= 5;
+		fdf->camera->vertical -= 15;
 	else if (keycode == KEY_DOWN)
-		fdf->camera->vertical += 5;
+		fdf->camera->vertical += 15;
 	else if (keycode == KEY_LEFT)
-		fdf->camera->horizon -= 5;
+		fdf->camera->horizon -= 15;
 	else if (keycode == KEY_RIGHT)
-		fdf->camera->horizon += 5;
+		fdf->camera->horizon += 15;
 	else
 		flag = 0;
 	return (flag);
