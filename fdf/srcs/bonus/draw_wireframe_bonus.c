@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 15:39:12 by jun               #+#    #+#             */
-/*   Updated: 2021/09/07 16:29:41 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/09/08 09:57:49 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	draw_wireframe_main(t_fdf *fdf)
 	endpoint = get_endpoint(fdf);
 	priority_arr = get_priority_arr(fdf, endpoint.x, endpoint.y);
 	draw_wireframe(fdf, priority_arr);
-	row = 0;
+	row = -1;
 	while (++row < fdf->data->max_y)
 		free(priority_arr[row]);
 	free(priority_arr);

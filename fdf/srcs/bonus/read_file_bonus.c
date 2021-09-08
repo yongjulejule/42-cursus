@@ -6,7 +6,7 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 13:29:42 by jun               #+#    #+#             */
-/*   Updated: 2021/08/24 21:17:11 by jun              ###   ########.fr       */
+/*   Updated: 2021/09/08 10:33:57 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static char	**line_to_arr(int fd)
 		ft_lstadd_back(&lines, ft_lstnew(line));
 	free(line);
 	line = NULL;
+	close(fd);
 	return (lst_to_arr(lines));
 }
 
