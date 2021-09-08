@@ -14,3 +14,4 @@ push_swap_tester/
 fdf/42MapGenerator/
 fdf/42MapGenerator/*
 *.a
+*tags
