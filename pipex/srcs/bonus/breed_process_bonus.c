@@ -6,11 +6,12 @@
 /*   By: jun <yongjule@42student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 13:40:45 by jun               #+#    #+#             */
-/*   Updated: 2021/09/03 09:20:45 by yongjule         ###   ########.fr       */
+/*   Updated: 2021/09/09 11:08:54 by yongjule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bonus/ft_pipex_bonus.h"
+#include <unistd.h>
 
 static void	execute_processes(t_args *args, int cmd)
 {
