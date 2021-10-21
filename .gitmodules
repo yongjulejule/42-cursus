@@ -1,0 +1,3 @@
+[submodule "minishell"]
+	path = minishell
+	url = https://github.com/brilliantshell/minishell.git
