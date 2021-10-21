@@ -1,3 +1,6 @@
 [submodule "minishell"]
 	path = minishell
 	url = https://github.com/brilliantshell/minishell.git
+[submodule "Philosophers"]
+	path = Philosophers
+	url = https://github.com/yongjulejule/Philosophers.git
