@@ -4,3 +4,6 @@
 [submodule "Philosophers"]
 	path = Philosophers
 	url = https://github.com/yongjulejule/Philosophers.git
+[submodule "miniRT"]
+	path = miniRT
+	url = https://github.com/brilliantshell/miniRT.git
