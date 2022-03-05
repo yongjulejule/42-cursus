@@ -7,3 +7,6 @@
 [submodule "miniRT"]
 	path = miniRT
 	url = https://github.com/brilliantshell/miniRT.git
+[submodule "cpp-module"]
+	path = cpp-module
+	url = https://github.com/yongjulejule/cpp-module.git
