@@ -10,3 +10,6 @@
 [submodule "cpp-module"]
 	path = cpp-module
 	url = https://github.com/yongjulejule/cpp-module.git
+[submodule "netpractice"]
+	path = netpractice
+	url = https://github.com/yongjulejule/netpractice
