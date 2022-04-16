@@ -13,3 +13,6 @@
 [submodule "netpractice"]
 	path = netpractice
 	url = https://github.com/yongjulejule/netpractice
+[submodule "ft_containers"]
+	path = ft_containers
+	url = https://github.com/yongjulejule/ft_containers
