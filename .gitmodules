@@ -19,3 +19,6 @@
 [submodule "inception"]
 	path = inception
 	url = https://github.com/yongjulejule/inception.git
+[submodule "ft_transcendence"]
+	path = ft_transcendence
+	url = https://github.com/brilliantshell/ft_transcendence
