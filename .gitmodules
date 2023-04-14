@@ -22,3 +22,6 @@
 [submodule "ft_transcendence"]
 	path = ft_transcendence
 	url = https://github.com/brilliantshell/ft_transcendence
+[submodule "webserv"]
+	path = webserv
+	url = https://github.com/brilliantshell/webserv
