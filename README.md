@@ -4,14 +4,14 @@
 
 | 프로젝트 | 설명 | 보조자료 | 언어 | 기간 |
 |:---:|:---:|:---:|:---:|:---:|
-| [libft](https://github.com/yongjulejule/42-cursus/tree/master/libft) | 구현한 기본적인 함수들의 라이브러리 | -  | C | 21.05.03 ~ 21.05.10 |
+| [libft](https://github.com/yongjulejule/42-cursus/tree/master/libft) | 기본적인 함수들의 라이브러리 | -  | C | 21.05.03 ~ 21.05.10 |
 | [gnl](https://github.com/yongjulejule/42-cursus/tree/master/gnl) | 문자열 파싱  | - | C | 21.05.10 ~ 21.05.18 |
 | [ft_printf](https://github.com/yongjulejule/42-cursus/tree/master/ft_printf) | printf 함수 구현 | [📈 flowchart](https://viewer.diagrams.net/index.html?edit=_blank&layers=1&nav=1&title=printf.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1hPg7wEddFeO7dTr-Jf-GxvueEKHno9JR%26export%3Ddownload) | C | 21.05.18 ~ 21.06.24 |
 | piscine python-django | python Django 학습 | - | Python | 21.05.24 ~ 21.06.08 |
 | [pipex](https://github.com/yongjulejule/42-cursus/tree/master/pipex) | 파이프를 이용한 프로세스간 통신 | [🪄ppt](https://github.com/yongjulejule/42-cursus/tree/master/pipex) | C | 21.07.05 ~ 21.09.03 |
 | [push_swap](https://github.com/yongjulejule/42-cursus/tree/master/push_swap) | 스택을 이용한 정렬 | [🪄ppt](https://github.com/yongjulejule/42-cursus/tree/master/push_swap) | C | 21.07.24 ~ 21.08.29 |
 | [fdf](https://github.com/yongjulejule/42-cursus/tree/master/fdf) | 3D Wireframe | [🪄ppt](https://github.com/yongjulejule/42-cursus/tree/master/fdf) | C | 21.08.03 ~ 21.09.08 | 
-| [minishell](https://github.com/brilliantshell/minishell/tree/main) | 기본적인 Bash shell 구현 | - | C | 21.09.08 ~ 21.10. |
+| [minishell](https://github.com/brilliantshell/minishell/tree/main) | 기본적인 Bash shell 구현 | - | C | 21.09.08 ~ 21.10.21 |
 | [philosophers](https://github.com/yongjulejule/Philosophers/tree/master) | 식사하는 철학자 문제 해결 | [🪄ppt](https://github.com/yongjulejule/Philosophers/tree/master) | C | 21.10.11 ~ 21.11.27 |
 | [miniRT](https://github.com/brilliantshell/miniRT/tree/main) | Mini Ray Tracing | - | C | 21.11.23 ~ 21.12.28 |
 | [cpp-module](https://github.com/yongjulejule/cpp-module/tree/main) | C++ 기본  | - | C++ | 22.02.13 ~ 22.03.03 |
